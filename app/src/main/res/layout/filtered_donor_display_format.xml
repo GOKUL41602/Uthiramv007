@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/filteredDonorDisplayFormat_relLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/filteredDonorDisplayFormat_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/filteredDonorDisplayFormat_donorNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Donor Name : "
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/filteredDonorDisplayFormat_donorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/filteredDonorDisplayFormat_donorNameText"
+                android:hint="Donor Name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/filteredDonorDisplayFormat_phoneNoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filteredDonorDisplayFormat_donorNameText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Phone No : "
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/filteredDonorDisplayFormat_phoneNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filteredDonorDisplayFormat_donorName"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/filteredDonorDisplayFormat_phoneNoText"
+                android:hint="phone No"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/filteredDonorDisplayFormat_placeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filteredDonorDisplayFormat_phoneNoText"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Place : "
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/filteredDonorDisplayFormat_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filteredDonorDisplayFormat_phoneNo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/filteredDonorDisplayFormat_placeText"
+                android:hint="address"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/filteredDonorDisplayFormat_callBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filteredDonorDisplayFormat_donorName"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/filteredDonorDisplayFormat_phoneNoText"
+                android:src="@drawable/ic_call" />
+
+            <ImageView
+                android:id="@+id/filteredDonorDisplayFormat_msgBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/filteredDonorDisplayFormat_donorName"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/filteredDonorDisplayFormat_callBtn"
+                android:src="@drawable/ic_msg" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

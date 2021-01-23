@@ -1,0 +1,58 @@
+package com.uthiram.uthiramv007;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class FilteredBloodHomePage extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private RelativeLayout relativeLayout;
+    private FilteredHomePageDeptAdapter adapter;
+    private TextView deptNameText, bloodGroupText;
+    private String bloodGroup;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_filtered_blood_home_page);
+        initializeViews();
+        bloodGroup = getIntent().getStringExtra("2");
+        bloodGroupText.setText(bloodGroup);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        FirebaseRecyclerOptions<DonorsDto> options
+                = new FirebaseRecyclerOptions.Builder<DonorsDto>()
+                .setQuery(FirebaseDatabase.getInstance().getReference("DonorsDto"), DonorsDto.class)
+                .build();
+        adapter = new FilteredHomePageDeptAdapter(options, bloodGroup);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void initializeViews() {
+        recyclerView = findViewById(R.id.filteredBloodHomePage_recView);
+        relativeLayout = findViewById(R.id.filteredBloodHomePage_relLayout);
+        deptNameText = findViewById(R.id.filteredBloodHomePage_deptName);
+        bloodGroupText = findViewById(R.id.filteredBloodHomePage_bloodGroup);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+}

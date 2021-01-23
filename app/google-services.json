@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "879708592008",
+    "firebase_url": "https://uthiramv0-2-default-rtdb.firebaseio.com",
+    "project_id": "uthiramv0-2",
+    "storage_bucket": "uthiramv0-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879708592008:android:512186802a7bc8f100cc3d",
+        "android_client_info": {
+          "package_name": "com.uthiram.recdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879708592008-j0leo4o5kip87rrptsu6c9fiu6soi73m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOaat1J69DqOSmXz7pH1yDGxRuSxURxIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879708592008-j0leo4o5kip87rrptsu6c9fiu6soi73m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879708592008:android:8848b20c3b19760a00cc3d",
+        "android_client_info": {
+          "package_name": "com.uthiram.uthiramv007"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879708592008-j0leo4o5kip87rrptsu6c9fiu6soi73m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOaat1J69DqOSmXz7pH1yDGxRuSxURxIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879708592008-j0leo4o5kip87rrptsu6c9fiu6soi73m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

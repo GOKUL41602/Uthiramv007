@@ -1,0 +1,80 @@
+package com.uthiram.uthiramv007;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+
+public class HomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDto, HomePageRecAdapter.ViewHolder> {
+
+    public HomePageRecAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options) {
+        super(options);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull DonorsDto donorsDto) {
+
+        holder.donorName.setText(donorsDto.getDonorName());
+        holder.phoneNo.setText(donorsDto.getPhoneNo());
+        holder.deptName.setText(donorsDto.getDeptName());
+        holder.bloodGroup.setText(donorsDto.getBloodGroup());
+        holder.place.setText(donorsDto.getAddress());
+
+        holder.callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phone =holder.phoneNo.getText().toString();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + phone));
+                holder.context.startActivity(intent);
+
+            }
+        });
+
+        holder.msgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.donor_display_format, parent, false);
+        return new ViewHolder(view);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView donorName, place, deptName, bloodGroup, phoneNo;
+        private ImageView callBtn, msgBtn;
+        private Context context = itemView.getContext();
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            initializeViews();
+        }
+
+        private void initializeViews() {
+            donorName = itemView.findViewById(R.id.donorDisplayFormat_donorName);
+            place = itemView.findViewById(R.id.donorDisplayFormat_place);
+            deptName = itemView.findViewById(R.id.donorDisplayFormat_deptName);
+            bloodGroup = itemView.findViewById(R.id.donorDisplayFormat_bloodGroup);
+            phoneNo = itemView.findViewById(R.id.donorDisplayFormat_phoneNo);
+
+            callBtn = itemView.findViewById(R.id.donorDisplayFormat_callBtn);
+            msgBtn = itemView.findViewById(R.id.donorDisplayFormat_msgBtn);
+        }
+    }
+}

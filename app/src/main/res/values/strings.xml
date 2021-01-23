@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Uthiramv007</string>
+
+    <string-array name="deptName">
+        <item>Dept Name</item>
+        <item>Information Technology - IT</item>
+        <item>Computer Science - CS</item>
+        <item>Electrical and Electronical Engineering - EEE</item>
+        <item>Mechanical Engineering - ME</item>
+        <item>Aeronautical Engineering - AE</item>
+        <item>Fashion Technology - IT</item>
+    </string-array>
+    <string-array name="bloodGroup">
+        <item>Blood Group</item>
+        <item>A+</item>
+        <item>B+</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>O+</item>
+        <item>O-</item>
+    </string-array>
+    <string-array name="district_name">
+        <item>District</item>
+        <item>Ariyalur</item>
+        <item>Chengalpet</item>
+        <item>Chennai</item>
+        <item>Coimbatore</item>
+        <item>Cuddalore</item>
+        <item>Dharmapuri</item>
+        <item>Dindigul</item>
+        <item>Erode</item>
+        <item>KallaKurichi</item>
+        <item>Kancheepuram</item>
+        <item>Karur</item>
+        <item>Krishnagiri</item>
+        <item>Madurai</item>
+        <item>Nagapattinam</item>
+        <item>Nagercoil</item>
+        <item>Namakkal</item>
+        <item>Perambalur</item>
+        <item>Pudukottai</item>
+        <item>Ramanathapuram</item>
+        <item>Ranipet</item>
+        <item>Salem</item>
+        <item>Sivagangai</item>
+        <item>Tenkasi</item>
+        <item>Thanjavur</item>
+        <item>Theni</item>
+        <item>Thiruvallur</item>
+        <item>Thiruvarur</item>
+        <item>Tuticorin</item>
+        <item>Trichirappalli</item>
+        <item>Thirunelveli</item>
+        <item>Tirupathur</item>
+        <item>Tiruppur</item>
+        <item>Thiruvannamalai</item>
+        <item>The Nilgiris</item>
+        <item>Vellore</item>
+        <item>Viluppuram</item>
+        <item>Virudhunagar</item>
+    </string-array>
+
+</resources>
