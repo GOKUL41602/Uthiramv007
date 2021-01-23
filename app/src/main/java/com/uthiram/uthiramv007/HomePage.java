@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,55 +46,32 @@ public class HomePage extends AppCompatActivity {
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateDeptSpinner()) {
-                    if (validateBloodSpinner()) {
-
-                            Snackbar.make(relativeLayout, "Please select Any Filter!", Snackbar.LENGTH_INDEFINITE)
-                                    .setAction("RETRY", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                        }
-                                    }).show();
-                    } else {
+                if (bloodGroup.equals("Blood Group") && deptName.equals("Dept Name")) {
+                    Snackbar.make(relativeLayout, "Please select Any Filter!", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("RETRY", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                }
+                            }).show();
+                } else {
+                    if (!bloodGroup.equals("Blood Group") && !deptName.equals("Dept Name")) {
+                        Intent intent = new Intent(HomePage.this, FilteredHomePage.class);
+                        intent.putExtra("1", deptName);
+                        intent.putExtra("2", bloodGroup);
+                        startActivity(intent);
+                    } else if (!bloodGroup.equals("Blood Group")) {
                         Intent intent = new Intent(HomePage.this, FilteredBloodHomePage.class);
                         intent.putExtra("2", bloodGroup);
                         startActivity(intent);
-                    }
-                } else {
-                    if (validateDeptSpinner()) {
-
-                    } else {
+                    } else if (!deptName.equals("Dept Name")) {
                         Intent intent = new Intent(HomePage.this, FilteredDeptHomePage.class);
                         intent.putExtra("1", deptName);
                         startActivity(intent);
                     }
                 }
             }
+
         });
-    }
-
-    private boolean validateBloodSpinner() {
-        if (bloodGroup.equals("Blood Group")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean validateBothSpinners() {
-        if (bloodGroup.equals("Blood Group") && deptName.equals("Dept Name")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean validateDeptSpinner() {
-        if (deptName.equals("Dept Name")) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
 
