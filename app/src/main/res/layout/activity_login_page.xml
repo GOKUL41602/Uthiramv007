@@ -2,9 +2,111 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/loginPage_relLayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginPage">
+
+    <ImageView
+        android:id="@+id/loginPage_wave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-99dp"
+        android:src="@drawable/wave" />
+
+    <TextView
+        android:id="@+id/loginPage_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_wave"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-90dp"
+        android:fontFamily="@font/black_ops_one"
+        android:text="Donor Login"
+        android:textSize="30sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginPage_userName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:hint="User Name"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginPage_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_userName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/loginPage_forgetPasswordBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_password"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:text="FORGET PASSWORD?"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/loginPage_loginBtn"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_forgetPasswordBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/golden_yellow"
+        android:elevation="10dp"
+        android:text="Login"
+        android:textColor="@color/black" />
+
+
+    <Button
+        android:id="@+id/loginPage_registerBtn"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_loginBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/red"
+        android:elevation="10dp"
+        android:text="Register"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/loginPage_cancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_registerBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/sky_blue"
+        android:elevation="10dp"
+        android:text="Cancel"
+        android:textColor="@color/black" />
 
 </RelativeLayout>
