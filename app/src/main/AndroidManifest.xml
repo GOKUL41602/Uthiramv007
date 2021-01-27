@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007">
-        <activity android:name=".DonorLoginPage"></activity>
+        <activity android:name=".OtpPage"></activity>
+        <activity android:name=".RegisterPage" />
+        <activity android:name=".DonorLoginPage" />
         <activity android:name=".FilteredDeptHomePage" />
         <activity android:name=".FilteredBloodHomePage" />
         <activity android:name=".LoginPage" />

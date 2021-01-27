@@ -23,6 +23,7 @@
         android:layout_marginTop="-90dp"
         android:fontFamily="@font/black_ops_one"
         android:text="Donor Login"
+        android:textColor="@color/silver"
         android:textSize="30sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,17 +86,30 @@
         android:textColor="@color/black" />
 
 
-    <Button
-        android:id="@+id/loginPage_registerBtn"
-        android:layout_width="190dp"
+    <TextView
+        android:id="@+id/loginPage_newDonor"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginPage_loginBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="25dp"
+        android:text="New Donor?"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/loginPage_registerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginPage_loginBtn"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@+id/loginPage_newDonor"
         android:backgroundTint="@color/red"
         android:elevation="10dp"
         android:text="Register"
-        android:textColor="@color/white" />
+        android:textColor="@color/red"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/loginPage_cancelBtn"
