@@ -161,7 +161,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_deptName"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
@@ -178,7 +179,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_createPassword"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
@@ -189,10 +191,19 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
-                android:id="@+id/registerPage_bloodGroup"
+                android:id="@+id/registerPage_district"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_weight"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:entries="@array/district_name"
+                android:paddingStart="10dp" />
+            <Spinner
+                android:id="@+id/registerPage_bloodGroup"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/registerPage_district"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:entries="@array/bloodGroup"

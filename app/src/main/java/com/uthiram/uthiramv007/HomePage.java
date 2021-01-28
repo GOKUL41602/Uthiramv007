@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,6 +28,7 @@ public class HomePage extends AppCompatActivity {
     private String deptName, bloodGroup;
     private RelativeLayout relativeLayout;
     private Button filterBtn;
+    private FloatingActionButton loginBtn;
     private HomePageRecAdapter adapter;
 
     @Override
@@ -43,6 +45,13 @@ public class HomePage extends AppCompatActivity {
         adapter = new HomePageRecAdapter(options);
         recyclerView.setAdapter(adapter);
 
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LoginPage.class);
+                startActivity(intent);
+            }
+        });
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,6 +140,7 @@ public class HomePage extends AppCompatActivity {
         bloodGroupSpinner = findViewById(R.id.homePage_bloodGroupSpinner);
         relativeLayout = findViewById(R.id.homePage_relLayout);
         filterBtn = findViewById(R.id.homePage_filterBtn);
+        loginBtn = findViewById(R.id.homePage_loginBtn);
     }
 
     @Override

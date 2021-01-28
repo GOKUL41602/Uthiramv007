@@ -2,6 +2,7 @@ package com.uthiram.uthiramv007;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ public class LoginPage extends AppCompatActivity {
 
     private TextView registerBtn;
 
-    private String userNameText, passwordText,userNameFromDB,passwordFromDB;
+    private String userNameText, passwordText, userNameFromDB, passwordFromDB;
 
     private DatabaseReference reference;
 
@@ -33,6 +34,14 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initializeStrings();
+            }
+        });
+
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginPage.this, RegisterPage.class);
+                startActivity(intent);
             }
         });
     }

@@ -4,20 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class RegisterPage extends AppCompatActivity {
 
     private TextInputLayout name, rollNo, age, phoneNo, address, pinCode, weight, createPassword, confirmPassword;
-    private String nameText, rollNoText, ageText, phoneNoText, addressText, pinCodeText, weightText, createPasswordText, confirmPasswordText;
-    private Spinner bloodGroup, deptName;
+    private String nameText, rollNoText, ageText, phoneNoText, addressText, pinCodeText, deptNameText, districtText, bloodGroupText, weightText, createPasswordText, confirmPasswordText, lastDonatedDate, status, districtName;
+    private Spinner bloodGroup, deptName, district;
     private Button verifyBtn, cancelBtn;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +33,122 @@ public class RegisterPage extends AppCompatActivity {
         setContentView(R.layout.activity_register_page);
         initializeViews();
 
+        ArrayList<String> bloodsList = new ArrayList<>();
+        bloodsList.add("Blood Group");
+        bloodsList.add("B+");
+        bloodsList.add("A+");
+        bloodsList.add("AB-");
+        bloodsList.add("AB+");
+        bloodsList.add("O-");
+        bloodsList.add("O+");
+
+        ArrayAdapter<String> bloodAdapter = new ArrayAdapter<>(RegisterPage.this, android.R.layout.simple_spinner_dropdown_item, bloodsList);
+        bloodGroup.setAdapter(bloodAdapter);
+        bloodGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                bloodGroupText = bloodsList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+        ArrayList<String> deptNameList = new ArrayList<>();
+
+        deptNameList.add("Dept Name");
+        deptNameList.add("Information Technology - IT");
+        deptNameList.add("Computer Science - CS");
+        deptNameList.add("Fashion Technology - FT");
+        deptNameList.add("Electrical and Electronics Engineering - EEE");
+        deptNameList.add("Mechanical Engineering - ME");
+        ArrayAdapter<String> deptNameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, deptNameList);
+        deptName.setAdapter(deptNameAdapter);
+        deptName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                deptNameText = deptNameList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        ArrayList<String> districtName = new ArrayList<>();
+        districtName.add("District Name");
+        districtName.add("Ariyalur");
+        districtName.add("Chengalpet");
+        districtName.add("Chennai");
+        districtName.add("Coimbatore");
+        districtName.add("Cuddalore");
+        districtName.add("Dharmapuri");
+        districtName.add("Dindigul");
+        districtName.add("Erode");
+        districtName.add("Kallakurichi");
+        districtName.add("Kancheepuram");
+        districtName.add("Karur");
+        districtName.add("Krishnagiri");
+        districtName.add("Madurai");
+        districtName.add("Nagapattinam");
+        districtName.add("Kanyakumari");
+        districtName.add("Namakkal");
+        districtName.add("Perambalur");
+        districtName.add("Pudukottai");
+        districtName.add("Ramanathapuram");
+        districtName.add("Ranipet");
+        districtName.add("Salem");
+        districtName.add("Sivagangai");
+        districtName.add("Tenkasi");
+        districtName.add("Thanjavur");
+        districtName.add("Theni");
+        districtName.add("Thiruvallur");
+        districtName.add("Thiruvarur");
+        districtName.add("Tuticorin");
+        districtName.add("Trichirappalli");
+        districtName.add("Thirunelveli");
+        districtName.add("Tirupathur");
+        districtName.add("Tiruppur");
+        districtName.add("Thiruvannamalai");
+        districtName.add("The Nilgiris");
+        districtName.add("Vellore");
+        districtName.add("Viluppuram");
+        districtName.add("Virudhunagar");
+        districtName.add("Other...");
+
+        ArrayAdapter<String> districtNameAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, districtName);
+        district.setAdapter(districtNameAdapter);
+        district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                districtText = districtName.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initializeStrings();
-                if (validateName()) {
+                  initializeStrings();
+              if (validateName()) {
                     if (validateRollNo()) {
                         if (validateAge()) {
                             if (validatePhoneNo()) {
@@ -39,16 +158,41 @@ public class RegisterPage extends AppCompatActivity {
                                             if (validateCreatePassword()) {
                                                 if (validateConfirmPassword()) {
                                                     if (verifyPassword()) {
-                                                        if (validateBloodGroup()) {
-                                                            if (validateDeptName()) {
-                                                                Intent intent = new Intent(RegisterPage.this, OtpPage.class);
-                                                                intent.putExtra("phoneNo", phoneNoText);
-                                                                startActivity(intent);
+                                                        if (verifyAge()) {
+                                                            if (verifyWeight()) {
+                                                                if (verifyPhoneNo()) {
+                                                                    if (verifyPinCode()) {
+                                                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+                                                                        status = "Null";
+                                                                        lastDonatedDate = "Null";
+                                                                        DonorsDto donorsDto = new DonorsDto(nameText, rollNoText, ageText, bloodGroupText, phoneNoText, addressText, districtText, pinCodeText, weightText, confirmPasswordText, status, deptNameText, lastDonatedDate);
+                                                                        Log.d("name ", nameText);
+                                                                        Log.d("rollNo ", rollNoText);
+                                                                        Log.d("age ", ageText);
+                                                                        Log.d("blood Group", bloodGroupText);
+                                                                        Log.d("PhoneNo ", phoneNoText);
+                                                                        Log.d("address ", addressText);
+                                                                        Log.d("district ", districtText);
+                                                                        Log.d("pinCode ", pinCodeText);
+                                                                        Log.d("weight ", weightText);
+                                                                        Log.d("confirmPassword ", confirmPasswordText);
+                                                                        Log.d("deptName ", deptNameText);
+                                                                        Log.d("status ", status);
+                                                                        Log.d("lastDonatedDate  ", lastDonatedDate);
+
+                                                                        reference.child(rollNoText).setValue(donorsDto);
+                                                                        showSnackBar();
+                                                                    } else {
+                                                                        verifyPinCode();
+                                                                    }
+                                                                } else {
+                                                                    verifyPhoneNo();
+                                                                }
                                                             } else {
-                                                                validateDeptName();
+                                                                verifyWeight();
                                                             }
                                                         } else {
-                                                            validateBloodGroup();
+                                                            verifyAge();
                                                         }
                                                     } else {
                                                         verifyPassword();
@@ -84,6 +228,18 @@ public class RegisterPage extends AppCompatActivity {
         });
     }
 
+    private void showSnackBar() {
+        Snackbar.make(relativeLayout, "Registration Successful", Snackbar.LENGTH_INDEFINITE)
+                .setAction("LOGIN", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+                        startActivity(intent);
+                    }
+                }).show();
+    }
+
+
     private boolean validateName() {
         if (nameText.equals("") || nameText.length() < 3) {
             name.setError("Enter Valid Name");
@@ -97,7 +253,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateRollNo() {
-        if (rollNoText.equals("") || rollNoText.length() < 3) {
+        if (rollNoText.equals("")) {
             rollNo.setError("Enter Valid Roll No");
             rollNo.requestFocus();
             return false;
@@ -109,7 +265,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateAge() {
-        if (ageText.equals("") || ageText.length() != 2) {
+        if (ageText.equals("")) {
             age.setError("Enter Valid Age");
             age.requestFocus();
             return false;
@@ -120,8 +276,21 @@ public class RegisterPage extends AppCompatActivity {
         }
     }
 
+    private boolean verifyAge() {
+        int Age = Integer.parseInt(ageText);
+        if (Age < 19) {
+            age.setError("Please Enter Valid Age");
+            age.requestFocus();
+            return false;
+        } else {
+            age.setError(null);
+            age.setErrorEnabled(false);
+            return true;
+        }
+    }
+
     private boolean validateAddress() {
-        if (addressText.equals("") || addressText.length() <= 3) {
+        if (addressText.equals("")) {
             address.setError("Enter Valid City/Village");
             address.requestFocus();
             return false;
@@ -133,7 +302,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validatePhoneNo() {
-        if (phoneNoText.equals("") || phoneNoText.length() != 10) {
+        if (phoneNoText.equals("")) {
             phoneNo.setError("Enter Valid Phone No");
             phoneNo.requestFocus();
             return false;
@@ -144,26 +313,20 @@ public class RegisterPage extends AppCompatActivity {
         }
     }
 
-    private boolean validateBloodGroup() {
-        if (bloodGroup.equals("Blood Group")) {
-            Toast.makeText(this, "Please Select Blood Group", Toast.LENGTH_SHORT).show();
+    private boolean verifyPhoneNo() {
+        if (phoneNoText.length() != 10) {
+            phoneNo.setError("Please Enter Valid Phone No");
             return false;
         } else {
+            phoneNo.setError(null);
+            phoneNo.setErrorEnabled(false);
             return true;
         }
     }
 
-    private boolean validateDeptName() {
-        if (deptName.equals("Dept Name")) {
-            Toast.makeText(this, "Please Select Department Name", Toast.LENGTH_SHORT).show();
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     private boolean validatePinCode() {
-        if (pinCodeText.equals("") || pinCodeText.length() != 6) {
+        if (pinCodeText.equals("")) {
             pinCode.setError("Enter Valid PinCode");
             pinCode.requestFocus();
             return false;
@@ -174,9 +337,21 @@ public class RegisterPage extends AppCompatActivity {
         }
     }
 
+    private boolean verifyPinCode() {
+        if (pinCodeText.length() != 6) {
+            pinCode.setError("Enter Valid Pin Code");
+            pinCode.requestFocus();
+            return false;
+        } else {
+            pinCode.setError(null);
+            pinCode.setErrorEnabled(false);
+            return true;
+        }
+    }
+
     private boolean validateWeight() {
-        int weightValue = Integer.parseInt(weightText);
-        if (weightText.equals("") && weightValue <= 50) {
+
+        if (weightText.equals("")) {
             weight.setError("Enter Valid Weight");
             weight.requestFocus();
             return false;
@@ -187,8 +362,20 @@ public class RegisterPage extends AppCompatActivity {
         }
     }
 
+    private boolean verifyWeight() {
+        int Weight = Integer.parseInt(weightText);
+        if (Weight >= 50) {
+            weight.setErrorEnabled(false);
+            weight.setError(null);
+            return true;
+        } else {
+            weight.setError("Please Enter Valid Weight");
+            return false;
+        }
+    }
+
     private boolean validateCreatePassword() {
-        if (createPasswordText.equals("") && createPasswordText.length() <= 6) {
+        if (createPasswordText.equals("")) {
             createPassword.setError("Enter Valid 6 Password");
             createPassword.requestFocus();
             return false;
@@ -200,7 +387,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateConfirmPassword() {
-        if (confirmPasswordText.equals("") && confirmPasswordText.length() <= 6) {
+        if (confirmPasswordText.equals("")) {
             confirmPassword.setError("Enter Valid 6 Password");
             confirmPassword.requestFocus();
             return false;
@@ -248,8 +435,10 @@ public class RegisterPage extends AppCompatActivity {
 
         bloodGroup = findViewById(R.id.registerPage_bloodGroup);
         deptName = findViewById(R.id.registerPage_deptName);
+        district = findViewById(R.id.registerPage_district);
 
         verifyBtn = findViewById(R.id.registerPage_verifyBtn);
         cancelBtn = findViewById(R.id.registerPage_cancelBtn);
+        relativeLayout = findViewById(R.id.registerPage_relLayout);
     }
 }
