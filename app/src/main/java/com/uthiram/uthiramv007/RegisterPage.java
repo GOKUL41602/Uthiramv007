@@ -1,5 +1,6 @@
 package com.uthiram.uthiramv007;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,8 +15,12 @@ import android.widget.Spinner;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -26,6 +31,8 @@ public class RegisterPage extends AppCompatActivity {
     private Spinner bloodGroup, deptName, district;
     private Button verifyBtn, cancelBtn;
     private RelativeLayout relativeLayout;
+
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +62,6 @@ public class RegisterPage extends AppCompatActivity {
 
             }
         });
-
 
 
         ArrayList<String> deptNameList = new ArrayList<>();
@@ -144,11 +150,12 @@ public class RegisterPage extends AppCompatActivity {
                 finish();
             }
         });
+
         verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  initializeStrings();
-              if (validateName()) {
+                initializeStrings();
+                if (validateName()) {
                     if (validateRollNo()) {
                         if (validateAge()) {
                             if (validatePhoneNo()) {
@@ -162,26 +169,7 @@ public class RegisterPage extends AppCompatActivity {
                                                             if (verifyWeight()) {
                                                                 if (verifyPhoneNo()) {
                                                                     if (verifyPinCode()) {
-                                                                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
-                                                                        status = "Null";
-                                                                        lastDonatedDate = "Null";
-                                                                        DonorsDto donorsDto = new DonorsDto(nameText, rollNoText, ageText, bloodGroupText, phoneNoText, addressText, districtText, pinCodeText, weightText, confirmPasswordText, status, deptNameText, lastDonatedDate);
-                                                                        Log.d("name ", nameText);
-                                                                        Log.d("rollNo ", rollNoText);
-                                                                        Log.d("age ", ageText);
-                                                                        Log.d("blood Group", bloodGroupText);
-                                                                        Log.d("PhoneNo ", phoneNoText);
-                                                                        Log.d("address ", addressText);
-                                                                        Log.d("district ", districtText);
-                                                                        Log.d("pinCode ", pinCodeText);
-                                                                        Log.d("weight ", weightText);
-                                                                        Log.d("confirmPassword ", confirmPasswordText);
-                                                                        Log.d("deptName ", deptNameText);
-                                                                        Log.d("status ", status);
-                                                                        Log.d("lastDonatedDate  ", lastDonatedDate);
-
-                                                                        reference.child(rollNoText).setValue(donorsDto);
-                                                                        showSnackBar();
+                                                                        checkUserName();
                                                                     } else {
                                                                         verifyPinCode();
                                                                     }
@@ -224,6 +212,34 @@ public class RegisterPage extends AppCompatActivity {
                 } else {
                     validateName();
                 }
+            }
+        });
+    }
+
+    private void checkUserName() {
+        reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+        Query query = reference.orderByChild("rollNo").startAt(rollNoText).endAt(rollNoText + "\uf8ff");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    rollNo.setError("RollNo Already Exists!");
+                    rollNo.requestFocus();
+                } else {
+                    rollNo.setError(null);
+                    rollNo.setErrorEnabled(false);
+                    reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+                    status = "Null";
+                    lastDonatedDate = "Null";
+                    DonorsDto donorsDto = new DonorsDto(nameText, rollNoText, ageText, bloodGroupText, phoneNoText, addressText, districtText, pinCodeText, weightText, confirmPasswordText, status, deptNameText, lastDonatedDate);
+                    reference.child(rollNoText).setValue(donorsDto);
+                    showSnackBar();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
