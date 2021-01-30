@@ -44,6 +44,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "879708592008-td4jmi6plp53vopm5hona1rrqbuia7a0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uthiram.uthiramv007",
+            "certificate_hash": "c5442a0348004be82a9efb5d4a3c7459a4cac6d9"
+          }
+        },
+        {
           "client_id": "879708592008-j0leo4o5kip87rrptsu6c9fiu6soi73m.apps.googleusercontent.com",
           "client_type": 3
         }

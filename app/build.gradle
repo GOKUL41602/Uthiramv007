@@ -37,10 +37,24 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.6.0'
 
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'com.google.firebase:firebase-core:17.2.2'
+
+    implementation 'com.github.joielechong:countrycodepicker:2.4.2'
+
+    implementation 'com.google.firebase:firebase-core:17.2.2'
+
+
+    //import broswer(require for firebase reCaptch Verifications)
+    implementation 'androidx.browser:browser:1.2.0'
+
+// Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-analytics'
 
 }

@@ -228,12 +228,15 @@ public class RegisterPage extends AppCompatActivity {
                 } else {
                     rollNo.setError(null);
                     rollNo.setErrorEnabled(false);
-                    reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+                    Intent intent = new Intent(RegisterPage.this, OtpPage.class);
+                    startActivity(intent);
+
+                    /*reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
                     status = "Null";
                     lastDonatedDate = "Null";
                     DonorsDto donorsDto = new DonorsDto(nameText, rollNoText, ageText, bloodGroupText, phoneNoText, addressText, districtText, pinCodeText, weightText, confirmPasswordText, status, deptNameText, lastDonatedDate);
                     reference.child(rollNoText).setValue(donorsDto);
-                    showSnackBar();
+                    showSnackBar();*/
                 }
             }
 
