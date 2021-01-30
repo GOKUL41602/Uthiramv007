@@ -37,7 +37,6 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         initializeViews();
         initializeSpinners();
-        Log.d("demo","demo");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<DonorsDto> options
                 = new FirebaseRecyclerOptions.Builder<DonorsDto>()
