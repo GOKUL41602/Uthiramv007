@@ -68,11 +68,11 @@ public class RegisterPage extends AppCompatActivity {
         ArrayList<String> deptNameList = new ArrayList<>();
 
         deptNameList.add("Dept Name");
-        deptNameList.add("Information Technology - IT");
-        deptNameList.add("Computer Science - CS");
-        deptNameList.add("Fashion Technology - FT");
-        deptNameList.add("Electrical and Electronics Engineering - EEE");
-        deptNameList.add("Mechanical Engineering - ME");
+        deptNameList.add("IT");
+        deptNameList.add("CSE");
+        deptNameList.add("FT");
+        deptNameList.add("EEE");
+        deptNameList.add("ME");
         ArrayAdapter<String> deptNameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, deptNameList);
         deptName.setAdapter(deptNameAdapter);
         deptName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -248,7 +248,7 @@ public class RegisterPage extends AppCompatActivity {
 
 
     private boolean validateName() {
-        if (nameText.equals("") || nameText.length() < 3) {
+        if (nameText.equals("") || nameText.length() <= 3) {
             name.setError("Enter Valid Name");
             name.requestFocus();
             return false;
@@ -260,7 +260,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateRollNo() {
-        if (rollNoText.equals("")) {
+        if (rollNoText.equals("") || rollNoText.length() != 8) {
             rollNo.setError("Enter Valid Roll No");
             rollNo.requestFocus();
             return false;
@@ -297,7 +297,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateAddress() {
-        if (addressText.equals("")) {
+        if (addressText.equals("") || addressText.length() <= 3) {
             address.setError("Enter Valid City/Village");
             address.requestFocus();
             return false;
@@ -359,7 +359,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateCreatePassword() {
-        if (createPasswordText.equals("")) {
+        if (createPasswordText.equals("") || createPasswordText.length() <= 6) {
             createPassword.setError("Enter Valid 6 Password");
             createPassword.requestFocus();
             return false;
@@ -371,7 +371,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateConfirmPassword() {
-        if (confirmPasswordText.equals("")) {
+        if (confirmPasswordText.equals("") || confirmPasswordText.length() < 6) {
             confirmPassword.setError("Enter Valid 6 Password");
             confirmPassword.requestFocus();
             return false;
