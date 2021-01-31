@@ -21,7 +21,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="25dp"
         android:layout_marginRight="10dp"
-        android:backgroundTint="@color/purple_500"
+        android:backgroundTint="@color/sky_blue"
         android:src="@drawable/ic_login" />
 
     <Spinner

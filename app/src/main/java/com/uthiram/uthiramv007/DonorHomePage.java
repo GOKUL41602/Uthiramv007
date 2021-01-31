@@ -36,7 +36,9 @@ public class DonorHomePage extends AppCompatActivity {
         updateProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(DonorHomePage.this, UpdateDonorDetailsPage.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
             }
         });
 
