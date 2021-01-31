@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/donorHomePage_relLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DonorHomePage">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/donorHomePage_wave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-99dp"
+        android:src="@drawable/wave" />
+
+    <TextView
+        android:id="@+id/donorHomePage_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/donorHomePage_wave"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-80dp"
+        android:fontFamily="@font/tillana_semibold"
+        android:text="Welcome Donor!"
+        android:textSize="30sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/donorHomePage_title"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="40dp">
+
+            <Button
+                android:id="@+id/donorHomePage_viewProfileBtn"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/golden_yellow"
+                android:elevation="10dp"
+                android:text="View Profile"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/donorHomePage_updateProfileBtn"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/donorHomePage_viewProfileBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/golden_yellow"
+                android:elevation="10dp"
+                android:text="Update Profile"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/donorHomePage_updateStatusBtn"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/donorHomePage_updateProfileBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/golden_yellow"
+                android:elevation="10dp"
+                android:text="Update Status"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/donorHomePage_backBtn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/donorHomePage_updateStatusBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="40dp"
+                android:backgroundTint="@color/sky_blue"
+                android:elevation="10dp"
+                android:text="Back"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
