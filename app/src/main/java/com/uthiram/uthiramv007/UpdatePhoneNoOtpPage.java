@@ -19,6 +19,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
@@ -31,9 +37,11 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
     ProgressBar progressBar;
     TextView state;
     CountryCodePicker codePicker;
-    String verificationId, phoneNum, userName;
+    String verificationId, phoneNum, userName,rollNo,age,weight,address,district,pinCode,phoneNo,donorName;
     PhoneAuthProvider.ForceResendingToken token;
     Boolean verificationProgress = false;
+
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,14 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         phonenumber = findViewById(R.id.phone);
         userName = getIntent().getStringExtra("userName");
+        donorName=getIntent().getStringExtra("donorName");
+        rollNo = getIntent().getStringExtra("rollNo");
+        age = getIntent().getStringExtra("age");
+        weight = getIntent().getStringExtra("weight");
+        address = getIntent().getStringExtra("address");
+        district = getIntent().getStringExtra("district");
+        pinCode = getIntent().getStringExtra("pinCode");
+        phoneNo = getIntent().getStringExtra("phoneNo");
         codeEnter = findViewById(R.id.codeEnter);
         progressBar = findViewById(R.id.progressBar);
         nextBtn = findViewById(R.id.nextBtn);
@@ -53,11 +69,11 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
             public void onClick(View view) {
                 if (!verificationProgress) {
                     if (!phonenumber.getText().toString().isEmpty() && phonenumber.getText().toString().length() == 10) {
-                        phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
-                        progressBar.setVisibility(View.VISIBLE);
-                        state.setText("sending");
-                        state.setVisibility(View.VISIBLE);
-                        requestOTP(phoneNum);
+                            phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
+                            progressBar.setVisibility(View.VISIBLE);
+                            state.setText("sending");
+                            state.setVisibility(View.VISIBLE);
+                            requestOTP(phoneNum);
 
                     } else {
                         phonenumber.setError("Phone number is not valid");
@@ -84,8 +100,8 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(UpdatePhoneNoOtpPage.this, "Authentication is successful", Toast.LENGTH_SHORT).show();
+                    updateDonorDetailsToDB();
                     Intent intent = new Intent(UpdatePhoneNoOtpPage.this, DonorHomePage.class);
-                    intent.putExtra("phoneNo", phoneNum);
                     intent.putExtra("userName", userName);
                     startActivity(intent);
                 } else {
@@ -97,6 +113,36 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
         });
     }
 
+    private void updateDonorDetailsToDB()
+    {
+        reference= FirebaseDatabase.getInstance().getReference("DonorsDto");
+        Query query=reference.orderByChild("rollNo").startAt(userName).endAt(userName+"\uf8ff");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    reference.child(userName).child("donorName").setValue(donorName);
+                    reference.child(userName).child("rollNo").setValue(userName);
+                    reference.child(userName).child("age").setValue(age);
+                    reference.child(userName).child("weight").setValue(weight);
+                    reference.child(userName).child("pinCode").setValue(pinCode);
+                    reference.child(userName).child("address").setValue(address);
+                    reference.child(userName).child("phoneNo").setValue(phoneNum);
+                    reference.child(userName).child("district").setValue(district);
+                }
+                else
+                {
+                    Toast.makeText(UpdatePhoneNoOtpPage.this, "User doesn't Exists !", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void requestOTP(String phoneNum) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNum, 60L, TimeUnit.SECONDS, this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 

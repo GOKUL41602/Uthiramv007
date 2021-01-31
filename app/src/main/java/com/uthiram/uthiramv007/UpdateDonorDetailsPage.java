@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,7 +36,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText;
+    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtNameText, bloodGroupText;
 
     private DatabaseReference reference;
 
@@ -50,7 +51,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
         loadDonorDetails();
 
         ArrayList<String> districtName = new ArrayList<>();
-        districtName.add("District Name");
+        districtName.add("District");
         districtName.add("Ariyalur");
         districtName.add("Chengalpet");
         districtName.add("Chennai");
@@ -95,7 +96,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
         district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                districtText = districtName.get(position);
+                districtNameText = districtName.get(position);
             }
 
             @Override
@@ -114,7 +115,11 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                             if (validateAddress()) {
                                 if (validatePinCode()) {
                                     if (validateWeight()) {
-                                        showSnackBar();
+                                        if (validateDistrict()) {
+                                            showSnackBar();
+                                        } else {
+                                            validateDistrict();
+                                        }
                                     } else {
                                         validateWeight();
                                     }
@@ -155,6 +160,12 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                 Intent intent = new Intent(UpdateDonorDetailsPage.this, UpdatePhoneNoOtpPage.class);
                 intent.putExtra("phoneNo", phoneNoText);
                 intent.putExtra("userName", rollNoText);
+                intent.putExtra("donorName", nameText);
+                intent.putExtra("weight", weightText);
+                intent.putExtra("age", ageText);
+                intent.putExtra("pinCode", pinCodeText);
+                intent.putExtra("district", districtNameText);
+                intent.putExtra("address", addressText);
                 startActivity(intent);
             }
         }).show();
@@ -174,7 +185,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                     addressText = snapshot.child(userName).child("address").getValue(String.class);
                     pinCodeText = snapshot.child(userName).child("pinCode").getValue(String.class);
                     phoneNoText = snapshot.child(userName).child("phoneNo").getValue(String.class);
-                    districtText = snapshot.child(userName).child("district").getValue(String.class);
+                    districtNameText = snapshot.child(userName).child("district").getValue(String.class);
                     bloodGroupText = snapshot.child(userName).child("bloodGroup").getValue(String.class);
 
                     name.getEditText().setText(nameText);
@@ -232,6 +243,22 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
         } else {
             name.setError(null);
             name.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateDistrict() {
+        if (districtNameText.equals("District")) {
+            Log.d("District Name : ", districtNameText);
+            Snackbar.make(relativeLayout, "Please Select District !", Snackbar.LENGTH_SHORT).setAction("RETRY", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            }).show();
+            return false;
+
+        } else {
             return true;
         }
     }
