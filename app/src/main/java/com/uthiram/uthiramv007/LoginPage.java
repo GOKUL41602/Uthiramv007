@@ -93,9 +93,9 @@ public class LoginPage extends AppCompatActivity {
                     passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
                     if (passwordText.equals(passwordFromDB)) {
                         Intent intent = new Intent(LoginPage.this, DonorHomePage.class);
+                        intent.putExtra("userName", userNameText);
                         startActivity(intent);
                     } else {
-                        Log.d("as", "as");
                         password.setError("Incorrect Password");
                         password.requestFocus();
                     }
