@@ -3,6 +3,7 @@ package com.uthiram.uthiramv007;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,10 +30,9 @@ public class OtpPage extends AppCompatActivity {
     ProgressBar progressBar;
     TextView state;
     CountryCodePicker codePicker;
-    String verificationId;
+    String verificationId, phoneNum;
     PhoneAuthProvider.ForceResendingToken token;
     Boolean verificationProgress = false;
-
 
 
     @Override
@@ -52,7 +52,7 @@ public class OtpPage extends AppCompatActivity {
             public void onClick(View view) {
                 if (!verificationProgress) {
                     if (!phonenumber.getText().toString().isEmpty() && phonenumber.getText().toString().length() == 10) {
-                        String phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
+                        phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
                         progressBar.setVisibility(View.VISIBLE);
                         state.setText("sending");
                         state.setVisibility(View.VISIBLE);
@@ -83,6 +83,9 @@ public class OtpPage extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(OtpPage.this, "Authentication is successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(OtpPage.this, RegisterPage.class);
+                    intent.putExtra("phoneNo", phoneNum);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(OtpPage.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                 }

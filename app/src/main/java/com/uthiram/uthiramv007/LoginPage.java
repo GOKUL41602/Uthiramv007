@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
@@ -34,13 +35,22 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initializeStrings();
+                if (validateUserName()) {
+                    if (validatePassword()) {
+                        Toast.makeText(LoginPage.this, "validation Successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        validatePassword();
+                    }
+                } else {
+                    validateUserName();
+                }
             }
         });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, RegisterPage.class);
+                Intent intent = new Intent(LoginPage.this, OtpPage.class);
                 startActivity(intent);
             }
         });
@@ -52,30 +62,31 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private boolean validateUserName() {
-        if (userNameText.equals("") || userNameText.length() != 8) {
+        if (userNameText.equals("") && userNameText.length() != 8) {
             userName.setError("Enter Valid UserName");
             userName.requestFocus();
-            return true;
+            return false;
         } else {
             userName.setError(null);
             userName.setErrorEnabled(false);
-            return false;
+            return true;
         }
     }
 
     private void verifyUserId() {
+        reference=FirebaseDatabase.getInstance().getReference("DonorsDto");
 
     }
 
     private boolean validatePassword() {
-        if (passwordText.equals("") || userNameText.length() != 6) {
+        if (passwordText.equals("") && passwordText.length() != 6) {
             password.setError("Enter Valid Password");
             password.requestFocus();
-            return true;
+            return false;
         } else {
             password.setError(null);
             password.setErrorEnabled(false);
-            return false;
+            return true;
         }
     }
 

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class RegisterPage extends AppCompatActivity {
 
-    private TextInputLayout name, rollNo, age, phoneNo, address, pinCode, weight, createPassword, confirmPassword;
+    private TextInputLayout name, rollNo, age, address, pinCode, weight, createPassword, confirmPassword;
     private String nameText, rollNoText, ageText, phoneNoText, addressText, pinCodeText, deptNameText, districtText, bloodGroupText, weightText, createPasswordText, confirmPasswordText, lastDonatedDate, status, districtName;
     private Spinner bloodGroup, deptName, district;
     private Button verifyBtn, cancelBtn;
@@ -39,6 +39,7 @@ public class RegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
         initializeViews();
+        phoneNoText = getIntent().getStringExtra("phoneNo");
 
         ArrayList<String> bloodsList = new ArrayList<>();
         bloodsList.add("Blood Group");
@@ -158,50 +159,42 @@ public class RegisterPage extends AppCompatActivity {
                 if (validateName()) {
                     if (validateRollNo()) {
                         if (validateAge()) {
-                            if (validatePhoneNo()) {
-                                if (validateAddress()) {
-                                    if (validatePinCode()) {
-                                        if (validateWeight()) {
-                                            if (validateCreatePassword()) {
-                                                if (validateConfirmPassword()) {
-                                                    if (verifyPassword()) {
-                                                        if (verifyAge()) {
-                                                            if (verifyWeight()) {
-                                                                if (verifyPhoneNo()) {
-                                                                    if (verifyPinCode()) {
-                                                                        checkUserName();
-                                                                    } else {
-                                                                        verifyPinCode();
-                                                                    }
-                                                                } else {
-                                                                    verifyPhoneNo();
-                                                                }
+                            if (validateAddress()) {
+                                if (validatePinCode()) {
+                                    if (validateWeight()) {
+                                        if (validateCreatePassword()) {
+                                            if (validateConfirmPassword()) {
+                                                if (verifyPassword()) {
+                                                    if (verifyAge()) {
+                                                        if (verifyWeight()) {
+                                                            if (verifyPinCode()) {
+                                                                checkUserName();
                                                             } else {
-                                                                verifyWeight();
+                                                                verifyPinCode();
                                                             }
                                                         } else {
-                                                            verifyAge();
+                                                            verifyWeight();
                                                         }
                                                     } else {
-                                                        verifyPassword();
+                                                        verifyAge();
                                                     }
                                                 } else {
-                                                    validateConfirmPassword();
+                                                    verifyPassword();
                                                 }
                                             } else {
-                                                validateCreatePassword();
+                                                validateConfirmPassword();
                                             }
                                         } else {
-                                            validateWeight();
+                                            validateCreatePassword();
                                         }
                                     } else {
-                                        validatePinCode();
+                                        validateWeight();
                                     }
                                 } else {
-                                    validateAddress();
+                                    validatePinCode();
                                 }
                             } else {
-                                validatePhoneNo();
+                                validateAddress();
                             }
                         } else {
                             validateAge();
@@ -219,24 +212,19 @@ public class RegisterPage extends AppCompatActivity {
     private void checkUserName() {
         reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
         Query query = reference.orderByChild("rollNo").startAt(rollNoText).endAt(rollNoText + "\uf8ff");
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     rollNo.setError("RollNo Already Exists!");
                     rollNo.requestFocus();
                 } else {
-                    rollNo.setError(null);
-                    rollNo.setErrorEnabled(false);
-                    Intent intent = new Intent(RegisterPage.this, OtpPage.class);
-                    startActivity(intent);
-
-                    /*reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+                    reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
                     status = "Null";
                     lastDonatedDate = "Null";
                     DonorsDto donorsDto = new DonorsDto(nameText, rollNoText, ageText, bloodGroupText, phoneNoText, addressText, districtText, pinCodeText, weightText, confirmPasswordText, status, deptNameText, lastDonatedDate);
                     reference.child(rollNoText).setValue(donorsDto);
-                    showSnackBar();*/
+                    showSnackBar();
                 }
             }
 
@@ -316,29 +304,6 @@ public class RegisterPage extends AppCompatActivity {
         } else {
             address.setError(null);
             address.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    private boolean validatePhoneNo() {
-        if (phoneNoText.equals("")) {
-            phoneNo.setError("Enter Valid Phone No");
-            phoneNo.requestFocus();
-            return false;
-        } else {
-            phoneNo.setError(null);
-            phoneNo.setErrorEnabled(false);
-            return true;
-        }
-    }
-
-    private boolean verifyPhoneNo() {
-        if (phoneNoText.length() != 10) {
-            phoneNo.setError("Please Enter Valid Phone No");
-            return false;
-        } else {
-            phoneNo.setError(null);
-            phoneNo.setErrorEnabled(false);
             return true;
         }
     }
@@ -433,7 +398,7 @@ public class RegisterPage extends AppCompatActivity {
         nameText = name.getEditText().getText().toString().trim();
         rollNoText = rollNo.getEditText().getText().toString().trim();
         ageText = age.getEditText().getText().toString().trim();
-        phoneNoText = phoneNo.getEditText().getText().toString().trim();
+
         addressText = address.getEditText().getText().toString().trim();
         pinCodeText = pinCode.getEditText().getText().toString().trim();
         weightText = weight.getEditText().getText().toString().trim();
@@ -445,7 +410,7 @@ public class RegisterPage extends AppCompatActivity {
         name = findViewById(R.id.registerPage_donorName);
         rollNo = findViewById(R.id.registerPage_rollNo);
         age = findViewById(R.id.registerPage_age);
-        phoneNo = findViewById(R.id.registerPage_phoneNo);
+
         address = findViewById(R.id.registerPage_address);
         pinCode = findViewById(R.id.registerPage_pinCode);
         weight = findViewById(R.id.registerPage_weight);

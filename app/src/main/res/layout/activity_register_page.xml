@@ -86,29 +86,13 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/registerPage_phoneNo"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/registerPage_age"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Phone No"
-                    android:inputType="phone" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerPage_address"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/registerPage_phoneNo"
+                android:layout_below="@+id/registerPage_age"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp">
 
