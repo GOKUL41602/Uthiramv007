@@ -45,7 +45,9 @@ public class DonorHomePage extends AppCompatActivity {
         updateStatusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(DonorHomePage.this, UpdateDonorStatusPage.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
             }
         });
         bacKBtn.setOnClickListener(new View.OnClickListener() {

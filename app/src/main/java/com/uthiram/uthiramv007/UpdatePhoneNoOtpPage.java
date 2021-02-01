@@ -37,7 +37,7 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
     ProgressBar progressBar;
     TextView state;
     CountryCodePicker codePicker;
-    String verificationId, phoneNum, userName,rollNo,age,weight,address,district,pinCode,phoneNo,donorName;
+    String verificationId, phoneNum, userName, rollNo, age, weight, address, district, pinCode, phoneNo, donorName;
     PhoneAuthProvider.ForceResendingToken token;
     Boolean verificationProgress = false;
 
@@ -50,7 +50,7 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         phonenumber = findViewById(R.id.phone);
         userName = getIntent().getStringExtra("userName");
-        donorName=getIntent().getStringExtra("donorName");
+        donorName = getIntent().getStringExtra("donorName");
         rollNo = getIntent().getStringExtra("rollNo");
         age = getIntent().getStringExtra("age");
         weight = getIntent().getStringExtra("weight");
@@ -69,11 +69,11 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
             public void onClick(View view) {
                 if (!verificationProgress) {
                     if (!phonenumber.getText().toString().isEmpty() && phonenumber.getText().toString().length() == 10) {
-                            phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
-                            progressBar.setVisibility(View.VISIBLE);
-                            state.setText("sending");
-                            state.setVisibility(View.VISIBLE);
-                            requestOTP(phoneNum);
+                        phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
+                        progressBar.setVisibility(View.VISIBLE);
+                        state.setText("sending");
+                        state.setVisibility(View.VISIBLE);
+                        requestOTP(phoneNum);
 
                     } else {
                         phonenumber.setError("Phone number is not valid");
@@ -113,15 +113,13 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
         });
     }
 
-    private void updateDonorDetailsToDB()
-    {
-        reference= FirebaseDatabase.getInstance().getReference("DonorsDto");
-        Query query=reference.orderByChild("rollNo").startAt(userName).endAt(userName+"\uf8ff");
+    private void updateDonorDetailsToDB() {
+        reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+        Query query = reference.orderByChild("rollNo").startAt(userName).endAt(userName + "\uf8ff");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                {
+                if (snapshot.exists()) {
                     reference.child(userName).child("donorName").setValue(donorName);
                     reference.child(userName).child("rollNo").setValue(userName);
                     reference.child(userName).child("age").setValue(age);
@@ -130,9 +128,7 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
                     reference.child(userName).child("address").setValue(address);
                     reference.child(userName).child("phoneNo").setValue(phoneNum);
                     reference.child(userName).child("district").setValue(district);
-                }
-                else
-                {
+                } else {
                     Toast.makeText(UpdatePhoneNoOtpPage.this, "User doesn't Exists !", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -143,6 +139,7 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
             }
         });
     }
+
     private void requestOTP(String phoneNum) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNum, 60L, TimeUnit.SECONDS, this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
