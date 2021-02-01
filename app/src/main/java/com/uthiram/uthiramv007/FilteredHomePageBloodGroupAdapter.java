@@ -33,6 +33,7 @@ public class FilteredHomePageBloodGroupAdapter extends FirebaseRecyclerAdapter<D
             holder.donorName.setText(model.getDonorName());
             holder.place.setText(model.getAddress());
             holder.phoneNo.setText(model.getPhoneNo());
+            holder.bloodGroup.setText(model.getBloodGroup());
             holder.callBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -58,13 +59,13 @@ public class FilteredHomePageBloodGroupAdapter extends FirebaseRecyclerAdapter<D
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.filtered_donor_display_format, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.filtered_bloodgroup_format, parent, false);
         return new FilteredHomePageBloodGroupAdapter.ViewHolder(view);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView donorName, phoneNo, place;
+        private TextView donorName, phoneNo, place, bloodGroup;
         private ImageView callBtn, msgBtn;
         private Context context = itemView.getContext();
         private RelativeLayout relativeLayout;
@@ -76,13 +77,14 @@ public class FilteredHomePageBloodGroupAdapter extends FirebaseRecyclerAdapter<D
         }
 
         private void initializeViews() {
-            donorName = itemView.findViewById(R.id.filteredDonorDisplayFormat_donorName);
-            phoneNo = itemView.findViewById(R.id.filteredDonorDisplayFormat_phoneNo);
-            place = itemView.findViewById(R.id.filteredDonorDisplayFormat_place);
-            relativeLayout = itemView.findViewById(R.id.filteredDonorDisplayFormat_relLayout);
-            callBtn = itemView.findViewById(R.id.filteredDonorDisplayFormat_callBtn);
-            msgBtn = itemView.findViewById(R.id.filteredDonorDisplayFormat_msgBtn);
-            cardView = itemView.findViewById(R.id.filteredDonorDisplayFormat_cardView);
+            donorName = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_donorName);
+            phoneNo = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_phoneNo);
+            place = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_place);
+            bloodGroup = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_blood);
+            relativeLayout = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_relLayout);
+            callBtn = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_callBtn);
+            msgBtn = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_msgBtn);
+            cardView = itemView.findViewById(R.id.filteredBloodDonorDisplayFormat_cardView);
         }
     }
 }

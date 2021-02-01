@@ -18,13 +18,15 @@ public class FilteredBloodHomePage extends AppCompatActivity {
     private RelativeLayout relativeLayout;
     private FilteredHomePageDeptAdapter adapter;
     private TextView deptNameText, bloodGroupText;
-    private String bloodGroup;
+    private String bloodGroup, deptName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filtered_blood_home_page);
         initializeViews();
+        deptName = getIntent().getStringExtra("1");
+        deptNameText.setText(deptName);
         bloodGroup = getIntent().getStringExtra("2");
         bloodGroupText.setText(bloodGroup);
 

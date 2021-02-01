@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/donorDisplayFormat_relLayout"
+    android:id="@+id/filteredDeptDonorDisplayFormat_relLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
+    android:layout_centerHorizontal="true">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/donorDisplayFormat_card"
+        android:id="@+id/filteredDeptDonorDisplayFormat_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginTop="10dp">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/donorDisplayFormat_donorNameText"
+                android:id="@+id/filteredDeptDonorDisplayFormat_donorNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -28,19 +29,19 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/donorDisplayFormat_donorName"
+                android:id="@+id/filteredDeptDonorDisplayFormat_donorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_donorNameText"
+                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_donorNameText"
                 android:hint="Donor Name"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/donorDisplayFormat_phoneNoText"
+                android:id="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_donorNameText"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_donorNameText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Phone No : "
@@ -49,21 +50,21 @@
 
 
             <TextView
-                android:id="@+id/donorDisplayFormat_phoneNo"
+                android:id="@+id/filteredDeptDonorDisplayFormat_phoneNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_donorName"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_donorName"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_phoneNoText"
+                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
                 android:hint="phone No"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/donorDisplayFormat_deptNameText"
+                android:id="@+id/filteredDeptDonorDisplayFormat_deptText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_phoneNoText"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Dept Name : "
@@ -72,44 +73,22 @@
 
 
             <TextView
-                android:id="@+id/donorDisplayFormat_deptName"
+                android:id="@+id/filteredDeptDonorDisplayFormat_dept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_phoneNoText"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_deptNameText"
-                android:hint="dept Name"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/donorDisplayFormat_bloodGroupText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptNameText"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="BG : "
-                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_deptText"
+                android:hint="IT"
                 android:textSize="20sp" />
 
 
             <TextView
-                android:id="@+id/donorDisplayFormat_bloodGroup"
+                android:id="@+id/filteredDeptDonorDisplayFormat_placeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptName"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_bloodGroupText"
-                android:hint="B+"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/donorDisplayFormat_placeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_bloodGroupText"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_deptText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Place : "
@@ -118,37 +97,37 @@
 
 
             <TextView
-                android:id="@+id/donorDisplayFormat_place"
+                android:id="@+id/filteredDeptDonorDisplayFormat_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_bloodGroup"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_dept"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_placeText"
+                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_placeText"
                 android:hint="address"
                 android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/donorDisplayFormat_callBtn"
+                android:id="@+id/filteredDeptDonorDisplayFormat_callBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptName"
-                android:layout_marginLeft="180dp"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_bloodGroup"
+                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_deptText"
                 android:src="@drawable/ic_call" />
 
             <ImageView
-                android:id="@+id/donorDisplayFormat_msgBtn"
+                android:id="@+id/filteredDeptDonorDisplayFormat_msgBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptName"
+                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_callBtn"
+                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_callBtn"
                 android:src="@drawable/ic_msg" />
-        </RelativeLayout>
 
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

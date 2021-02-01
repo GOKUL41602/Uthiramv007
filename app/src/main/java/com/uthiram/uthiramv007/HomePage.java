@@ -70,11 +70,13 @@ public class HomePage extends AppCompatActivity {
                         startActivity(intent);
                     } else if (!bloodGroup.equals("Blood Group")) {
                         Intent intent = new Intent(HomePage.this, FilteredBloodHomePage.class);
+                        intent.putExtra("1", deptName);
                         intent.putExtra("2", bloodGroup);
                         startActivity(intent);
                     } else if (!deptName.equals("Dept Name")) {
                         Intent intent = new Intent(HomePage.this, FilteredDeptHomePage.class);
                         intent.putExtra("1", deptName);
+                        intent.putExtra("2", bloodGroup);
                         startActivity(intent);
                     }
                 }
@@ -113,11 +115,11 @@ public class HomePage extends AppCompatActivity {
         ArrayList<String> deptNameList = new ArrayList<String>();
 
         deptNameList.add("Dept Name");
-        deptNameList.add("Information Technology - IT");
-        deptNameList.add("Computer Science - CS");
-        deptNameList.add("Fashion Technology - FT");
-        deptNameList.add("Electrical and Electronics Engineering - EEE");
-        deptNameList.add("Mechanical Engineering - ME");
+        deptNameList.add("IT");
+        deptNameList.add("CS");
+        deptNameList.add("FT");
+        deptNameList.add("EEE");
+        deptNameList.add("ME");
 
         ArrayAdapter<String> deptAdapter = new ArrayAdapter<>(HomePage.this, android.R.layout.simple_spinner_dropdown_item, deptNameList);
         deptNameSpinner.setAdapter(deptAdapter);

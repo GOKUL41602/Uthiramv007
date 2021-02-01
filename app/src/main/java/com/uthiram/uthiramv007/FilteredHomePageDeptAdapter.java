@@ -32,6 +32,7 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
             holder.donorName.setText(model.getDonorName());
             holder.place.setText(model.getAddress());
             holder.phoneNo.setText(model.getPhoneNo());
+            holder.deptName.setText(model.getDeptName());
             holder.callBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -56,13 +57,13 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.filtered_donor_display_format, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.filtered_deptname_format, parent, false);
         return new FilteredHomePageDeptAdapter.ViewHolder(view);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView donorName, phoneNo, place;
+        private TextView donorName, phoneNo, place,deptName;
         private ImageView callBtn, msgBtn;
         private Context context = itemView.getContext();
         private RelativeLayout relativeLayout;
@@ -74,13 +75,14 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
         }
 
         private void initializeViews() {
-            donorName = itemView.findViewById(R.id.filteredDonorDisplayFormat_donorName);
-            phoneNo = itemView.findViewById(R.id.filteredDonorDisplayFormat_phoneNo);
-            place = itemView.findViewById(R.id.filteredDonorDisplayFormat_place);
-            relativeLayout = itemView.findViewById(R.id.filteredDonorDisplayFormat_relLayout);
-            callBtn = itemView.findViewById(R.id.filteredDonorDisplayFormat_callBtn);
-            msgBtn = itemView.findViewById(R.id.filteredDonorDisplayFormat_msgBtn);
-            cardView = itemView.findViewById(R.id.filteredDonorDisplayFormat_cardView);
+            donorName = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_donorName);
+            phoneNo = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_phoneNo);
+            place = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_place);
+            deptName=itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_dept);
+            relativeLayout = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_relLayout);
+            callBtn = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_callBtn);
+            msgBtn = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_msgBtn);
+            cardView = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_cardView);
         }
     }
 }

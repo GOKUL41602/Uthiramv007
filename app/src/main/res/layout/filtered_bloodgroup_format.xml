@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/donorDisplayFormat_relLayout"
+    android:id="@+id/filteredBloodDonorDisplayFormat_relLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
+    android:layout_centerHorizontal="true">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/donorDisplayFormat_card"
+        android:id="@+id/filteredBloodDonorDisplayFormat_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginTop="10dp">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/donorDisplayFormat_donorNameText"
+                android:id="@+id/filteredBloodDonorDisplayFormat_donorNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -28,19 +29,19 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/donorDisplayFormat_donorName"
+                android:id="@+id/filteredBloodDonorDisplayFormat_donorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_donorNameText"
+                android:layout_toRightOf="@+id/filteredBloodDonorDisplayFormat_donorNameText"
                 android:hint="Donor Name"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/donorDisplayFormat_phoneNoText"
+                android:id="@+id/filteredBloodDonorDisplayFormat_phoneNoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_donorNameText"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_donorNameText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Phone No : "
@@ -49,67 +50,45 @@
 
 
             <TextView
-                android:id="@+id/donorDisplayFormat_phoneNo"
+                android:id="@+id/filteredBloodDonorDisplayFormat_phoneNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_donorName"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_donorName"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_phoneNoText"
+                android:layout_toRightOf="@+id/filteredBloodDonorDisplayFormat_phoneNoText"
                 android:hint="phone No"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/donorDisplayFormat_deptNameText"
+                android:id="@+id/filteredBloodDonorDisplayFormat_bloodText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_phoneNoText"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_phoneNoText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Dept Name : "
+                android:text="Blood Group : "
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
 
             <TextView
-                android:id="@+id/donorDisplayFormat_deptName"
+                android:id="@+id/filteredBloodDonorDisplayFormat_blood"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_phoneNoText"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_phoneNo"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_deptNameText"
-                android:hint="dept Name"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/donorDisplayFormat_bloodGroupText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptNameText"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="BG : "
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:id="@+id/donorDisplayFormat_bloodGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptName"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_bloodGroupText"
+                android:layout_toRightOf="@+id/filteredBloodDonorDisplayFormat_bloodText"
                 android:hint="B+"
                 android:textSize="20sp" />
 
+
             <TextView
-                android:id="@+id/donorDisplayFormat_placeText"
+                android:id="@+id/filteredBloodDonorDisplayFormat_placeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_bloodGroupText"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_bloodText"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Place : "
@@ -118,37 +97,37 @@
 
 
             <TextView
-                android:id="@+id/donorDisplayFormat_place"
+                android:id="@+id/filteredBloodDonorDisplayFormat_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_bloodGroup"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_blood"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_placeText"
+                android:layout_toRightOf="@+id/filteredBloodDonorDisplayFormat_placeText"
                 android:hint="address"
                 android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/donorDisplayFormat_callBtn"
+                android:id="@+id/filteredBloodDonorDisplayFormat_callBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptName"
-                android:layout_marginLeft="180dp"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_phoneNo"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_bloodGroup"
+                android:layout_toRightOf="@+id/filteredBloodDonorDisplayFormat_bloodText"
                 android:src="@drawable/ic_call" />
 
             <ImageView
-                android:id="@+id/donorDisplayFormat_msgBtn"
+                android:id="@+id/filteredBloodDonorDisplayFormat_msgBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/donorDisplayFormat_deptName"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_phoneNo"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/donorDisplayFormat_callBtn"
+                android:layout_toRightOf="@+id/filteredBloodDonorDisplayFormat_callBtn"
                 android:src="@drawable/ic_msg" />
-        </RelativeLayout>
 
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
