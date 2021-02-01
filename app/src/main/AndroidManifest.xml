@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007">
-        <activity android:name=".UpdateDonorStatusPage"></activity>
+        <activity android:name=".ForgetPasswordOtpVerifyPage"></activity>
+        <activity android:name=".ForgetPasswordPage" />
+        <activity android:name=".UpdateDonorStatusPage" />
         <activity android:name=".UpdatePhoneNoOtpPage" />
         <activity android:name=".UpdateDonorDetailsPage" />
         <activity android:name=".ViewDonorProfile" />
