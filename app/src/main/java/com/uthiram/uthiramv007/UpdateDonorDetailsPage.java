@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -206,6 +207,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                     address.getEditText().setText(addressText);
                     pinCode.getEditText().setText(pinCodeText);
                     phoneNo.setText(phoneNoText);
+                    Log.d("demo","demo");
                     bloodGroup.setText(bloodGroupText);
 
                 } else {
