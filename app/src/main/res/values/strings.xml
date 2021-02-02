@@ -20,7 +20,7 @@
         <item>O-</item>
     </string-array>
     <string-array name="district_name">
-        <item>District</item>
+        <item>District Name</item>
         <item>Ariyalur</item>
         <item>Chengalpet</item>
         <item>Chennai</item>

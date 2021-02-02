@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ public class HomePage extends AppCompatActivity {
     private Button filterBtn;
     private FloatingActionButton loginBtn;
     private HomePageRecAdapter adapter;
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         initializeViews();
         initializeSpinners();
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<DonorsDto> options
                 = new FirebaseRecyclerOptions.Builder<DonorsDto>()
@@ -48,8 +51,8 @@ public class HomePage extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomePage.this, LoginPage.class);
-                startActivity(intent);
+                    Intent intent = new Intent(HomePage.this, LoginPage.class);
+                    startActivity(intent);
             }
         });
         filterBtn.setOnClickListener(new View.OnClickListener() {

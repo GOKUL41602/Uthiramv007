@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,7 +35,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtNameText, bloodGroupText;
+    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText;
 
     private DatabaseReference reference;
 
@@ -48,62 +47,9 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
         setContentView(R.layout.activity_update_donor_details_page);
         userName = getIntent().getStringExtra("userName");
         initializeViews();
+        initializeSpinners();
         loadDonorDetails();
 
-        ArrayList<String> districtName = new ArrayList<>();
-        districtName.add("District");
-        districtName.add("Ariyalur");
-        districtName.add("Chengalpet");
-        districtName.add("Chennai");
-        districtName.add("Coimbatore");
-        districtName.add("Cuddalore");
-        districtName.add("Dharmapuri");
-        districtName.add("Dindigul");
-        districtName.add("Erode");
-        districtName.add("Kallakurichi");
-        districtName.add("Kancheepuram");
-        districtName.add("Karur");
-        districtName.add("Krishnagiri");
-        districtName.add("Madurai");
-        districtName.add("Nagapattinam");
-        districtName.add("Kanyakumari");
-        districtName.add("Namakkal");
-        districtName.add("Perambalur");
-        districtName.add("Pudukottai");
-        districtName.add("Ramanathapuram");
-        districtName.add("Ranipet");
-        districtName.add("Salem");
-        districtName.add("Sivagangai");
-        districtName.add("Tenkasi");
-        districtName.add("Thanjavur");
-        districtName.add("Theni");
-        districtName.add("Thiruvallur");
-        districtName.add("Thiruvarur");
-        districtName.add("Tuticorin");
-        districtName.add("Trichirappalli");
-        districtName.add("Thirunelveli");
-        districtName.add("Tirupathur");
-        districtName.add("Tiruppur");
-        districtName.add("Thiruvannamalai");
-        districtName.add("The Nilgiris");
-        districtName.add("Vellore");
-        districtName.add("Viluppuram");
-        districtName.add("Virudhunagar");
-        districtName.add("Other...");
-
-        ArrayAdapter<String> districtNameAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, districtName);
-        district.setAdapter(districtNameAdapter);
-        district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                districtNameText = districtName.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +99,72 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
 
     }
 
+    private void initializeSpinners() {
+        ArrayList<String> districtName = new ArrayList<>();
+        districtName.add("District Name");
+        districtName.add("Ariyalur");
+        districtName.add("Chengalpet");
+        districtName.add("Chennai");
+        districtName.add("Coimbatore");
+        districtName.add("Cuddalore");
+        districtName.add("Dharmapuri");
+        districtName.add("Dindigul");
+        districtName.add("Erode");
+        districtName.add("Kallakurichi");
+        districtName.add("Kancheepuram");
+        districtName.add("Karur");
+        districtName.add("Krishnagiri");
+        districtName.add("Madurai");
+        districtName.add("Nagapattinam");
+        districtName.add("Kanyakumari");
+        districtName.add("Namakkal");
+        districtName.add("Perambalur");
+        districtName.add("Pudukottai");
+        districtName.add("Ramanathapuram");
+        districtName.add("Ranipet");
+        districtName.add("Salem");
+        districtName.add("Sivagangai");
+        districtName.add("Tenkasi");
+        districtName.add("Thanjavur");
+        districtName.add("Theni");
+        districtName.add("Thiruvallur");
+        districtName.add("Thiruvarur");
+        districtName.add("Tuticorin");
+        districtName.add("Trichirappalli");
+        districtName.add("Thirunelveli");
+        districtName.add("Tirupathur");
+        districtName.add("Tiruppur");
+        districtName.add("Thiruvannamalai");
+        districtName.add("The Nilgiris");
+        districtName.add("Vellore");
+        districtName.add("Viluppuram");
+        districtName.add("Virudhunagar");
+        districtName.add("Other...");
+
+        ArrayAdapter<String> districtNameAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, districtName);
+        district.setAdapter(districtNameAdapter);
+        district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                districtText = districtName.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private boolean validateDistrict() {
+        if (districtText.equals("District Name")) {
+            Snackbar.make(relativeLayout, "Please Select District Name", Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     private void showSnackBar() {
         Snackbar.make(relativeLayout, "Verify Phone Number", Snackbar.LENGTH_INDEFINITE).setAction("VERIFY", new View.OnClickListener() {
             @Override
@@ -164,7 +176,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                 intent.putExtra("weight", weightText);
                 intent.putExtra("age", ageText);
                 intent.putExtra("pinCode", pinCodeText);
-                intent.putExtra("district", districtNameText);
+                intent.putExtra("district", districtText);
                 intent.putExtra("address", addressText);
                 startActivity(intent);
             }
@@ -185,7 +197,6 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                     addressText = snapshot.child(userName).child("address").getValue(String.class);
                     pinCodeText = snapshot.child(userName).child("pinCode").getValue(String.class);
                     phoneNoText = snapshot.child(userName).child("phoneNo").getValue(String.class);
-                    districtNameText = snapshot.child(userName).child("district").getValue(String.class);
                     bloodGroupText = snapshot.child(userName).child("bloodGroup").getValue(String.class);
 
                     name.getEditText().setText(nameText);
@@ -196,6 +207,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                     pinCode.getEditText().setText(pinCodeText);
                     phoneNo.setText(phoneNoText);
                     bloodGroup.setText(bloodGroupText);
+
                 } else {
                     Toast.makeText(UpdateDonorDetailsPage.this, "User doesn't exists", Toast.LENGTH_SHORT).show();
                 }
@@ -247,21 +259,6 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
         }
     }
 
-    private boolean validateDistrict() {
-        if (districtNameText.equals("District")) {
-            Log.d("District Name : ", districtNameText);
-            Snackbar.make(relativeLayout, "Please Select District !", Snackbar.LENGTH_SHORT).setAction("RETRY", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            }).show();
-            return false;
-
-        } else {
-            return true;
-        }
-    }
 
     private boolean validateRollNo() {
         if (rollNoText.equals("")) {
