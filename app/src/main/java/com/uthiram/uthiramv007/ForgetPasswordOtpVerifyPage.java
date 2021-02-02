@@ -67,6 +67,14 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
         Log.d("Pass :", password);
         fAuth = FirebaseAuth.getInstance();
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForgetPasswordOtpVerifyPage.this, ForgetPasswordPage.class);
+                startActivity(intent);
+                ForgetPasswordOtpVerifyPage.this.finish();
+            }
+        });
         verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,8 +139,6 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
                     Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                 }
             }
-
-
         });
     }
 

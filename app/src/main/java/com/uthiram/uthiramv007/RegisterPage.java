@@ -168,7 +168,19 @@ public class RegisterPage extends AppCompatActivity {
                                                     if (verifyAge()) {
                                                         if (verifyWeight()) {
                                                             if (verifyPinCode()) {
-                                                                checkUserName();
+                                                                if (validateDept()) {
+                                                                    if (validateBloodGroup()) {
+                                                                        if (validateDistrict()) {
+                                                                            checkUserName();
+                                                                        } else {
+                                                                            validateDistrict();
+                                                                        }
+                                                                    } else {
+                                                                        validateBloodGroup();
+                                                                    }
+                                                                } else {
+                                                                    validateDept();
+                                                                }
                                                             } else {
                                                                 verifyPinCode();
                                                             }
@@ -207,6 +219,33 @@ public class RegisterPage extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean validateDistrict() {
+        if (districtText.equals("District Name")) {
+            Snackbar.make(relativeLayout, "Please Select District Name", Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateBloodGroup() {
+        if (bloodGroupText.equals("Blood Group")) {
+            Snackbar.make(relativeLayout, "Please Select Blood Group", Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateDept() {
+        if (deptNameText.equals("Dept Name")) {
+            Snackbar.make(relativeLayout, "Please Select Department Name", Snackbar.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private void checkUserName() {
@@ -359,7 +398,7 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     private boolean validateCreatePassword() {
-        if (createPasswordText.equals("") || createPasswordText.length() <= 6) {
+        if (createPasswordText.equals("") || createPasswordText.length() < 6) {
             createPassword.setError("Enter Valid 6 Password");
             createPassword.requestFocus();
             return false;
