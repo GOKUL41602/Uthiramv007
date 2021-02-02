@@ -207,7 +207,6 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                     address.getEditText().setText(addressText);
                     pinCode.getEditText().setText(pinCodeText);
                     phoneNo.setText(phoneNoText);
-                    Log.d("demo","demo");
                     bloodGroup.setText(bloodGroupText);
 
                 } else {
