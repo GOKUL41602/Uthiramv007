@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -51,6 +52,7 @@ public class SendSmsPage extends AppCompatActivity {
                         else
                         {
                             requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
+                            Log.d("demo","demo");
                         }
                     }
                 }
