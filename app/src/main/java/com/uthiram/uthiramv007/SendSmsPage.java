@@ -60,13 +60,11 @@ public class SendSmsPage extends AppCompatActivity {
         });
     }
 
-
     private void sendSms() {
         try {
             SmsManager smsManager=SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo,null,messageText,null,null);
             Toast.makeText(this, "Message Sent to "+phoneNo, Toast.LENGTH_SHORT).show();
-
         }
         catch (Exception e)
         {
