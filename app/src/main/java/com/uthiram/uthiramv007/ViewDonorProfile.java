@@ -44,6 +44,7 @@ public class ViewDonorProfile extends AppCompatActivity {
                 Intent intent = new Intent(ViewDonorProfile.this, DonorHomePage.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
+                ViewDonorProfile.this.finish();
             }
         });
     }

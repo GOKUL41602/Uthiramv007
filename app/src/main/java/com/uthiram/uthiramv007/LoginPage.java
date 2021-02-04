@@ -3,7 +3,9 @@ package com.uthiram.uthiramv007;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import static androidx.browser.trusted.sharing.ShareTarget.FileFormField.KEY_NAME;
+
 public class LoginPage extends AppCompatActivity {
 
     private TextInputLayout userName, password;
@@ -35,12 +39,15 @@ public class LoginPage extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-        initializeViews();
 
+        initializeViews();
         forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +68,7 @@ public class LoginPage extends AppCompatActivity {
                 initializeStrings();
                 if (validateUserName()) {
                     if (validatePassword()) {
+
                         verifyUserId();
                     } else {
                         validatePassword();
@@ -68,6 +76,15 @@ public class LoginPage extends AppCompatActivity {
                 } else {
                     validateUserName();
                 }
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginPage.this, HomePage.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -107,6 +124,7 @@ public class LoginPage extends AppCompatActivity {
                     passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
                     if (passwordText.equals(passwordFromDB)) {
                         Intent intent = new Intent(LoginPage.this, DonorHomePage.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("userName", userNameText);
                         startActivity(intent);
                     } else {

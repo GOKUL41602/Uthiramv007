@@ -95,6 +95,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
                 Intent intent = new Intent(UpdateDonorDetailsPage.this, DonorHomePage.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
+                UpdateDonorDetailsPage.this.finish();
             }
         });
 

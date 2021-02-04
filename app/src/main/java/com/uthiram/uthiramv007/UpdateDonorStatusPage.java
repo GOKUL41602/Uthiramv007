@@ -35,6 +35,7 @@ public class UpdateDonorStatusPage extends AppCompatActivity {
     private String userName, statusText;
 
     private DatabaseReference reference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +110,7 @@ public class UpdateDonorStatusPage extends AppCompatActivity {
                 Intent intent = new Intent(UpdateDonorStatusPage.this, DonorHomePage.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
-                finish();
+                UpdateDonorStatusPage.this.finish();
             }
         });
     }

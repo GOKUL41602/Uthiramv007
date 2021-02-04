@@ -2,7 +2,9 @@ package com.uthiram.uthiramv007;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,13 +16,15 @@ public class DonorHomePage extends AppCompatActivity {
 
     private String userName;
 
-    private Button viewProfileBtn, updateProfileBtn, updateStatusBtn, bacKBtn;
+    private Button viewProfileBtn, updateProfileBtn, updateStatusBtn, bacKBtn, logOutBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_home_page);
         initializeViews();
+
         userName = getIntent().getStringExtra("userName");
         title.setText("Welcome " + userName);
 
@@ -50,15 +54,25 @@ public class DonorHomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         bacKBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DonorHomePage.this, HomePage.class);
+                startActivity(intent);
+                DonorHomePage.this.finish();
+            }
+        });
+
+        logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DonorHomePage.this, LoginPage.class);
                 startActivity(intent);
-                finish();
+                DonorHomePage.this.finish();
             }
         });
-
     }
 
     private void initializeViews() {
@@ -67,6 +81,7 @@ public class DonorHomePage extends AppCompatActivity {
         updateProfileBtn = findViewById(R.id.donorHomePage_updateProfileBtn);
         updateStatusBtn = findViewById(R.id.donorHomePage_updateStatusBtn);
         bacKBtn = findViewById(R.id.donorHomePage_backBtn);
+        logOutBtn = findViewById(R.id.donorHomePage_logOutBtn);
     }
 
 }
