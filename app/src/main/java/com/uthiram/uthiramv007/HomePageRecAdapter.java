@@ -44,6 +44,9 @@ public class HomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDto, HomeP
         holder.msgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                intent.putExtra("phoneNo", donorsDto.getPhoneNo());
+                holder.context.startActivity(intent);
             }
         });
     }

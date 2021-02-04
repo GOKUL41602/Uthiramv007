@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/sendSmsPage_relLayout"
+    android:layout_height="match_parent"
+    tools:context=".SendSmsPage">
+
+    <ImageView
+        android:id="@+id/sendSmsPage_wave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-99dp"
+        android:src="@drawable/wave" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sendSmsPage_wave"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-70dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sendSmsPage_message"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="290dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Send message"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:scrollbars="vertical" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/sendSmsPage_sendBtn"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sendSmsPage_message"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/golden_yellow"
+                android:elevation="10dp"
+                android:text="Send Msg"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/sendSmsPage_cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sendSmsPage_sendBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/sky_blue"
+                android:elevation="10dp"
+                android:text="Cancel"
+                android:textColor="@color/black" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
