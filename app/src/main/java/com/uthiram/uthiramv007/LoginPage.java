@@ -39,14 +39,10 @@ public class LoginPage extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-
         initializeViews();
         forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +55,6 @@ public class LoginPage extends AppCompatActivity {
                 } else {
                     validateUserName();
                 }
-
             }
         });
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +63,6 @@ public class LoginPage extends AppCompatActivity {
                 initializeStrings();
                 if (validateUserName()) {
                     if (validatePassword()) {
-
                         verifyUserId();
                     } else {
                         validatePassword();
@@ -139,10 +133,8 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
     }
 
     private boolean validatePassword() {
@@ -160,15 +152,11 @@ public class LoginPage extends AppCompatActivity {
     private void initializeViews() {
         userName = findViewById(R.id.loginPage_userName);
         password = findViewById(R.id.loginPage_password);
-
         loginBtn = findViewById(R.id.loginPage_loginBtn);
         cancelBtn = findViewById(R.id.loginPage_cancelBtn);
         registerBtn = findViewById(R.id.loginPage_registerBtn);
         forgetPasswordBtn = findViewById(R.id.loginPage_forgetPasswordBtn);
-
         relativeLayout = findViewById(R.id.loginPage_relLayout);
-
         reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
     }
-
 }

@@ -21,22 +21,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007">
-        <activity android:name=".SendSmsPage"/>
+        <activity android:name=".SendSmsPage" />
 
-        <activity android:name=".ForgetPasswordOtpVerifyPage"/>
-        <activity android:name=".ForgetPasswordPage" />
-        <activity android:name=".UpdateDonorStatusPage" />
-        <activity android:name=".UpdatePhoneNoOtpPage" />
-        <activity android:name=".UpdateDonorDetailsPage" />
-        <activity android:name=".ViewDonorProfile" />
-        <activity android:name=".DonorHomePage" />
-        <activity android:name=".OtpPage" />
-        <activity android:name=".RegisterPage" />
-        <activity android:name=".DonorLoginPage" />
-        <activity android:name=".FilteredDeptHomePage" />
-        <activity android:name=".FilteredBloodHomePage" />
-        <activity android:name=".LoginPage" />
-        <activity android:name=".FilteredHomePage" />
+        <activity
+            android:name=".ForgetPasswordOtpVerifyPage"
+            android:label="Forget Password OTP Verification" />
+        <activity
+            android:name=".ForgetPasswordPage"
+            android:label="Forget Password" />
+        <activity
+            android:name=".UpdateDonorStatusPage"
+            android:label="Update Donor Status" />
+        <activity
+            android:name=".UpdatePhoneNoOtpPage"
+            android:label="Update PhoneNo OTP Verify" />
+        <activity
+            android:name=".UpdateDonorDetailsPage"
+            android:label="Update Donor Details" />
+        <activity
+            android:name=".ViewDonorProfile"
+            android:label="View Donor Profile" />
+        <activity
+            android:name=".DonorHomePage"
+            android:label="Donor Home Page" />
+        <activity
+            android:name=".OtpPage"
+            android:label="OTP Verification" />
+        <activity
+            android:name=".RegisterPage"
+            android:label="Register" />
+        <activity
+            android:name=".DonorLoginPage"
+            android:label="Donor Login" />
+        <activity
+            android:name=".FilteredDeptHomePage"
+            android:label="Filtered Department Page " />
+        <activity
+            android:name=".FilteredBloodHomePage"
+            android:label="Filtered Blood Group Page" />
+        <activity
+            android:name=".LoginPage"
+            android:label="Login Page" />
+        <activity
+            android:name=".FilteredHomePage"
+            android:label="Filtered Home Page" />
         <activity
             android:name=".HomePage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
