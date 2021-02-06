@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class DonorHomePage extends AppCompatActivity {
                 Intent intent = new Intent(DonorHomePage.this, UpdateDonorStatusPage.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
+                Log.d("Demo", "Demo");
             }
         });
 

@@ -51,9 +51,6 @@
             android:name=".RegisterPage"
             android:label="Register" />
         <activity
-            android:name=".DonorLoginPage"
-            android:label="Donor Login" />
-        <activity
             android:name=".FilteredDeptHomePage"
             android:label="Filtered Department Page " />
         <activity
