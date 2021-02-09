@@ -8,23 +8,27 @@
     tools:context=".HomePage">
 
     <Toolbar
-        android:layout_width="match_parent"
         android:id="@+id/homePage_toolBar"
-        android:layout_height="30dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/grey"
+        android:paddingStart="20dp"
+        android:title="Uthiram" />
+
     <ImageView
         android:id="@+id/homePage_wave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-99dp"
         android:layout_below="@+id/homePage_toolBar"
+        android:layout_marginTop="-99dp"
         android:src="@drawable/wave" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/homePage_loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="10dp"
         android:backgroundTint="@color/golden_yellow"
         android:src="@drawable/ic_login_dark" />

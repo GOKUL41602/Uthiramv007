@@ -49,7 +49,7 @@
             android:label="OTP Verification" />
         <activity
             android:name=".RegisterPage"
-            android:label="Register" />
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity
             android:name=".FilteredDeptHomePage"
             android:label="Filtered Department Page " />
@@ -58,12 +58,13 @@
             android:label="Filtered Blood Group Page" />
         <activity
             android:name=".LoginPage"
-            android:label="Login Page" />
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity
             android:name=".FilteredHomePage"
             android:label="Filtered Home Page" />
         <activity
             android:name=".HomePage"
+            android:label="Uthiram"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
