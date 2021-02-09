@@ -18,6 +18,5 @@
     <color name="text_grey">#777</color>
     <color name="pink">#FF0066</color>
     <color name="trans_white">#E1FAFA</color>
-    <color name="textinputLayout" tools:override="true">#FFDF00</color>
 
 </resources>
