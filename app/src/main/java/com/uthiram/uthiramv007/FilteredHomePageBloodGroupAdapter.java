@@ -48,6 +48,10 @@ public class FilteredHomePageBloodGroupAdapter extends FirebaseRecyclerAdapter<D
                 @Override
                 public void onClick(View v) {
 
+                    Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                    intent.putExtra("phoneNo", model.getPhoneNo());
+                    holder.context.startActivity(intent);
+
                 }
             });
         } else {

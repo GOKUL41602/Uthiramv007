@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/homePage_relLayout"
     android:layout_width="match_parent"
+    android:background="@drawable/white_background"
     android:layout_height="match_parent"
     tools:context=".HomePage">
 
@@ -11,17 +12,11 @@
         android:id="@+id/homePage_toolBar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/grey"
+        android:background="@color/silver"
         android:paddingStart="20dp"
         android:title="Uthiram" />
 
-    <ImageView
-        android:id="@+id/homePage_wave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homePage_toolBar"
-        android:layout_marginTop="-99dp"
-        android:src="@drawable/wave" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/homePage_loginBtn"
@@ -37,9 +32,8 @@
         android:id="@+id/homePage_deptSpinner"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/homePage_wave"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-70dp"
+        android:layout_marginTop="100dp"
         android:entries="@array/deptName" />
 
     <Spinner

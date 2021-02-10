@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -14,9 +15,11 @@
     <color name="silver">#BEC2CB</color>
     <color name="green">#237C27</color>
     <color name="orange">#da680f</color>
+    <color name="blood_red">#F11336</color>
     <color name="grey">#E5E8E5</color>
     <color name="text_grey">#777</color>
     <color name="pink">#FF0066</color>
     <color name="trans_white">#E1FAFA</color>
+    <color name="dark_blue">#0E1956</color>
 
 </resources>
