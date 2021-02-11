@@ -1,10 +1,15 @@
 package com.uthiram.uthiramv007;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -14,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,7 +28,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class UpdateDonorStatusPage extends AppCompatActivity {
+import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
+
+public class UpdateDonorStatusPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawerLayout;
 
     private Button selectDateBtn, backBtn, updateStatusBtn;
 
@@ -45,6 +55,21 @@ public class UpdateDonorStatusPage extends AppCompatActivity {
         userName = getIntent().getStringExtra("userName");
 
         loadDonorDetails();
+
+
+        drawerLayout = findViewById(R.id.design_navigation_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, navigation_draw_open, R.string.navigation_draw_close);
+
+        drawerLayout.addDrawerListener(toggle);
+
+        toggle.syncState();
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("SELECT A LAST DONATED DATE");
@@ -159,6 +184,39 @@ public class UpdateDonorStatusPage extends AppCompatActivity {
         updateStatusBtn = findViewById(R.id.updateDonorStatusPage_updateStatusBtn);
         statusTextView = findViewById(R.id.updateDonorStatusPage_statusTextView);
         relativeLayout = findViewById(R.id.updateDonorStatusPage_relLayout);
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_donor_profile:
+                Intent intent1 = new Intent(UpdateDonorStatusPage.this, UpdateDonorDetailsPage.class);
+                intent1.putExtra("userName", userName);
+                startActivity(intent1);
+                break;
+            case R.id.edit_donor_status:
+                Intent intent2 = new Intent(UpdateDonorStatusPage.this, UpdateDonorStatusPage.class);
+                intent2.putExtra("userName", userName);
+                startActivity(intent2);
+                break;
+            case R.id.donor_logout:
+                Intent intent3 = new Intent(UpdateDonorStatusPage.this, LoginPage.class);
+                startActivity(intent3);
+                UpdateDonorStatusPage.this.finish();
+                break;
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        return true;
     }
 }

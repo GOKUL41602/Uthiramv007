@@ -1,134 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/updateDonorStatusPage_relLayout"
+    android:id="@+id/design_navigation_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateDonorStatusPage">
+    android:fitsSystemWindows="true"
+    tools:context=".UpdateDonorStatusPage"
+    tools:openDrawer="start">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp">
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            app:title="Uthiram"
+            app:titleTextColor="@color/red">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/updateDonorStatusPage_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/anonymous_pro_bold_italic"
-                android:text="Update Status"
-                android:textColor="@color/black"
-                android:textSize="40sp" />
-
-            <TextView
-                android:id="@+id/updateDonorStatusPage_lastDonatedDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updateDonorStatusPage_lastDonatedDateText"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="Mon DD,YYYY"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/updateDonorStatusPage_lastDonatedDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updateDonorStatusPage_title"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                android:text="Last Donated Date"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/updateDonorStatusPage_pickDateButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updateDonorStatusPage_lastDonatedDate"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/golden_yellow"
-                android:text="Select Last DONATED DATE"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/updateDonorStatusPage_statusTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updateDonorStatusPage_radioGrp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/purple_500"
-                android:text="Status : "
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/updateDonorStatusPage_updateStatusBtn"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updateDonorStatusPage_statusTextView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/golden_yellow"
-                android:text="Update Status"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/updateDonorStatusPage_backBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updateDonorStatusPage_updateStatusBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/sky_blue"
-                android:text="Back"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <RadioGroup
-                android:id="@+id/updateDonorStatusPage_radioGrp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updateDonorStatusPage_pickDateButton"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/updateDonorStatusPage_availableRadioBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Available"
-                    android:textColor="@color/green"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/updateDonorStatusPage_unAvailableRadioBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="UnAvailable"
-                    android:textColor="@color/red"
-                    android:textSize="18sp" />
-            </RadioGroup>
+            <RelativeLayout
+                android:id="@+id/updateDonorStatusPage_relLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="70dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/updateDonorStatusPage_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/anonymous_pro_bold_italic"
+                            android:text="Update Status"
+                            android:textColor="@color/black"
+                            android:textSize="40sp" />
+
+                        <TextView
+                            android:id="@+id/updateDonorStatusPage_lastDonatedDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/updateDonorStatusPage_lastDonatedDateText"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:text="Mon DD,YYYY"
+                            android:textColor="@color/black"
+                            android:textSize="24sp"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/updateDonorStatusPage_lastDonatedDateText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/updateDonorStatusPage_title"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:text="Last Donated Date"
+                            android:textColor="@color/black"
+                            android:textSize="24sp" />
+
+                        <Button
+                            android:id="@+id/updateDonorStatusPage_pickDateButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/updateDonorStatusPage_lastDonatedDate"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:backgroundTint="@color/golden_yellow"
+                            android:text="Select Last DONATED DATE"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/updateDonorStatusPage_statusTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/updateDonorStatusPage_radioGrp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:textColor="@color/purple_500"
+                            android:text="Status : "
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/updateDonorStatusPage_updateStatusBtn"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/updateDonorStatusPage_statusTextView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="40dp"
+                            android:backgroundTint="@color/golden_yellow"
+                            android:text="Update Status"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/updateDonorStatusPage_backBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/updateDonorStatusPage_updateStatusBtn"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:backgroundTint="@color/sky_blue"
+                            android:text="Back"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <RadioGroup
+                            android:id="@+id/updateDonorStatusPage_radioGrp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/updateDonorStatusPage_pickDateButton"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:orientation="vertical">
+
+                            <RadioButton
+                                android:id="@+id/updateDonorStatusPage_availableRadioBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Available"
+                                android:textColor="@color/green"
+                                android:textSize="18sp" />
+
+                            <RadioButton
+                                android:id="@+id/updateDonorStatusPage_unAvailableRadioBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="UnAvailable"
+                                android:textColor="@color/red"
+                                android:textSize="18sp" />
+                        </RadioGroup>
+
+
+                    </RelativeLayout>
+                </ScrollView>
+            </RelativeLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_list">
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+

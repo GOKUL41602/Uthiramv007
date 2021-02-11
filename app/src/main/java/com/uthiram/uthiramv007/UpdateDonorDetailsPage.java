@@ -1,11 +1,16 @@
 package com.uthiram.uthiramv007;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +32,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class UpdateDonorDetailsPage extends AppCompatActivity {
+import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
+
+public class UpdateDonorDetailsPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawerLayout;
 
     private TextView bloodGroup, phoneNo;
 
@@ -51,6 +61,20 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
         initializeSpinners();
         loadDonorDetails();
 
+
+        drawerLayout = findViewById(R.id.design_navigation_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, navigation_draw_open, R.string.navigation_draw_close);
+
+        drawerLayout.addDrawerListener(toggle);
+
+        toggle.syncState();
 
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -323,5 +347,38 @@ public class UpdateDonorDetailsPage extends AppCompatActivity {
             weight.setErrorEnabled(false);
             return true;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.edit_donor_profile:Intent intent1 = new Intent(UpdateDonorDetailsPage.this, UpdateDonorDetailsPage.class);
+                intent1.putExtra("userName", userName);
+                startActivity(intent1);
+                break;
+            case R.id.edit_donor_status:
+                Intent intent2 = new Intent(UpdateDonorDetailsPage.this, UpdateDonorStatusPage.class);
+                intent2.putExtra("userName", userName);
+                startActivity(intent2);
+                break;
+            case R.id.donor_logout:
+                Intent intent3 = new Intent(UpdateDonorDetailsPage.this, LoginPage.class);
+                startActivity(intent3);
+                UpdateDonorDetailsPage.this.finish();
+                break;
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        return true;
     }
 }

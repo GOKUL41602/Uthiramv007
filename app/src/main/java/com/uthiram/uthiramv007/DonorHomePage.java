@@ -31,7 +31,6 @@ public class DonorHomePage extends AppCompatActivity implements NavigationView.O
 
     private Button viewProfileBtn, updateProfileBtn, updateStatusBtn, bacKBtn, logOutBtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +38,8 @@ public class DonorHomePage extends AppCompatActivity implements NavigationView.O
         initializeViews();
 
         userName = getIntent().getStringExtra("userName");
-        title.setText("Welcome " + userName);
 
+        title.setText("Welcome " + userName);
 
         drawerLayout = findViewById(R.id.design_navigation_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -126,12 +125,12 @@ public class DonorHomePage extends AppCompatActivity implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.edit_donor_profile:Intent intent1 = new Intent(DonorHomePage.this, ViewDonorProfile.class);
+            case R.id.edit_donor_profile:Intent intent1 = new Intent(DonorHomePage.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
                 startActivity(intent1);
                 break;
             case R.id.edit_donor_status:
-                Intent intent2 = new Intent(DonorHomePage.this, UpdateDonorDetailsPage.class);
+                Intent intent2 = new Intent(DonorHomePage.this, UpdateDonorStatusPage.class);
                 intent2.putExtra("userName", userName);
                 startActivity(intent2);
                 break;

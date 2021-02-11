@@ -10,8 +10,6 @@
 
     <uses-sdk
         android:minSdkVersion="20"
-
-
         android:targetSdkVersion="29" />
 
     <application
@@ -20,7 +18,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Uthiramv007">
+        android:theme="@style/Theme.Uthiramv007"
+
+        android:usesCleartextTraffic="true">
         <activity android:name=".SendSmsPage" />
 
         <activity
@@ -31,19 +31,20 @@
             android:label="Forget Password" />
         <activity
             android:name=".UpdateDonorStatusPage"
-            android:label="Update Donor Status" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UpdatePhoneNoOtpPage"
             android:label="Update PhoneNo OTP Verify" />
         <activity
             android:name=".UpdateDonorDetailsPage"
-            android:label="Update Donor Details" />
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ViewDonorProfile"
             android:label="View Donor Profile" />
         <activity
             android:name=".DonorHomePage"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".OtpPage"
             android:label="OTP Verification" />

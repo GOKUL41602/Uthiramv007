@@ -50,7 +50,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:17.2.2'
 
-
     //import broswer(require for firebase reCaptch Verifications)
     implementation 'androidx.browser:browser:1.2.0'
 
