@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Uthiramv007</string>
 
+    <string name="navigation_draw_open">Open navigation drawer</string>
+    <string name="navigation_draw_close">Close navigation drawer</string>
+
     <string-array name="deptName">
         <item>Dept Name</item>
         <item>Information Technology - IT</item>

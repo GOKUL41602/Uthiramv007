@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+       <item android:id="@+id/donor_home"
+           android:title="Home"
+           android:icon="@drawable/ic_baseline_home_24"/>
+
+        <item android:id="@+id/edit_donor_profile"
+            android:title="Edit Profile"
+            android:icon="@drawable/ic_user"/>
+
+        <item android:id="@+id/edit_donor_status"
+            android:title="Update Status"
+            android:icon="@drawable/ic_update_status"/>
+
+        <item android:id="@+id/donor_logout"
+            android:title="Log Out"
+            android:icon="@drawable/ic_baseline_reply_24"/>
+
+    </group>
+
+
+</menu>
+
+
