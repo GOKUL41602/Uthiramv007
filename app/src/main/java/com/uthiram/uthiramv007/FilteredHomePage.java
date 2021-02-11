@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class FilteredHomePage extends AppCompatActivity {
         bloodGroup = getIntent().getStringExtra("2");
         deptNameText.setText(deptName);
         bloodGroupText.setText(bloodGroup);
+        Log.d("Demo","Demo");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<DonorsDto> options
