@@ -7,20 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".SendSmsPage">
 
-    <ImageView
-        android:id="@+id/sendSmsPage_wave"
-        android:layout_width="match_parent"
+
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/sendSmsPage_title"
+        android:text="Send Sms"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-99dp"
-        android:src="@drawable/wave" />
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:fontFamily="@font/tillana_semibold"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/sendSmsPage_wave"
+        android:layout_below="@id/sendSmsPage_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-70dp">
+        android:layout_marginTop="40dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

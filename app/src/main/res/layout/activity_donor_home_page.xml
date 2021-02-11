@@ -7,20 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".DonorHomePage">
 
-    <ImageView
-        android:id="@+id/donorHomePage_wave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-99dp"
-        android:src="@drawable/wave" />
-
     <TextView
         android:id="@+id/donorHomePage_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/donorHomePage_wave"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-80dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/tillana_semibold"
         android:text="Welcome Donor!"
         android:textSize="30sp" />
