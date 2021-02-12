@@ -366,7 +366,13 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                 intent0.putExtra("userName", userName);
                 startActivity(intent0);
                 break;
-            case R.id.edit_donor_profile:Intent intent1 = new Intent(UpdateDonorDetailsPage.this, UpdateDonorDetailsPage.class);
+            case R.id.view_requests:
+                Intent intent = new Intent(UpdateDonorDetailsPage.this, ViewRequests.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
+                break;
+            case R.id.edit_donor_profile:
+                Intent intent1 = new Intent(UpdateDonorDetailsPage.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
                 startActivity(intent1);
                 break;

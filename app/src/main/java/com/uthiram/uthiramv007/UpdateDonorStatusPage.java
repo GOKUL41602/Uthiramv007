@@ -72,7 +72,6 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
         toggle.syncState();
 
 
-
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("SELECT A LAST DONATED DATE");
         final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
@@ -204,6 +203,12 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
                 Intent intent0 = new Intent(UpdateDonorStatusPage.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);
                 startActivity(intent0);
+                break;
+
+            case R.id.view_requests:
+                Intent intent = new Intent(UpdateDonorStatusPage.this, ViewRequests.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
                 break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(UpdateDonorStatusPage.this, UpdateDonorDetailsPage.class);

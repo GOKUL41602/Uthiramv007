@@ -7,6 +7,10 @@
            android:title="Home"
            android:icon="@drawable/ic_baseline_home_24"/>
 
+        <item android:id="@+id/view_requests"
+            android:title="View Requests"
+            android:icon="@drawable/ic_view_requests"/>
+
         <item android:id="@+id/edit_donor_profile"
             android:title="Edit Profile"
             android:icon="@drawable/ic_user"/>

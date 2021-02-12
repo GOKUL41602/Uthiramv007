@@ -203,7 +203,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     private void uploadRequestDetails() {
         reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
         RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText);
-        reference.child(userName).setValue(requestDonorDto);
+        reference.push().setValue(requestDonorDto);
         showSnack();
     }
 
@@ -340,6 +340,11 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
 
+            case R.id.view_requests:
+                Intent intent = new Intent(RequestBloodDonor.this, ViewRequests.class);
+                intent.putExtra("userName", userName);
+                startActivity(intent);
+                break;
             case R.id.donor_home:
                 Intent intent0 = new Intent(RequestBloodDonor.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);

@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewRequests"></activity>
+        <activity
+            android:name=".ViewRequests"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RequestBloodDonor"
             android:theme="@style/AppTheme.NoActionBar" />

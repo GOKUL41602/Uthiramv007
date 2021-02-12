@@ -1,46 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/viewRequests_relLayout"
+    android:id="@+id/design_navigation_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewRequests">
+    android:fitsSystemWindows="true"
+    tools:context=".ViewRequests"
+    tools:openDrawer="start">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            app:title="Uthiram"
+            app:titleTextColor="@color/red">
 
-        <RelativeLayout
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/viewRequests_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/tillana_semibold"
-                android:text="Requested Blood Details"
-                android:textColor="@color/red"
-                android:textSize="30sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/viewRequests_recView"
+            <RelativeLayout
+                android:id="@+id/viewRequests_relLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/viewRequests_title"
-                android:layout_marginTop="20dp"
-                android:padding="15dp" />
-
-        </RelativeLayout>
+                android:layout_height="match_parent">
 
 
-    </ScrollView>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
 
-</RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/viewRequests_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="50dp"
+                            android:fontFamily="@font/tillana_semibold"
+                            android:text="Requested Blood Details"
+                            android:textColor="@color/red"
+                            android:textSize="30sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/viewRequests_recView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/viewRequests_title"
+                            android:layout_marginTop="20dp"
+                            android:padding="15dp" />
+
+                    </RelativeLayout>
+
+
+                </ScrollView>
+
+            </RelativeLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu_list">
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+
+
+
+
+
