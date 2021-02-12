@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -24,8 +25,11 @@ import android.widget.Toast;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -39,6 +43,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private DrawerLayout drawerLayout;
 
+    private RelativeLayout relativeLayout;
+
     private TextInputLayout patientName, unitsNeeded, hospitalName, patientPhoneNo, neededDate, neededTime;
 
     private Button selectDateBtn, selectTimeBtn, requestDonorBtn, cancelBtn;
@@ -50,6 +56,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     private String userName;
 
     private int t1minute, t1hour;
+
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +166,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                                 if (validatePatientPhoneNo()) {
                                     if (validateDate()) {
                                         if (validateTime()) {
-                                            Toast.makeText(RequestBloodDonor.this, "Request Successful", Toast.LENGTH_SHORT).show();
+                                            uploadRequestDetails();
                                         } else {
                                             validateTime();
                                         }
@@ -184,6 +192,17 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         });
     }
 
+    private void uploadRequestDetails() {
+        reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
+        RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText);
+        reference.child(userName).setValue(requestDonorDto);
+        showSnack();
+    }
+
+    private void showSnack() {
+        Snackbar.make(relativeLayout, "Request Blood Donor Successful", Snackbar.LENGTH_SHORT).show();
+    }
+
     private boolean validatePatientName() {
         if (patientNameText.isEmpty() || patientNameText.length() <= 2) {
             patientName.setError("Please Enter Patient Name");
@@ -197,7 +216,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     }
 
     private boolean validatePatientPhoneNo() {
-        if (patientPhoneNoText.isEmpty() || patientPhoneNoText.length() != 10) {
+        if (patientPhoneNoText.length() != 10) {
             patientPhoneNo.setError("Please Enter Valid Phone No");
             patientPhoneNo.requestFocus();
             return false;
@@ -296,6 +315,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         requestDonorBtn = findViewById(R.id.requestBloodDonor_requestDonorBtn);
 
         cancelBtn = findViewById(R.id.requestBloodDonor_cancelBtn);
+
+        relativeLayout = findViewById(R.id.requestBloodDonor_relLayout);
     }
 
     @Override
