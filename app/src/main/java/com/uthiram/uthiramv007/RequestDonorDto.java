@@ -10,6 +10,9 @@ public class RequestDonorDto {
     private String neededWithInDate;
     private String neededWithInTime;
 
+    public RequestDonorDto() {
+    }
+
     public RequestDonorDto(String userName, String patientName, String bloodGroup, String unitsNeeded, String hospitalName, String patientPhoneNo, String neededWithInDate, String neededWithInTime) {
         this.userName = userName;
         this.patientName = patientName;
