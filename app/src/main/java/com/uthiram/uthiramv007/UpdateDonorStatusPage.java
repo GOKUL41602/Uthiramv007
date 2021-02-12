@@ -71,6 +71,8 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
 
         toggle.syncState();
 
+
+
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("SELECT A LAST DONATED DATE");
         final MaterialDatePicker materialDatePicker = materialDateBuilder.build();

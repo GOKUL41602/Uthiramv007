@@ -94,13 +94,13 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
-                                android:hint="3"
+                                android:hint="Units Needed"
                                 android:inputType="number" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/requestBloodDonor_hosptialName"
+                            android:id="@+id/requestBloodDonor_hospitalName"
                             style="@style/text_style"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                             style="@style/text_style"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/requestBloodDonor_hosptialName"
+                            android:layout_below="@+id/requestBloodDonor_hospitalName"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="30dp">
 
@@ -177,7 +177,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content"
-                                android:hint="00:00"
+                                android:hint="HH:MM"
                                 android:inputType="time" />
 
                         </com.google.android.material.textfield.TextInputLayout>
