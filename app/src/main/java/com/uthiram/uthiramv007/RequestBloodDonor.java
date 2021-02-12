@@ -13,16 +13,21 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.PhoneAuthCredential;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import static android.text.format.DateFormat.format;
@@ -52,6 +57,39 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         initializeViews();
 
         userName = getIntent().getStringExtra("userName");
+
+
+        ArrayList<String> bloodGroupList = new ArrayList<>();
+        bloodGroupList.add("Blood Group");
+        bloodGroupList.add("O+");
+        bloodGroupList.add("O-");
+        bloodGroupList.add("A+");
+        bloodGroupList.add("A-");
+        bloodGroupList.add("B+");
+        bloodGroupList.add("B-");
+        bloodGroupList.add("AB+");
+        bloodGroupList.add("AB-");
+
+        ArrayAdapter<String> bloodAdapter = new ArrayAdapter<String>(RequestBloodDonor.this, android.R.layout.simple_dropdown_item_1line, bloodGroupList);
+        bloodGroup.setAdapter(bloodAdapter);
+        bloodGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                bloodGroupText = bloodGroupList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        requestDonorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(RequestBloodDonor.this, bloodGroupText + " Selected", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("SELECT LAST DATE FOR DONATION");
@@ -107,8 +145,133 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
+
+        requestDonorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initializeStrings();
+                if (validatePatientName()) {
+                    if (validateBloodGroup()) {
+                        if (validateUnitsNeeded()) {
+                            if (validateHospitalName()) {
+                                if (validatePatientPhoneNo()) {
+                                    if (validateDate()) {
+                                        if (validateTime()) {
+                                            Toast.makeText(RequestBloodDonor.this, "Request Successful", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            validateTime();
+                                        }
+                                    } else {
+                                        validateDate();
+                                    }
+                                } else {
+                                    validatePatientPhoneNo();
+                                }
+                            } else {
+                                validateHospitalName();
+                            }
+                        } else {
+                            validateUnitsNeeded();
+                        }
+                    } else {
+                        validateBloodGroup();
+                    }
+                } else {
+                    validatePatientName();
+                }
+            }
+        });
     }
 
+    private boolean validatePatientName() {
+        if (patientNameText.isEmpty() || patientNameText.length() <= 2) {
+            patientName.setError("Please Enter Patient Name");
+            patientName.requestFocus();
+            return false;
+        } else {
+            patientName.setError(null);
+            patientName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validatePatientPhoneNo() {
+        if (patientPhoneNoText.isEmpty() || patientPhoneNoText.length() != 10) {
+            patientPhoneNo.setError("Please Enter Valid Phone No");
+            patientPhoneNo.requestFocus();
+            return false;
+        } else {
+            patientPhoneNo.setError(null);
+            patientPhoneNo.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateUnitsNeeded() {
+        if (unitsNeededText.isEmpty()) {
+            unitsNeeded.setError("Please Enter Units Needed");
+            unitsNeeded.requestFocus();
+            return false;
+        } else {
+            unitsNeeded.setError(null);
+            unitsNeeded.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateHospitalName() {
+        if (hospitalNameText.isEmpty()) {
+            hospitalName.setError("Please Enter Hospital Name");
+            hospitalName.requestFocus();
+            return false;
+        } else {
+            hospitalName.setError(null);
+            hospitalName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateBloodGroup() {
+        if (bloodGroupText.equals("Blood Group")) {
+            Toast.makeText(this, "Please Select Blood Group", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean validateDate() {
+        if (neededDateText.isEmpty()) {
+            neededDate.setError("Please Enter WithNeeded Date");
+            neededDate.requestFocus();
+            return false;
+        } else {
+            neededDate.setError(null);
+            neededDate.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateTime() {
+        if (neededTimeText.isEmpty()) {
+            neededTime.setError("Please Enter WithNeeded Time");
+            neededTime.requestFocus();
+            return false;
+        } else {
+            neededTime.setError(null);
+            neededTime.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private void initializeStrings() {
+        patientNameText = patientName.getEditText().getText().toString().trim();
+        patientPhoneNoText = patientPhoneNo.getEditText().getText().toString().trim();
+        unitsNeededText = unitsNeeded.getEditText().getText().toString().trim();
+        hospitalNameText = hospitalName.getEditText().getText().toString().trim();
+        neededDateText = neededDate.getEditText().getText().toString().trim();
+        neededTimeText = neededTime.getEditText().getText().toString().trim();
+    }
 
     private void initializeViews() {
         bloodGroup = findViewById(R.id.requestBloodDonor_bloodGroup);
