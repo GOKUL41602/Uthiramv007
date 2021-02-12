@@ -138,7 +138,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        Log.d("Deom","Deom");
         navigationView.setNavigationItemSelectedListener(this);
 
 
