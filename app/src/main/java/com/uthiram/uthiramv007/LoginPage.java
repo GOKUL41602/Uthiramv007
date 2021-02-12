@@ -117,7 +117,7 @@ public class LoginPage extends AppCompatActivity {
                 if (snapshot.exists()) {
                     passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
                     if (passwordText.equals(passwordFromDB)) {
-                        Intent intent = new Intent(LoginPage.this, DonorHomePage.class);
+                        Intent intent = new Intent(LoginPage.this, RequestBloodDonor.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("userName", userNameText);
                         startActivity(intent);

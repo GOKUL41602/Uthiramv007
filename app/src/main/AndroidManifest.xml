@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RequestBloodDonor"></activity>
+        <activity
+            android:name=".RequestBloodDonor"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SendSmsPage" />
         <activity
             android:name=".ForgetPasswordOtpVerifyPage"

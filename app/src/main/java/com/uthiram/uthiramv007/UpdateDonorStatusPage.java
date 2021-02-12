@@ -198,6 +198,11 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.donor_home:
+                Intent intent0 = new Intent(UpdateDonorStatusPage.this, RequestBloodDonor.class);
+                intent0.putExtra("userName", userName);
+                startActivity(intent0);
+                break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(UpdateDonorStatusPage.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
