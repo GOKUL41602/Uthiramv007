@@ -116,7 +116,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UpdateDonorDetailsPage.this, DonorHomePage.class);
+                Intent intent = new Intent(UpdateDonorDetailsPage.this, RequestBloodDonor.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
                 UpdateDonorDetailsPage.this.finish();

@@ -114,7 +114,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RequestBloodDonor.this, ViewRequests.class);
+                Intent intent = new Intent(RequestBloodDonor.this, RequestBloodDonor.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
             }

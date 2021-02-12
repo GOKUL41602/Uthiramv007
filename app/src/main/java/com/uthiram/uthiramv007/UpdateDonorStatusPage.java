@@ -133,7 +133,7 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UpdateDonorStatusPage.this, DonorHomePage.class);
+                Intent intent = new Intent(UpdateDonorStatusPage.this, RequestBloodDonor.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
                 UpdateDonorStatusPage.this.finish();
