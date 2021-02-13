@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,9 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
      *
      * @param options
      */
+
+    public String key;
+
     public ViewRequestRecViewAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options) {
         super(options);
     }
@@ -43,27 +47,67 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
         holder.contactNo.setText(model.getPatientPhoneNo());
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
-        String key = model.getKey();
+        key = model.getKey();
 
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.context.getApplicationContext(), EditEmergencyRequest.class);
                 intent.putExtra("key", key);
-                intent.putExtra("userName",model.getUserName());
+                intent.putExtra("userName", model.getUserName());
                 holder.context.startActivity(intent);
 
-                Log.d("Key",key);
+
             }
         });
 
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto/" + model.getUserName());
+                Query query = reference.orderByChild("key").startAt(key).endAt(key + "\uf8ff");
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            reference.child(key).removeValue();
+                            Toast.makeText(holder.context, "Request Removed Successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(holder.context, "Data doesn't exists", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                removeDataFromDB(holder.context);
             }
         });
 
+    }
+
+
+    private void removeDataFromDB(Context context) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
+        Query query = reference.orderByChild("key").startAt(key).endAt(key + "\uf8ff");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    reference.child(key).removeValue();
+                    Toast.makeText(context, "Request Removed Successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Data doesn't exists", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @NonNull
