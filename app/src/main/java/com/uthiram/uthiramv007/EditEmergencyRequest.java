@@ -68,6 +68,7 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
         setContentView(R.layout.activity_edit_emergency_request);
 
         key = getIntent().getStringExtra("key");
+        Log.d("key",key);
 
         userName = getIntent().getStringExtra("userName");
 
