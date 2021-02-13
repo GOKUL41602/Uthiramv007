@@ -4,18 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/homePage_relLayout"
     android:layout_width="match_parent"
-    android:background="@drawable/white_background"
     android:layout_height="match_parent"
+    android:background="@drawable/white_background"
     tools:context=".HomePage">
 
-    <Toolbar
-        android:id="@+id/homePage_toolBar"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/silver"
-        android:paddingStart="20dp"
-        android:title="Uthiram" />
 
+    <TextView
+        android:id="@+id/homePage_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/tillana_semibold"
+        android:text="Filter Search"
+        android:textColor="@color/red"
+        android:textSize="30sp"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
