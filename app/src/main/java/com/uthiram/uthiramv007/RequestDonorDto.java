@@ -9,11 +9,12 @@ public class RequestDonorDto {
     private String patientPhoneNo;
     private String neededWithInDate;
     private String neededWithInTime;
+    private String key;
 
     public RequestDonorDto() {
     }
 
-    public RequestDonorDto(String userName, String patientName, String bloodGroup, String unitsNeeded, String hospitalName, String patientPhoneNo, String neededWithInDate, String neededWithInTime) {
+    public RequestDonorDto(String userName, String patientName, String bloodGroup, String unitsNeeded, String hospitalName, String patientPhoneNo, String neededWithInDate, String neededWithInTime, String key) {
         this.userName = userName;
         this.patientName = patientName;
         this.bloodGroup = bloodGroup;
@@ -22,6 +23,15 @@ public class RequestDonorDto {
         this.patientPhoneNo = patientPhoneNo;
         this.neededWithInDate = neededWithInDate;
         this.neededWithInTime = neededWithInTime;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getUserName() {
@@ -91,13 +101,15 @@ public class RequestDonorDto {
     @Override
     public String toString() {
         return "RequestDonorDto{" +
-                "patientName='" + patientName + '\'' +
+                "userName='" + userName + '\'' +
+                ", patientName='" + patientName + '\'' +
                 ", bloodGroup='" + bloodGroup + '\'' +
                 ", unitsNeeded='" + unitsNeeded + '\'' +
                 ", hospitalName='" + hospitalName + '\'' +
                 ", patientPhoneNo='" + patientPhoneNo + '\'' +
                 ", neededWithInDate='" + neededWithInDate + '\'' +
                 ", neededWithInTime='" + neededWithInTime + '\'' +
+                ", key='" + key + '\'' +
                 '}';
     }
 }

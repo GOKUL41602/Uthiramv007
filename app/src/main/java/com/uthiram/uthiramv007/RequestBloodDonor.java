@@ -93,12 +93,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             }
         });
 
-        requestDonorBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(RequestBloodDonor.this, bloodGroupText + " Selected", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
         materialDateBuilder.setTitleText("SELECT LAST DATE FOR DONATION");
@@ -156,7 +150,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, navigation_draw_open, R.string.navigation_draw_close);
 
         drawerLayout.addDrawerListener(toggle);
@@ -202,11 +195,12 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private void uploadRequestDetails() {
         reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
-        RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText);
-        reference.child(userName).push().setValue(requestDonorDto);
+        String key=reference.push().getKey();
+        RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText,key);
+        reference.child(userName).child(key).setValue(requestDonorDto);
         reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
-        RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText);
-        reference.push().setValue(requestDonorDto1);
+        RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText,key);
+        reference.child(key).setValue(requestDonorDto1);
         showSnack();
     }
 

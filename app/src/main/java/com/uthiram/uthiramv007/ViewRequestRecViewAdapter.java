@@ -1,6 +1,8 @@
 package com.uthiram.uthiramv007;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +43,17 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
         holder.contactNo.setText(model.getPatientPhoneNo());
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
-        String userName = model.getUserName();
+        String key = model.getKey();
 
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(holder.context.getApplicationContext(), EditEmergencyRequest.class);
+                intent.putExtra("key", key);
+                intent.putExtra("userName",model.getUserName());
+                holder.context.startActivity(intent);
 
+                Log.d("Key",key);
             }
         });
 
