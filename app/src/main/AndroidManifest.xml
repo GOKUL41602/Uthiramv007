@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007"
         android:usesCleartextTraffic="true">
+        <activity android:name=".EmergencyRequests"></activity>
         <activity
             android:name=".ViewRequests"
             android:theme="@style/AppTheme.NoActionBar" />

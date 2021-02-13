@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/emergencyRequestFormat_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_patientNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingStart="6dp"
+                android:text="Patient Name : "
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_patientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_patientNameText"
+                android:hint="Patient Name"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_bloodGroupText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_patientNameText"
+                android:layout_marginTop="10dp"
+                android:paddingStart="6dp"
+                android:text="Blood Group : "
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_bloodGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_patientName"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_bloodGroupText"
+                android:hint="blood group"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_unitsNeededText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_bloodGroupText"
+                android:layout_marginTop="10dp"
+                android:paddingStart="6dp"
+                android:text="Units Needed : "
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_unitsNeeded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_bloodGroup"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_unitsNeededText"
+                android:hint="3"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat__hospitalNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_unitsNeededText"
+                android:layout_marginTop="10dp"
+                android:paddingStart="6dp"
+                android:text="Hospital Name : "
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_hospitalName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_unitsNeeded"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat__hospitalNameText"
+                android:hint="KMCH"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_contactNoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat__hospitalNameText"
+                android:layout_marginTop="10dp"
+                android:paddingStart="6dp"
+                android:text="Contact No : "
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_contactNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_hospitalName"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_contactNoText"
+                android:hint="1235468790"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/emergencyRequestFormat_callBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat__hospitalNameText"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_contactNoText"
+                android:src="@drawable/ic_call" />
+
+            <ImageView
+                android:id="@+id/emergencyRequestFormat_msgBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat__hospitalNameText"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_callBtn"
+                android:src="@drawable/ic_msg" />
+
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_neededWithIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_contactNoText"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="13dp"
+                android:text="Needed With"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_dateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_neededWithIn"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="6dp"
+                android:text="Date : "
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_neededWithIn"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_dateText"
+                android:hint="DD/MM/YYYY"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_timeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_neededWithIn"
+                android:layout_marginLeft="140dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_dateText"
+                android:paddingStart="6dp"
+                android:text="Time : "
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/emergencyRequestFormat_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emergencyRequestFormat_neededWithIn"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/emergencyRequestFormat_timeText"
+                android:hint="HH:MM am"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

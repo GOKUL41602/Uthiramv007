@@ -204,6 +204,9 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
         RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText);
         reference.child(userName).push().setValue(requestDonorDto);
+        reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
+        RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText);
+        reference.push().setValue(requestDonorDto1);
         showSnack();
     }
 
