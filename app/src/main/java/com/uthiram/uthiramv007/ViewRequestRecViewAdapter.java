@@ -1,8 +1,10 @@
 package com.uthiram.uthiramv007;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, ViewRequestRecViewAdapter.ViewHolder> {
 
@@ -33,6 +41,21 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
         holder.contactNo.setText(model.getPatientPhoneNo());
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
+        String userName = model.getUserName();
+
+        holder.editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
@@ -47,6 +70,10 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
 
         private TextView patientName, bloodGroup, unitsNeeded, contactNo, hospitalName, date, time;
 
+        private ImageView editBtn, deleteBtn;
+
+        private Context context = itemView.getContext();
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             initializeViews();
@@ -60,6 +87,8 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
             hospitalName = itemView.findViewById(R.id.viewRequestDonorFormat_hospitalName);
             date = itemView.findViewById(R.id.viewRequestDonorFormat_date);
             time = itemView.findViewById(R.id.viewRequestDonorFormat_time);
+            editBtn = itemView.findViewById(R.id.viewRequestDonorFormat_editBtn);
+            deleteBtn = itemView.findViewById(R.id.viewRequestDonorFormat_deleteBtn);
         }
     }
 }

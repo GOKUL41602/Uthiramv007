@@ -121,6 +121,26 @@
                 android:hint="1235468790"
                 android:textSize="17sp" />
 
+            <ImageView
+                android:id="@+id/viewRequestDonorFormat_editBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewRequestDonorFormat_hospitalNameText"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/viewRequestDonorFormat_contactNoText"
+                android:src="@drawable/ic_edit" />
+
+            <ImageView
+                android:id="@+id/viewRequestDonorFormat_deleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewRequestDonorFormat_hospitalNameText"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/viewRequestDonorFormat_editBtn"
+                android:src="@drawable/ic_delete" />
+
 
             <TextView
                 android:id="@+id/viewRequestDonorFormat_neededWithIn"
