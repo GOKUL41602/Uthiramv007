@@ -1,6 +1,10 @@
 package com.uthiram.uthiramv007;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +15,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,15 +23,19 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity {
+import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
+
+public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
@@ -34,10 +43,7 @@ public class HomePage extends AppCompatActivity {
     private String deptName, bloodGroup;
     private RelativeLayout relativeLayout;
     private Button filterBtn;
-    private FloatingActionButton loginBtn;
     private HomePageRecAdapter adapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +53,19 @@ public class HomePage extends AppCompatActivity {
         initializeSpinners();
 
 
+        drawerLayout = findViewById(R.id.design_navigation_view);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
 
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, navigation_draw_open, R.string.navigation_draw_close);
+
+        drawerLayout.addDrawerListener(toggle);
+
+        toggle.syncState();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<DonorsDto> options
                 = new FirebaseRecyclerOptions.Builder<DonorsDto>()
@@ -57,14 +74,6 @@ public class HomePage extends AppCompatActivity {
         adapter = new HomePageRecAdapter(options);
         recyclerView.setAdapter(adapter);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                    Intent intent = new Intent(HomePage.this, LoginPage.class);
-                    startActivity(intent);
-            }
-        });
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +164,6 @@ public class HomePage extends AppCompatActivity {
         bloodGroupSpinner = findViewById(R.id.homePage_bloodGroupSpinner);
         relativeLayout = findViewById(R.id.homePage_relLayout);
         filterBtn = findViewById(R.id.homePage_filterBtn);
-        loginBtn = findViewById(R.id.homePage_loginBtn);
     }
 
     @Override
@@ -168,5 +176,42 @@ public class HomePage extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.home:
+                Intent intent = new Intent(HomePage.this, EmergencyRequests.class);
+                startActivity(intent);
+                break;
+            case R.id.filter:
+                Intent intent1 = new Intent(HomePage.this, HomePage.class);
+                startActivity(intent1);
+                break;
+            case R.id.donor_login:
+                Intent intent0 = new Intent(HomePage.this, LoginPage.class);
+                startActivity(intent0);
+                break;
+            case R.id.about_us:
+                Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.contact_us:
+                Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

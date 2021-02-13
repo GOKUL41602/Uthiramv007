@@ -55,7 +55,7 @@
                             android:fontFamily="@font/tillana_semibold"
                             android:text="Emergency Blood Requests"
                             android:textColor="@color/red"
-                            android:textSize="30sp" />
+                            android:textSize="25sp" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/emergencyRequests_recView"

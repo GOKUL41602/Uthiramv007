@@ -1,83 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/homePage_relLayout"
+    android:id="@+id/design_navigation_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/white_background"
-    tools:context=".HomePage">
+    android:fitsSystemWindows="true"
+    tools:context=".HomePage"
+    tools:openDrawer="start">
 
-
-    <TextView
-        android:id="@+id/homePage_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/tillana_semibold"
-        android:text="Filter Search"
-        android:textColor="@color/red"
-        android:textSize="30sp"/>
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/homePage_loginBtn"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="10dp"
-        android:backgroundTint="@color/golden_yellow"
-        android:src="@drawable/ic_login_dark" />
-
-    <Spinner
-        android:id="@+id/homePage_deptSpinner"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:entries="@array/deptName" />
-
-    <Spinner
-        android:id="@+id/homePage_bloodGroupSpinner"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homePage_deptSpinner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:entries="@array/bloodGroup" />
-
-    <Button
-        android:id="@+id/homePage_filterBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homePage_bloodGroupSpinner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/golden_yellow"
-        android:text="FILTER"
-        android:textColor="@color/black" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homePage_filterBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/silver"
+            app:title="Uthiram"
+            app:titleTextColor="@color/red">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/homePage_recView"
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/emergencyRequests_relLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp" />
+                android:layout_height="match_parent">
 
-        </RelativeLayout>
 
-    </ScrollView>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true">
 
-</RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/homePage_relLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/white_background">
+
+
+                        <TextView
+                            android:id="@+id/homePage_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/tillana_semibold"
+                            android:text="Filter Search"
+                            android:textColor="@color/red"
+                            android:textSize="30sp" />
+
+
+                        <Spinner
+                            android:id="@+id/homePage_deptSpinner"
+                            android:layout_width="290dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="100dp"
+                            android:entries="@array/deptName" />
+
+                        <Spinner
+                            android:id="@+id/homePage_bloodGroupSpinner"
+                            android:layout_width="290dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/homePage_deptSpinner"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:entries="@array/bloodGroup" />
+
+                        <Button
+                            android:id="@+id/homePage_filterBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/homePage_bloodGroupSpinner"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:backgroundTint="@color/golden_yellow"
+                            android:text="FILTER"
+                            android:textColor="@color/black" />
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/homePage_filterBtn"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/homePage_recView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="20dp" />
+
+                            </RelativeLayout>
+
+                        </ScrollView>
+
+                    </RelativeLayout>
+                </ScrollView>
+
+            </RelativeLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/home_menu_list">
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+
+
+
+

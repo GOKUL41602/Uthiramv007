@@ -23,7 +23,7 @@ public class SendSmsPage extends AppCompatActivity {
 
     private TextInputLayout message;
 
-    private Button sendBtn, cancelBtn;
+    private Button sendBtn;
 
     private String messageText, phoneNo;
 
@@ -94,7 +94,7 @@ public class SendSmsPage extends AppCompatActivity {
     private void initializeViews() {
         message = findViewById(R.id.sendSmsPage_message);
         sendBtn = findViewById(R.id.sendSmsPage_sendBtn);
-        cancelBtn = findViewById(R.id.sendSmsPage_cancelBtn);
+
         relativeLayout = findViewById(R.id.sendSmsPage_relLayout);
     }
 

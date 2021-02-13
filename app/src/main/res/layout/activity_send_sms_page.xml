@@ -2,22 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/sendSmsPage_relLayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SendSmsPage">
 
 
-
     <TextView
+        android:id="@+id/sendSmsPage_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sendSmsPage_title"
-        android:text="Send Sms"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:textSize="30sp"
-        android:fontFamily="@font/tillana_semibold"/>
+        android:fontFamily="@font/tillana_semibold"
+        android:text="Send Sms"
+        android:textSize="30sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -56,22 +55,12 @@
                 android:layout_below="@+id/sendSmsPage_message"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/golden_yellow"
                 android:elevation="10dp"
                 android:text="Send Msg"
                 android:textColor="@color/black" />
 
-            <Button
-                android:id="@+id/sendSmsPage_cancelBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/sendSmsPage_sendBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/sky_blue"
-                android:elevation="10dp"
-                android:text="Cancel"
-                android:textColor="@color/black" />
 
         </RelativeLayout>
     </ScrollView>
