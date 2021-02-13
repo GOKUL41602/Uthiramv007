@@ -56,7 +56,7 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<RequestDonorDto> options
                 = new FirebaseRecyclerOptions.Builder<RequestDonorDto>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("RequestDonorDto"), RequestDonorDto.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference("RequestDonorDto/"+userName), RequestDonorDto.class)
                 .build();
         adapter = new ViewRequestRecViewAdapter(options);
         recyclerView.setAdapter(adapter);
