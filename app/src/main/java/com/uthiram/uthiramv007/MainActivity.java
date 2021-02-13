@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         nextActBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HomePage.class);
+                Intent intent = new Intent(MainActivity.this, EmergencyRequests.class);
                 startActivity(intent);
                 MainActivity.this.finish();
             }

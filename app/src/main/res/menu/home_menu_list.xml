@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/ic_baseline_home_24"/>
+
+        <item android:id="@+id/filter"
+            android:title="Filter"
+            android:icon="@drawable/ic_filter"/>
+
+        <item android:id="@+id/donor_login"
+            android:title="Login"
+            android:icon="@drawable/ic_login_dark"/>
+
+        <item android:id="@+id/about_us"
+            android:title="About Us"
+            android:icon="@drawable/ic_about_us"/>
+
+        <item android:id="@+id/contact_us"
+            android:title="Contact Us"
+            android:icon="@drawable/ic_contact_us"/>
+
+    </group>
+
+</menu>
+
+
