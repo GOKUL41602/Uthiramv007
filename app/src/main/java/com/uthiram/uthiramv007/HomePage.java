@@ -1,6 +1,7 @@
 package com.uthiram.uthiramv007;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
 
+    private DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
     private Spinner deptNameSpinner, bloodGroupSpinner;
     private String deptName, bloodGroup;
