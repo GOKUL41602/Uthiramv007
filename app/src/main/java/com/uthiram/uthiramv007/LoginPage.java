@@ -76,9 +76,9 @@ public class LoginPage extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, HomePage.class);
+                Intent intent = new Intent(LoginPage.this, EmergencyRequests.class);
                 startActivity(intent);
-                finish();
+                LoginPage.this.finish();
             }
         });
 

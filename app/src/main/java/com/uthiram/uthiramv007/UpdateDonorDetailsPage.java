@@ -365,11 +365,13 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                 Intent intent0 = new Intent(UpdateDonorDetailsPage.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);
                 startActivity(intent0);
+                UpdateDonorDetailsPage.this.finish();
                 break;
             case R.id.view_requests:
                 Intent intent = new Intent(UpdateDonorDetailsPage.this, ViewRequests.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
+                UpdateDonorDetailsPage.this.finish();
                 break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(UpdateDonorDetailsPage.this, UpdateDonorDetailsPage.class);
@@ -380,6 +382,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                 Intent intent2 = new Intent(UpdateDonorDetailsPage.this, UpdateDonorStatusPage.class);
                 intent2.putExtra("userName", userName);
                 startActivity(intent2);
+                UpdateDonorDetailsPage.this.finish();
                 break;
             case R.id.donor_logout:
                 Intent intent3 = new Intent(UpdateDonorDetailsPage.this, LoginPage.class);

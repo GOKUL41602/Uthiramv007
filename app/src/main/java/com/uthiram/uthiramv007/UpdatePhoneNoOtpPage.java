@@ -103,6 +103,7 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
                     updateDonorDetailsToDB();
                     Intent intent = new Intent(UpdatePhoneNoOtpPage.this, DonorHomePage.class);
                     intent.putExtra("userName", userName);
+                    UpdatePhoneNoOtpPage.this.finish();
                     startActivity(intent);
                 } else {
                     Toast.makeText(UpdatePhoneNoOtpPage.this, "Authentication Failed", Toast.LENGTH_SHORT).show();

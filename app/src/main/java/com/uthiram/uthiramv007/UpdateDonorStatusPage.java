@@ -203,22 +203,26 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
                 Intent intent0 = new Intent(UpdateDonorStatusPage.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);
                 startActivity(intent0);
+                UpdateDonorStatusPage.this.finish();
                 break;
 
             case R.id.view_requests:
                 Intent intent = new Intent(UpdateDonorStatusPage.this, ViewRequests.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
+                UpdateDonorStatusPage.this.finish();
                 break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(UpdateDonorStatusPage.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
                 startActivity(intent1);
+                UpdateDonorStatusPage.this.finish();
                 break;
             case R.id.edit_donor_status:
                 Intent intent2 = new Intent(UpdateDonorStatusPage.this, UpdateDonorStatusPage.class);
                 intent2.putExtra("userName", userName);
                 startActivity(intent2);
+                UpdateDonorStatusPage.this.finish();
                 break;
             case R.id.donor_logout:
                 Intent intent3 = new Intent(UpdateDonorStatusPage.this, LoginPage.class);
@@ -226,9 +230,7 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
                 UpdateDonorStatusPage.this.finish();
                 break;
         }
-
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
     }
 }

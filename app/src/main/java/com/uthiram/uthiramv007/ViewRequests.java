@@ -94,16 +94,19 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
                 Intent intent0 = new Intent(ViewRequests.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);
                 startActivity(intent0);
+                ViewRequests.this.finish();
                 break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(ViewRequests.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
                 startActivity(intent1);
+                ViewRequests.this.finish();
                 break;
             case R.id.edit_donor_status:
                 Intent intent2 = new Intent(ViewRequests.this, UpdateDonorStatusPage.class);
                 intent2.putExtra("userName", userName);
                 startActivity(intent2);
+                ViewRequests.this.finish();
                 break;
             case R.id.donor_logout:
                 Intent intent3 = new Intent(ViewRequests.this, LoginPage.class);

@@ -111,6 +111,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                 Intent intent = new Intent(RequestBloodDonor.this, RequestBloodDonor.class);
                 intent.putExtra("userName", userName);
                 startActivity(intent);
+                RequestBloodDonor.this.finish();
             }
         });
 
@@ -195,17 +196,21 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private void uploadRequestDetails() {
         reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
-        String key=reference.push().getKey();
-        RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText,key);
+        String key = reference.push().getKey();
+        RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key);
         reference.child(userName).child(key).setValue(requestDonorDto);
         reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
-        RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText,key);
+        RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key);
         reference.child(key).setValue(requestDonorDto1);
         showSnack();
     }
 
     private void showSnack() {
         Snackbar.make(relativeLayout, "Request Blood Donor Successful", Snackbar.LENGTH_SHORT).show();
+        Intent intent = new Intent(RequestBloodDonor.this, ViewRequests.class);
+        intent.putExtra("userName", userName);
+        startActivity(intent);
+        RequestBloodDonor.this.finish();
     }
 
     private boolean validatePatientName() {

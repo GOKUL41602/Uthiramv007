@@ -86,11 +86,11 @@ public class OtpPage extends AppCompatActivity {
                     Intent intent = new Intent(OtpPage.this, RegisterPage.class);
                     intent.putExtra("phoneNo", phoneNum);
                     startActivity(intent);
+                    OtpPage.this.finish();
                 } else {
                     Toast.makeText(OtpPage.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
                 }
             }
-
 
         });
     }

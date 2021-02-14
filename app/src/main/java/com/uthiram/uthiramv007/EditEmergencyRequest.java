@@ -68,7 +68,7 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
         setContentView(R.layout.activity_edit_emergency_request);
 
         key = getIntent().getStringExtra("key");
-        Log.d("key",key);
+        Log.d("key", key);
 
         userName = getIntent().getStringExtra("userName");
 
@@ -218,6 +218,10 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
 
     private void showSnack() {
         Snackbar.make(relativeLayout, "Request Blood Donor Successful", Snackbar.LENGTH_SHORT).show();
+        Intent intent = new Intent(EditEmergencyRequest.this, ViewRequests.class);
+        intent.putExtra("userName", userName);
+        startActivity(intent);
+        EditEmergencyRequest.this.finish();
     }
 
     private boolean validatePatientName() {
@@ -345,6 +349,7 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
                 Intent intent0 = new Intent(EditEmergencyRequest.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);
                 startActivity(intent0);
+                EditEmergencyRequest.this.finish();
                 break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(EditEmergencyRequest.this, UpdateDonorDetailsPage.class);
