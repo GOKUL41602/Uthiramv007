@@ -5,7 +5,7 @@
     android:id="@+id/loginPage_relLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/login_page_background"
     tools:context=".LoginPage">
 
 
@@ -40,7 +40,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
                 android:textColorHint="@color/grey"
-                app:boxStrokeColor="@color/silver"
+                app:boxStrokeColor="@color/golden_yellow"
                 app:errorTextColor="@color/white"
                 app:hintTextColor="@color/grey">
 
@@ -62,7 +62,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:textColorHint="@color/grey"
-                app:boxStrokeColor="@color/silver"
+                app:boxStrokeColor="@color/golden_yellow"
                 app:errorTextColor="@color/white"
                 app:hintTextColor="@color/grey"
                 app:passwordToggleEnabled="true">
@@ -111,7 +111,7 @@
                 android:layout_marginLeft="120dp"
                 android:layout_marginTop="25dp"
                 android:text="New Donor?"
-                android:textColor="@color/green"
+                android:textColor="@color/silver"
                 android:textSize="20sp" />
 
             <TextView
