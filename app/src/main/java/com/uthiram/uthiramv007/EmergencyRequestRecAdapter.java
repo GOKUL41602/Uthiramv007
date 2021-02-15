@@ -15,19 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, EmergencyRequestRecAdapter.ViewHolder> {
 
-
-    private String check;
-
-    private ArrayList<FirebaseRecyclerOptions<RequestDonorDto>> list = new ArrayList();
-
     public EmergencyRequestRecAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options) {
         super(options);
-        list.add(options);
     }
 
     @Override
@@ -40,6 +39,7 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
         holder.contactNo.setText(model.getPatientPhoneNo());
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
+
 
         holder.callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +61,7 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
         });
 
     }
+
 
 
     @NonNull

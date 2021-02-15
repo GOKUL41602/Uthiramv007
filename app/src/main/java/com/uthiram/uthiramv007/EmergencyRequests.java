@@ -2,6 +2,7 @@ package com.uthiram.uthiramv007;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -9,7 +10,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,6 +40,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
     private FloatingActionButton filterBtn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,23 +48,36 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_requests);
 
+        isNetworkConnected();
         initializeViews();
 
-        drawerLayout = findViewById(R.id.emergencyRequest_design_navigation_view);
+        if (!isNetworkConnected()) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Check Internet Connection")
+                    .setMessage("Please Check Internet Connection ! ")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    }).show();
+        } else {
+            drawerLayout = findViewById(R.id.emergencyRequest_design_navigation_view);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+            Toolbar toolbar = findViewById(R.id.toolbar);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+            NavigationView navigationView = findViewById(R.id.nav_view);
 
-        navigationView.setNavigationItemSelectedListener(this);
+            navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, navigation_draw_open, R.string.navigation_draw_close);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, navigation_draw_open, R.string.navigation_draw_close);
 
-        drawerLayout.addDrawerListener(toggle);
+            drawerLayout.addDrawerListener(toggle);
 
-        toggle.syncState();
+            toggle.syncState();
 
-
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<RequestDonorDto> options
                 = new FirebaseRecyclerOptions.Builder<RequestDonorDto>()
@@ -68,14 +86,21 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         adapter = new EmergencyRequestRecAdapter(options);
         recyclerView.setAdapter(adapter);
 
+
     }
 
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
 
     private void initializeViews() {
         relativeLayout = findViewById(R.id.emergencyRequests_relLayout);
         recyclerView = findViewById(R.id.emergencyRequests_recView);
-       // relativeLayout1 = findViewById(R.id.emergencyRequests_emptyRelLayout);
-       // filterBtn = findViewById(R.id.emergencyRequests_filterBtn);
+        // relativeLayout1 = findViewById(R.id.emergencyRequests_emptyRelLayout);
+        // filterBtn = findViewById(R.id.emergencyRequests_filterBtn);
     }
 
     @Override

@@ -5,7 +5,7 @@
 
        <item android:id="@+id/donor_home"
            android:title="Home"
-           android:icon="@drawable/ic_baseline_home_24"/>
+           android:icon="@drawable/ic_home_red"/>
 
         <item android:id="@+id/view_requests"
             android:title="View Requests"
