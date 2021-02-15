@@ -33,6 +33,7 @@ public class OtpPage extends AppCompatActivity {
     String verificationId, phoneNum;
     PhoneAuthProvider.ForceResendingToken token;
     Boolean verificationProgress = false;
+    private int count = 0;
 
 
     @Override
@@ -50,6 +51,7 @@ public class OtpPage extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (!verificationProgress) {
                     if (!phonenumber.getText().toString().isEmpty() && phonenumber.getText().toString().length() == 10) {
                         phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
@@ -62,16 +64,23 @@ public class OtpPage extends AppCompatActivity {
                         phonenumber.setError("Phone number is not valid");
                     }
                 } else {
-                    String userOTP = codeEnter.getText().toString();
-                    if (!userOTP.isEmpty() && userOTP.length() == 6) {
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, userOTP);
-                        verifyAuth(credential);
+                    if (count < 1) {
+                        String userOTP = codeEnter.getText().toString();
+                        if (!userOTP.isEmpty() && userOTP.length() == 6) {
+                            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, userOTP);
+                            verifyAuth(credential);
 
+                        } else {
+                            codeEnter.setError("Valid OTP is required");
+                        }
                     } else {
-                        codeEnter.setError("Valid OTP is required");
+                        Intent intent = new Intent(OtpPage.this, OtpPage.class);
+                        count = 0;
+                        Toast.makeText(OtpPage.this, "Authentication Failed Please Try Again!", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
                     }
-
                 }
+
             }
         });
 
@@ -89,6 +98,7 @@ public class OtpPage extends AppCompatActivity {
                     OtpPage.this.finish();
                 } else {
                     Toast.makeText(OtpPage.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                    count++;
                 }
             }
 

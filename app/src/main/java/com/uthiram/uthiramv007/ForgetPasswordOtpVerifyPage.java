@@ -55,6 +55,8 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
 
     private Boolean verificationProgress = false;
 
+    private int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,13 +94,19 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
                         phoneNo.requestFocus();
                     }
                 } else {
-                    if (!otp.getEditText().getText().toString().isEmpty() && otp.getEditText().getText().toString().length() == 6) {
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, otp.getEditText().getText().toString());
-                        verifyOtp(credential);
+                    if (count < 2) {
+                        if (!otp.getEditText().getText().toString().isEmpty() && otp.getEditText().getText().toString().length() == 6) {
+                            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, otp.getEditText().getText().toString());
+                            verifyOtp(credential);
+                        } else {
+                            Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Valid OTP is Required", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Valid OTP is Required", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ForgetPasswordOtpVerifyPage.this, OtpPage.class);
+                        count = 0;
+                        Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Authentication Failed Please Try Again!", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
                     }
-
                 }
             }
         });

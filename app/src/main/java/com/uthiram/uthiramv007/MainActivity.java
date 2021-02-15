@@ -22,14 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeViews();
-        nextActBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EmergencyRequests.class);
-                startActivity(intent);
-                MainActivity.this.finish();
-            }
-        });
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -37,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 MainActivity.this.finish();
             }
-        }, 3000);
+        }, 2000);
 
     }
 

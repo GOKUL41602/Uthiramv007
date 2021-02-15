@@ -41,6 +41,8 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
     PhoneAuthProvider.ForceResendingToken token;
     Boolean verificationProgress = false;
 
+    private int count = 0;
+
     private DatabaseReference reference;
 
     @Override
@@ -79,15 +81,21 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
                         phonenumber.setError("Phone number is not valid");
                     }
                 } else {
-                    String userOTP = codeEnter.getText().toString();
-                    if (!userOTP.isEmpty() && userOTP.length() == 6) {
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, userOTP);
-                        verifyAuth(credential);
+                    if (count < 1) {
+                        String userOTP = codeEnter.getText().toString();
+                        if (!userOTP.isEmpty() && userOTP.length() == 6) {
+                            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, userOTP);
+                            verifyAuth(credential);
 
+                        } else {
+                            codeEnter.setError("Valid OTP is required");
+                        }
                     } else {
-                        codeEnter.setError("Valid OTP is required");
+                        Intent intent = new Intent(UpdatePhoneNoOtpPage.this, OtpPage.class);
+                        count = 0;
+                        Toast.makeText(UpdatePhoneNoOtpPage.this, "Authentication Failed Please Try Again!", Toast.LENGTH_SHORT).show();
+                        startActivity(intent);
                     }
-
                 }
             }
         });
