@@ -45,7 +45,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
         initializeViews();
 
-        drawerLayout = findViewById(R.id.design_navigation_view);
+        drawerLayout = findViewById(R.id.emergencyRequest_design_navigation_view);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 

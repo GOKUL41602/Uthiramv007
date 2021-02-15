@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
@@ -15,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-    private ViewTreeObserver vto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish();
             }
         });
-
-        vto = relativeLayout.getViewTreeObserver();
-
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onGlobalLayout() {
-                try {
-                    Thread.sleep(4000);
-                    Intent intent = new Intent(MainActivity.this, EmergencyRequests.class);
-                    startActivity(intent);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, EmergencyRequests.class);
+                startActivity(intent);
+                MainActivity.this.finish();
             }
-        });
+        }, 3000);
 
     }
 

@@ -39,7 +39,7 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
         userName = getIntent().getStringExtra("userName");
         initializeViews();
 
-        drawerLayout = findViewById(R.id.design_navigation_view);
+        drawerLayout = findViewById(R.id.viewRequest_design_navigation_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         NavigationView navigationView = findViewById(R.id.nav_view);

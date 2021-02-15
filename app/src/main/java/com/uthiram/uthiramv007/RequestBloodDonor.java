@@ -143,7 +143,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                 materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
             }
         });
-        drawerLayout = findViewById(R.id.design_navigation_view);
+        drawerLayout = findViewById(R.id.requestBloodDonor_design_navigation_view);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
