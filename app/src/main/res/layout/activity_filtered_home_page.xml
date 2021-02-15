@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/architects_daughter"
+        android:fontFamily="@font/doppio_one"
         android:text="DepartName Text"
-        android:textColor="@color/green"
+        android:textColor="@color/red"
         android:textSize="30sp" />
 
 
@@ -26,9 +26,9 @@
         android:layout_below="@+id/filteredHomePage_deptName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/architects_daughter"
+        android:fontFamily="@font/doppio_one"
         android:text="Blood Group"
-        android:textColor="@color/green"
+        android:textColor="@color/red"
         android:textSize="30sp" />
 
 

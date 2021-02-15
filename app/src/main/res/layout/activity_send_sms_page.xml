@@ -14,8 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/tillana_semibold"
+        android:fontFamily="@font/doppio_one"
         android:text="Send Sms"
+        android:textColor="@color/red"
         android:textSize="30sp" />
 
     <ScrollView

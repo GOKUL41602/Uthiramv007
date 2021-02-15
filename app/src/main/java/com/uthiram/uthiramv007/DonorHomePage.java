@@ -142,7 +142,6 @@ public class DonorHomePage extends AppCompatActivity implements NavigationView.O
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
     }
 }

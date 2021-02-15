@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,11 +28,13 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
     private DrawerLayout drawerLayout;
 
-    private RelativeLayout relativeLayout;
+    private RelativeLayout relativeLayout, relativeLayout1;
 
     private RecyclerView recyclerView;
 
     private EmergencyRequestRecAdapter adapter;
+
+    private FloatingActionButton filterBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +67,15 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 .build();
         adapter = new EmergencyRequestRecAdapter(options);
         recyclerView.setAdapter(adapter);
+
     }
+
 
     private void initializeViews() {
         relativeLayout = findViewById(R.id.emergencyRequests_relLayout);
         recyclerView = findViewById(R.id.emergencyRequests_recView);
+       // relativeLayout1 = findViewById(R.id.emergencyRequests_emptyRelLayout);
+       // filterBtn = findViewById(R.id.emergencyRequests_filterBtn);
     }
 
     @Override

@@ -7,21 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ViewDonorProfile">
 
-    <ImageView
-        android:id="@+id/viewDonorProfile_wave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-99dp"
-        android:src="@drawable/wave" />
+
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/viewDonorProfile_wave"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-80dp">
+        android:layout_marginTop="80dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,9 +25,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:fontFamily="@font/tillana_semibold"
+                android:fontFamily="@font/doppio_one"
                 android:text="View Profile"
-                android:textColor="@color/green"
+                android:textColor="@color/red"
                 android:textSize="35sp" />
 
             <TextView

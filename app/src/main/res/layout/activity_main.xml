@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/main_relLayout"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="#ffd1a9"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,16 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
-        android:fontFamily="@font/arbutus"
+        android:layout_marginTop="140dp"
+        android:fontFamily="@font/doppio_one"
         android:text="UTHIRAM"
         android:textColor="@color/red"
         android:textSize="50sp" />
 
     <ImageView
         android:id="@+id/mainActivity_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="242dp"
+        android:layout_height="237dp"
         android:layout_below="@+id/mainActivity_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
@@ -34,7 +35,7 @@
         android:layout_below="@+id/mainActivity_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:fontFamily="@font/aldrich"
+        android:fontFamily="@font/doppio_one"
         android:text="Donate Blood !"
         android:textColor="@color/green"
         android:textSize="30sp"

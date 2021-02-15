@@ -21,5 +21,7 @@
     <color name="pink">#FF0066</color>
     <color name="trans_white">#E1FAFA</color>
     <color name="dark_blue">#0E1956</color>
+    <color name="light_red">#ffd1a9</color>
+
 
 </resources>

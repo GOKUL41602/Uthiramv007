@@ -10,19 +10,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import java.util.ArrayList;
+
 public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, EmergencyRequestRecAdapter.ViewHolder> {
+
+
+    private String check;
+
+    private ArrayList<FirebaseRecyclerOptions<RequestDonorDto>> list = new ArrayList();
 
     public EmergencyRequestRecAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options) {
         super(options);
+        list.add(options);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RequestDonorDto model) {
+
         holder.patientName.setText(model.getPatientName());
         holder.bloodGroup.setText(model.getBloodGroup());
         holder.unitsNeeded.setText(model.getUnitsNeeded());
@@ -49,13 +59,16 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
                 holder.context.startActivity(intent);
             }
         });
+
     }
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.emergency_blood_requests_foramt, parent, false);
         return new EmergencyRequestRecAdapter.ViewHolder(view);
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,6 +76,7 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
         private TextView patientName, bloodGroup, unitsNeeded, contactNo, hospitalName, date, time;
         private ImageView callBtn, msgBtn;
         private Context context = itemView.getContext();
+        private CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,9 +91,12 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
             hospitalName = itemView.findViewById(R.id.emergencyRequestFormat_hospitalName);
             date = itemView.findViewById(R.id.emergencyRequestFormat_date);
             time = itemView.findViewById(R.id.emergencyRequestFormat_time);
+            cardView = itemView.findViewById(R.id.emergencyRequestFormat_cardView);
 
             callBtn = itemView.findViewById(R.id.emergencyRequestFormat_callBtn);
             msgBtn = itemView.findViewById(R.id.emergencyRequestFormat_msgBtn);
         }
+
     }
+
 }

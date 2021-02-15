@@ -19,7 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/silver"
+            android:background="@color/light_red"
             app:title="Uthiram"
             app:titleTextColor="@color/red">
 
@@ -30,12 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <RelativeLayout
                 android:id="@+id/emergencyRequests_relLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -67,7 +65,6 @@
 
                     </RelativeLayout>
                 </ScrollView>
-
             </RelativeLayout>
         </FrameLayout>
     </LinearLayout>
