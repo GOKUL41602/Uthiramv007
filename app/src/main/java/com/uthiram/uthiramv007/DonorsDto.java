@@ -15,8 +15,10 @@ public class DonorsDto {
     private String status;
     private String deptName;
     private String lastDonatedDate;
+    private int count=0;
 
     public DonorsDto() {
+        count++;
     }
 
     public DonorsDto(String donorName, String rollNo, String age, String bloodGroup, String phoneNo, String address, String district, String pinCode, String weight, String password, String status, String deptName, String lastDonatedDate) {
@@ -35,6 +37,14 @@ public class DonorsDto {
         this.lastDonatedDate = lastDonatedDate;
     }
 
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public String getDonorName() {
         return donorName;

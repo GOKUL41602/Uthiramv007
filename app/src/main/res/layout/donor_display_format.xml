@@ -37,7 +37,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/donorDisplayFormat_donorNameText"
                 android:hint="Donor Name"
-                android:textColor="@color/blood_red"
                 android:textSize="20sp" />
 
             <TextView
@@ -61,7 +60,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/donorDisplayFormat_phoneNoText"
                 android:hint="phone No"
-                android:textColor="@color/blood_red"
                 android:textSize="20sp" />
 
             <TextView
@@ -85,7 +83,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/donorDisplayFormat_deptNameText"
                 android:hint="dept Name"
-                android:textColor="@color/blood_red"
                 android:textSize="20sp" />
 
             <TextView
@@ -109,7 +106,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/donorDisplayFormat_bloodGroupText"
                 android:hint="B+"
-                android:textColor="@color/blood_red"
                 android:textSize="20sp" />
 
             <TextView
@@ -133,7 +129,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/donorDisplayFormat_placeText"
                 android:hint="address"
-                android:textColor="@color/blood_red"
                 android:textSize="20sp" />
 
             <ImageView

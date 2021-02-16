@@ -22,17 +22,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, EmergencyRequestRecAdapter.ViewHolder> {
+
 
     public EmergencyRequestRecAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options) {
         super(options);
     }
 
+
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RequestDonorDto model) {
 
         holder.patientName.setText(model.getPatientName());
+
         holder.bloodGroup.setText(model.getBloodGroup());
         holder.unitsNeeded.setText(model.getUnitsNeeded());
         holder.hospitalName.setText(model.getHospitalName());
@@ -61,8 +65,6 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
         });
 
     }
-
-
 
     @NonNull
     @Override

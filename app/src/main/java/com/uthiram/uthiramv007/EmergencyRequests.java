@@ -21,10 +21,16 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
@@ -131,14 +137,17 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
             case R.id.home:
                 Intent intent = new Intent(EmergencyRequests.this, EmergencyRequests.class);
                 startActivity(intent);
+                EmergencyRequests.this.finish();
                 break;
             case R.id.filter:
                 Intent intent1 = new Intent(EmergencyRequests.this, HomePage.class);
                 startActivity(intent1);
+                EmergencyRequests.this.finish();
                 break;
             case R.id.donor_login:
                 Intent intent0 = new Intent(EmergencyRequests.this, LoginPage.class);
                 startActivity(intent0);
+                EmergencyRequests.this.finish();
                 break;
             case R.id.about_us:
                 Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();

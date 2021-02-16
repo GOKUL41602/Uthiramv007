@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
-public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
@@ -44,6 +44,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     private RelativeLayout relativeLayout;
     private Button filterBtn;
     private HomePageRecAdapter adapter;
+    String count1;
+    int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_home_page);
         initializeViews();
         initializeSpinners();
-
 
         drawerLayout = findViewById(R.id.homePage_design_navigation_view);
 
@@ -73,6 +74,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 .build();
         adapter = new HomePageRecAdapter(options);
         recyclerView.setAdapter(adapter);
+
 
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +187,9 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         } else {
             super.onBackPressed();
         }
+        Intent intent = new Intent(HomePage.this, EmergencyRequests.class);
+        startActivity(intent);
+        HomePage.this.finish();
     }
 
     @Override
@@ -194,14 +199,17 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             case R.id.home:
                 Intent intent = new Intent(HomePage.this, EmergencyRequests.class);
                 startActivity(intent);
+                HomePage.this.finish();
                 break;
             case R.id.filter:
                 Intent intent1 = new Intent(HomePage.this, HomePage.class);
                 startActivity(intent1);
+                HomePage.this.finish();
                 break;
             case R.id.donor_login:
                 Intent intent0 = new Intent(HomePage.this, LoginPage.class);
                 startActivity(intent0);
+                HomePage.this.finish();
                 break;
             case R.id.about_us:
                 Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();

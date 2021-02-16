@@ -39,14 +39,13 @@
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true">
 
                     <RelativeLayout
                         android:id="@+id/homePage_relLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/white_background">
+                        android:layout_height="match_parent">
 
 
                         <TextView
@@ -55,7 +54,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20dp"
-                            android:fontFamily="@font/tillana_semibold"
+                            android:fontFamily="@font/doppio_one"
                             android:text="Filter Search"
                             android:textColor="@color/red"
                             android:textSize="30sp" />
@@ -89,26 +88,13 @@
                             android:text="FILTER"
                             android:textColor="@color/black" />
 
-                        <ScrollView
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/homePage_recView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/homePage_filterBtn"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp">
-
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/homePage_recView"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:padding="20dp" />
-
-                            </RelativeLayout>
-
-                        </ScrollView>
+                            android:padding="20dp" />
 
                     </RelativeLayout>
                 </ScrollView>
