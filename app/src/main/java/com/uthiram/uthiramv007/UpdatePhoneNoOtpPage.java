@@ -122,6 +122,15 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(UpdatePhoneNoOtpPage.this, RequestBloodDonor.class);
+        startActivity(intent);
+        UpdatePhoneNoOtpPage.this.finish();
+    }
+
     private void updateDonorDetailsToDB() {
         reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
         Query query = reference.orderByChild("rollNo").startAt(userName).endAt(userName + "\uf8ff");

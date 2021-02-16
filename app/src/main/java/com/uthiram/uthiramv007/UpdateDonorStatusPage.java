@@ -194,6 +194,9 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
         } else {
             super.onBackPressed();
         }
+        Intent intent = new Intent(UpdateDonorStatusPage.this, RequestBloodDonor.class);
+        startActivity(intent);
+        UpdateDonorStatusPage.this.finish();
     }
 
     @Override

@@ -336,6 +336,9 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         } else {
             super.onBackPressed();
         }
+        Intent intent = new Intent(RequestBloodDonor.this, EmergencyRequests.class);
+        startActivity(intent);
+        RequestBloodDonor.this.finish();
     }
 
     @Override
@@ -345,21 +348,25 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             case R.id.view_requests:
                 Intent intent = new Intent(RequestBloodDonor.this, ViewRequests.class);
                 intent.putExtra("userName", userName);
+                RequestBloodDonor.this.finish();
                 startActivity(intent);
                 break;
             case R.id.donor_home:
                 Intent intent0 = new Intent(RequestBloodDonor.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);
+                RequestBloodDonor.this.finish();
                 startActivity(intent0);
                 break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(RequestBloodDonor.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
+                RequestBloodDonor.this.finish();
                 startActivity(intent1);
                 break;
             case R.id.edit_donor_status:
                 Intent intent2 = new Intent(RequestBloodDonor.this, UpdateDonorStatusPage.class);
                 intent2.putExtra("userName", userName);
+                RequestBloodDonor.this.finish();
                 startActivity(intent2);
                 break;
             case R.id.donor_logout:
