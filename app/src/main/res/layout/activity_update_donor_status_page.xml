@@ -118,17 +118,6 @@
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 
-                        <Button
-                            android:id="@+id/updateDonorStatusPage_backBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/updateDonorStatusPage_updateStatusBtn"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="30dp"
-                            android:backgroundTint="@color/sky_blue"
-                            android:text="Back"
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
 
                         <RadioGroup
                             android:id="@+id/updateDonorStatusPage_radioGrp"

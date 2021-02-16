@@ -29,7 +29,7 @@ public class LoginPage extends AppCompatActivity {
 
     private TextInputLayout userName, password;
 
-    private Button loginBtn, cancelBtn, forgetPasswordBtn;
+    private Button loginBtn, forgetPasswordBtn;
 
     private TextView registerBtn;
 
@@ -73,14 +73,6 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, EmergencyRequests.class);
-                startActivity(intent);
-                LoginPage.this.finish();
-            }
-        });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +81,14 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(LoginPage.this, EmergencyRequests.class);
+        startActivity(intent);
+        LoginPage.this.finish();
     }
 
     private void initializeStrings() {
@@ -153,7 +153,6 @@ public class LoginPage extends AppCompatActivity {
         userName = findViewById(R.id.loginPage_userName);
         password = findViewById(R.id.loginPage_password);
         loginBtn = findViewById(R.id.loginPage_loginBtn);
-        cancelBtn = findViewById(R.id.loginPage_cancelBtn);
         registerBtn = findViewById(R.id.loginPage_registerBtn);
         forgetPasswordBtn = findViewById(R.id.loginPage_forgetPasswordBtn);
         relativeLayout = findViewById(R.id.loginPage_relLayout);

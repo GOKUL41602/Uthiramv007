@@ -127,17 +127,7 @@
                 android:textColor="@color/red"
                 android:textSize="20sp" />
 
-            <Button
-                android:id="@+id/loginPage_cancelBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/loginPage_registerBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/white"
-                android:elevation="10dp"
-                android:text="Cancel"
-                android:textColor="@color/black" />
+
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

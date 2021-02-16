@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/emergencyRequestFormat_dataPresent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -34,7 +35,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/emergencyRequestFormat_patientNameText"
-                android:hint="Patient Name"
+                android:text="Patient"
                 android:textSize="17sp" />
 
             <TextView
@@ -198,7 +199,34 @@
                 android:textSize="17sp" />
 
         </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
+    <RelativeLayout
+        android:id="@+id/emergencyRequestFormat_dataNull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emergencyRequestFormat_cardView">
+
+        <TextView
+            android:id="@+id/emergencyRequestFormat_emptyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="No Records To Display !"
+            android:textSize="22sp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/emergencyRequestFormat_emptyFloatingFilterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emergencyRequestFormat_emptyTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_search" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
+

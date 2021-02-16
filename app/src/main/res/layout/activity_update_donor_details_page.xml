@@ -203,16 +203,6 @@
                             android:text="Update"
                             android:textColor="@color/black" />
 
-                        <Button
-                            android:id="@+id/updateDonorDetailsPage_cancelBtn"
-                            android:layout_width="190dp"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/updateDonorDetailsPage_updateBtn"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="30dp"
-                            android:backgroundTint="@color/sky_blue"
-                            android:text="Cancel"
-                            android:textColor="@color/black" />
 
 
                     </RelativeLayout>

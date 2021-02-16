@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,17 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, EmergencyRequestRecAdapter.ViewHolder> {
-
 
     public EmergencyRequestRecAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options) {
         super(options);
@@ -35,15 +31,14 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RequestDonorDto model) {
 
+        holder.relativeLayout1.setVisibility(View.GONE);
         holder.patientName.setText(model.getPatientName());
-
         holder.bloodGroup.setText(model.getBloodGroup());
         holder.unitsNeeded.setText(model.getUnitsNeeded());
         holder.hospitalName.setText(model.getHospitalName());
         holder.contactNo.setText(model.getPatientPhoneNo());
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
-
 
         holder.callBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,15 +59,17 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
             }
         });
 
+
     }
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.emergency_blood_requests_foramt, parent, false);
         return new EmergencyRequestRecAdapter.ViewHolder(view);
-
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -80,6 +77,8 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
         private ImageView callBtn, msgBtn;
         private Context context = itemView.getContext();
         private CardView cardView;
+        private RelativeLayout relativeLayout, relativeLayout1;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +94,8 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
             date = itemView.findViewById(R.id.emergencyRequestFormat_date);
             time = itemView.findViewById(R.id.emergencyRequestFormat_time);
             cardView = itemView.findViewById(R.id.emergencyRequestFormat_cardView);
+            relativeLayout = itemView.findViewById(R.id.emergencyRequestFormat_dataPresent);
+            relativeLayout1 = itemView.findViewById(R.id.emergencyRequestFormat_dataNull);
 
             callBtn = itemView.findViewById(R.id.emergencyRequestFormat_callBtn);
             msgBtn = itemView.findViewById(R.id.emergencyRequestFormat_msgBtn);

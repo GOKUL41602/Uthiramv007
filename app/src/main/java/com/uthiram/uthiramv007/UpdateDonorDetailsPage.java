@@ -50,7 +50,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
 
     private DatabaseReference reference;
 
-    private Button updateBtn, cancelBtn;
+    private Button updateBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,16 +110,6 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                 } else {
                     validateDonorName();
                 }
-            }
-        });
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UpdateDonorDetailsPage.this, RequestBloodDonor.class);
-                intent.putExtra("userName", userName);
-                startActivity(intent);
-                UpdateDonorDetailsPage.this.finish();
             }
         });
 
@@ -268,7 +258,6 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
         district = findViewById(R.id.updateDonorDetailsPage_district);
 
         updateBtn = findViewById(R.id.updateDonorDetailsPage_updateBtn);
-        cancelBtn = findViewById(R.id.updateDonorDetailsPage_cancelBtn);
 
         relativeLayout = findViewById(R.id.updateDonorDetailsPage_relLayout);
     }

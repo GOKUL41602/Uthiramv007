@@ -34,7 +34,7 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
 
     private DrawerLayout drawerLayout;
 
-    private Button selectDateBtn, backBtn, updateStatusBtn;
+    private Button selectDateBtn, updateStatusBtn;
 
     private TextView dateText, showDate, statusTextView;
 
@@ -129,16 +129,6 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
             }
         });
 
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UpdateDonorStatusPage.this, RequestBloodDonor.class);
-                intent.putExtra("userName", userName);
-                startActivity(intent);
-                UpdateDonorStatusPage.this.finish();
-            }
-        });
     }
 
     private void loadDonorDetails() {
@@ -179,7 +169,6 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
         selectDateBtn = findViewById(R.id.updateDonorStatusPage_pickDateButton);
         dateText = findViewById(R.id.updateDonorStatusPage_lastDonatedDateText);
         showDate = findViewById(R.id.updateDonorStatusPage_lastDonatedDate);
-        backBtn = findViewById(R.id.updateDonorStatusPage_backBtn);
         available = findViewById(R.id.updateDonorStatusPage_availableRadioBtn);
         unAvailable = findViewById(R.id.updateDonorStatusPage_unAvailableRadioBtn);
         updateStatusBtn = findViewById(R.id.updateDonorStatusPage_updateStatusBtn);

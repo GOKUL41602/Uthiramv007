@@ -107,14 +107,14 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Authentication is successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Updated successful", Toast.LENGTH_SHORT).show();
                     updateDonorDetailsToDB();
-                    Intent intent = new Intent(UpdatePhoneNoOtpPage.this, DonorHomePage.class);
+                    Intent intent = new Intent(UpdatePhoneNoOtpPage.this, RequestBloodDonor.class);
                     intent.putExtra("userName", userName);
                     UpdatePhoneNoOtpPage.this.finish();
                     startActivity(intent);
                 } else {
-                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Updation Failed", Toast.LENGTH_SHORT).show();
                 }
             }
 

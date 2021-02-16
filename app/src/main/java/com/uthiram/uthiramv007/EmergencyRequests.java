@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -21,6 +22,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
@@ -45,7 +50,6 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
     private EmergencyRequestRecAdapter adapter;
 
     private FloatingActionButton filterBtn;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +95,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 .build();
         adapter = new EmergencyRequestRecAdapter(options);
         recyclerView.setAdapter(adapter);
-
-
     }
-
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -54,9 +54,6 @@
             android:name=".ViewDonorProfile"
             android:label="View Donor Profile" />
         <activity
-            android:name=".DonorHomePage"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".OtpPage"
             android:label="OTP Verification" />
         <activity
