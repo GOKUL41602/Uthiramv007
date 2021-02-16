@@ -195,6 +195,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                 intent.putExtra("district", districtText);
                 intent.putExtra("address", addressText);
                 startActivity(intent);
+                UpdateDonorDetailsPage.this.finish();
             }
         }).show();
     }
