@@ -51,15 +51,48 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
     private FloatingActionButton filterBtn;
 
+    private String value;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_requests);
 
         isNetworkConnected();
         initializeViews();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("EmergencyRequests");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                long count = snapshot.getChildrenCount();
+                if (count != 0) {
+
+                    relativeLayout1.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+
+                } else {
+
+                    relativeLayout1.setVisibility(View.VISIBLE);
+                    relativeLayout.setVisibility(View.GONE);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // calling on cancelled method when we receive
+                // any error or we are not able to get the data.
+                Toast.makeText(EmergencyRequests.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
 
         if (!isNetworkConnected()) {
             new AlertDialog.Builder(this)
@@ -88,26 +121,39 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
             toggle.syncState();
 
         }
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<RequestDonorDto> options
                 = new FirebaseRecyclerOptions.Builder<RequestDonorDto>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("EmergencyRequests"), RequestDonorDto.class)
+                .setQuery(reference, RequestDonorDto.class)
                 .build();
         adapter = new EmergencyRequestRecAdapter(options);
         recyclerView.setAdapter(adapter);
+
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EmergencyRequests.this, HomePage.class);
+                startActivity(intent);
+                EmergencyRequests.this.finish();
+            }
+        });
+
     }
+
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
     private void initializeViews() {
         relativeLayout = findViewById(R.id.emergencyRequests_relLayout);
         recyclerView = findViewById(R.id.emergencyRequests_recView);
-        // relativeLayout1 = findViewById(R.id.emergencyRequests_emptyRelLayout);
-        // filterBtn = findViewById(R.id.emergencyRequests_filterBtn);
+        relativeLayout1 = findViewById(R.id.emergencyRequestFormat_dataNull);
+        filterBtn = findViewById(R.id.emergencyRequestFormat_emptyFloatingFilterBtn);
+
     }
 
     @Override

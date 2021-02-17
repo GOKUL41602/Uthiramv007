@@ -16,7 +16,6 @@
 
     <style name="text_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox" />
 
-
     <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/silver</item>
         <item name="colorPrimaryVariant">@color/purple_500</item>

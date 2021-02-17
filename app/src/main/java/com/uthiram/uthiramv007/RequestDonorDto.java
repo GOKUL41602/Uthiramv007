@@ -10,9 +10,11 @@ public class RequestDonorDto {
     private String neededWithInDate;
     private String neededWithInTime;
     private String key;
+    private int count;
 
     public RequestDonorDto() {
     }
+
 
     public RequestDonorDto(String userName, String patientName, String bloodGroup, String unitsNeeded, String hospitalName, String patientPhoneNo, String neededWithInDate, String neededWithInTime, String key) {
         this.userName = userName;
@@ -24,6 +26,27 @@ public class RequestDonorDto {
         this.neededWithInDate = neededWithInDate;
         this.neededWithInTime = neededWithInTime;
         this.key = key;
+
+    }
+    public RequestDonorDto(String userName, String patientName, String bloodGroup, String unitsNeeded, String hospitalName, String patientPhoneNo, String neededWithInDate, String neededWithInTime, String key,int count) {
+        this.userName = userName;
+        this.patientName = patientName;
+        this.bloodGroup = bloodGroup;
+        this.unitsNeeded = unitsNeeded;
+        this.hospitalName = hospitalName;
+        this.patientPhoneNo = patientPhoneNo;
+        this.neededWithInDate = neededWithInDate;
+        this.neededWithInTime = neededWithInTime;
+        this.key = key;
+        this.count=count;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String getKey() {

@@ -29,9 +29,13 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
 
 
     @Override
+    public int getItemCount() {
+        return super.getItemCount();
+    }
+
+    @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RequestDonorDto model) {
 
-        holder.relativeLayout1.setVisibility(View.GONE);
         holder.patientName.setText(model.getPatientName());
         holder.bloodGroup.setText(model.getBloodGroup());
         holder.unitsNeeded.setText(model.getUnitsNeeded());

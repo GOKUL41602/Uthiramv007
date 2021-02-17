@@ -202,31 +202,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <RelativeLayout
-        android:id="@+id/emergencyRequestFormat_dataNull"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/emergencyRequestFormat_cardView">
-
-        <TextView
-            android:id="@+id/emergencyRequestFormat_emptyTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:text="No Records To Display !"
-            android:textSize="22sp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/emergencyRequestFormat_emptyFloatingFilterBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/emergencyRequestFormat_emptyTextView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_search" />
-
-    </RelativeLayout>
 
 </RelativeLayout>
 
