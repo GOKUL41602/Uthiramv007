@@ -19,7 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/silver"
+            android:background="@color/light_red"
             app:title="Uthiram"
             app:titleTextColor="@color/white">
 

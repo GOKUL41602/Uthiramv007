@@ -8,7 +8,7 @@
             android:icon="@drawable/ic_home_red"/>
 
         <item android:id="@+id/filter"
-            android:title="Filter"
+            android:title="Search Donor"
             android:icon="@drawable/ic_filter"/>
 
         <item android:id="@+id/donor_login"
