@@ -49,7 +49,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
     private EmergencyRequestRecAdapter adapter;
 
-    private FloatingActionButton filterBtn;
+    private FloatingActionButton filterBtn, createReqBtn, emptyCreateReqBtn;
 
     private String value;
 
@@ -140,6 +140,24 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
             }
         });
 
+        createReqBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
+                startActivity(intent);
+                EmergencyRequests.this.finish();
+            }
+        });
+        emptyCreateReqBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
+                startActivity(intent);
+                EmergencyRequests.this.finish();
+            }
+        });
     }
 
 
@@ -153,6 +171,8 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         recyclerView = findViewById(R.id.emergencyRequests_recView);
         relativeLayout1 = findViewById(R.id.emergencyRequestFormat_dataNull);
         filterBtn = findViewById(R.id.emergencyRequestFormat_emptyFloatingFilterBtn);
+        createReqBtn = findViewById(R.id.emergencyRequests_createReqBtn);
+        emptyCreateReqBtn = findViewById(R.id.emergencyRequests_empty_createReqBtn);
 
     }
 

@@ -59,9 +59,19 @@
                             android:id="@+id/emergencyRequests_recView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_below="@+id/emergencyRequests_title"
-                            android:layout_marginTop="30dp"
+                            android:layout_below="@+id/emergencyRequests_createReqBtn"
                             android:padding="20dp" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/emergencyRequests_createReqBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/emergencyRequests_title"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginRight="30dp"
+                            android:src="@drawable/ic_create_request"
+                            android:layout_marginBottom="30dp" />
 
                     </RelativeLayout>
                 </ScrollView>
@@ -71,7 +81,8 @@
                 android:id="@+id/emergencyRequestFormat_dataNull"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/emergencyRequests_relLayout">
+                android:layout_below="@+id/emergencyRequests_relLayout"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/emergencyRequestFormat_emptyTextView"
@@ -91,6 +102,16 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="30dp"
                     android:src="@drawable/ic_search" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/emergencyRequests_empty_createReqBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_create_request"
+                    android:layout_marginBottom="100dp" />
 
             </RelativeLayout>
 

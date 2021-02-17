@@ -128,7 +128,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
-                                android:hint="11234567890"
+                                android:hint="Contact No"
                                 android:inputType="phone" />
 
                         </com.google.android.material.textfield.TextInputLayout>

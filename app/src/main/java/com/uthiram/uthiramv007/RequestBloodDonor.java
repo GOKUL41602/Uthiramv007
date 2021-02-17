@@ -205,29 +205,26 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         count++;
         reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
         String key = reference.push().getKey();
-        RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key, count);
+        RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key);
         reference.child(userName).child(key).setValue(requestDonorDto);
         reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
-        RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key, count);
+        RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key);
         reference.child(key).setValue(requestDonorDto1);
-        reference = FirebaseDatabase.getInstance().getReference("Count");
-        reference.child("count").setValue(count);
+        Toast.makeText(this, "Request Blood Donor Successful", Toast.LENGTH_SHORT).show();
+        showSnack();
     }
 
-    private void getCountFromDB()
-    {
-        reference =FirebaseDatabase.getInstance().getReference("Count");
-        Query query=reference.orderByChild("count").startAt("count").endAt("count"+"\uf8ff");
+
+    private void getCountFromDB() {
+        reference = FirebaseDatabase.getInstance().getReference("Count");
+        Query query = reference.orderByChild("count").startAt("count").endAt("count" + "\uf8ff");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                {
-                    String countFromDB=snapshot.child("count").child("count1").getValue(String.class);
-                    count=Integer.parseInt(countFromDB);
-                }
-                else
-                {
+                if (snapshot.exists()) {
+                    String countFromDB = snapshot.child("count").child("count1").getValue(String.class);
+                    count = Integer.parseInt(countFromDB);
+                } else {
 
                 }
             }
@@ -238,8 +235,9 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             }
         });
     }
+
     private void showSnack() {
-        Snackbar.make(relativeLayout, "Request Blood Donor Successful", Snackbar.LENGTH_SHORT).show();
+
         Intent intent = new Intent(RequestBloodDonor.this, ViewRequests.class);
         intent.putExtra("userName", userName);
         startActivity(intent);
