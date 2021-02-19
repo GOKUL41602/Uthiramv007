@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -51,7 +52,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
     private FloatingActionButton filterBtn, createReqBtn, emptyCreateReqBtn;
 
-    private String value;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -122,6 +123,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
         }
 
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<RequestDonorDto> options
@@ -130,6 +132,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 .build();
         adapter = new EmergencyRequestRecAdapter(options);
         recyclerView.setAdapter(adapter);
+
 
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +170,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
     }
 
     private void initializeViews() {
+        progressBar = findViewById(R.id.emergencyRequests_progressBar);
         relativeLayout = findViewById(R.id.emergencyRequests_relLayout);
         recyclerView = findViewById(R.id.emergencyRequests_recView);
         relativeLayout1 = findViewById(R.id.emergencyRequestFormat_dataNull);

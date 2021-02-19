@@ -16,9 +16,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_uthiram_dark"
+        android:icon="@drawable/home_ic_uthiram"
         android:label="Uthiram"
-        android:roundIcon="@drawable/ic_uthiram_dark"
+        android:roundIcon="@drawable/home_ic_uthiram"
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007"
         android:usesCleartextTraffic="true">

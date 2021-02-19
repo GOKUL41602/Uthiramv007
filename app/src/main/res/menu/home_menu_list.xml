@@ -9,7 +9,7 @@
 
         <item android:id="@+id/filter"
             android:title="Search Donor"
-            android:icon="@drawable/ic_filter"/>
+            android:icon="@drawable/ic_search"/>
 
         <item android:id="@+id/donor_login"
             android:title="Login"

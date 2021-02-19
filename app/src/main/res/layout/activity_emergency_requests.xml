@@ -30,10 +30,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <RelativeLayout
                 android:id="@+id/emergencyRequests_relLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/emergencyRequests_progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true" />
 
                 <ScrollView
                     android:layout_width="match_parent"
@@ -59,22 +67,23 @@
                             android:id="@+id/emergencyRequests_recView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_below="@+id/emergencyRequests_createReqBtn"
+                            android:layout_below="@+id/emergencyRequests_title"
+                            android:layout_marginTop="30dp"
                             android:padding="20dp" />
 
-                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                            android:id="@+id/emergencyRequests_createReqBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/emergencyRequests_title"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginRight="30dp"
-                            android:src="@drawable/ic_create_request"
-                            android:layout_marginBottom="30dp" />
 
                     </RelativeLayout>
                 </ScrollView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/emergencyRequests_createReqBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:src="@drawable/ic_create_request" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -110,8 +119,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="30dp"
-                    android:src="@drawable/ic_create_request"
-                    android:layout_marginBottom="100dp" />
+                    android:layout_marginBottom="100dp"
+                    android:src="@drawable/ic_create_request" />
 
             </RelativeLayout>
 

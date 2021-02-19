@@ -88,6 +88,14 @@
                 android:text="FORGET PASSWORD?"
                 android:textColor="@color/black" />
 
+            <ProgressBar
+                android:id="@+id/loginPage_progressbar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/loginPage_forgetPasswordBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp" />
+
             <Button
                 android:id="@+id/loginPage_loginBtn"
                 android:layout_width="190dp"

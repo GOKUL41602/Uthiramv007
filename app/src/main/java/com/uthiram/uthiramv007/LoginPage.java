@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class LoginPage extends AppCompatActivity {
 
     private Button loginBtn, forgetPasswordBtn;
 
+    private ProgressBar progressBar;
+
     private TextView registerBtn;
 
     private String userNameText, passwordText, userNameFromDB, passwordFromDB;
@@ -44,6 +47,7 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         initializeViews();
+        progressBar.setVisibility(View.GONE);
         forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +67,7 @@ public class LoginPage extends AppCompatActivity {
                 initializeStrings();
                 if (validateUserName()) {
                     if (validatePassword()) {
+                        progressBar.setVisibility(View.VISIBLE);
                         verifyUserId();
                     } else {
                         validatePassword();
@@ -122,12 +127,15 @@ public class LoginPage extends AppCompatActivity {
                         intent.putExtra("userName", userNameText);
                         startActivity(intent);
                     } else {
+
                         password.setError("Incorrect Password");
                         password.requestFocus();
+                        progressBar.setVisibility(View.GONE);
                     }
                 } else {
                     userName.setError("UserName doesn't Exists");
                     userName.requestFocus();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 
@@ -150,6 +158,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void initializeViews() {
+        progressBar = findViewById(R.id.loginPage_progressbar);
         userName = findViewById(R.id.loginPage_userName);
         password = findViewById(R.id.loginPage_password);
         loginBtn = findViewById(R.id.loginPage_loginBtn);
