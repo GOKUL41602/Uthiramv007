@@ -43,7 +43,7 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
 
     private CountryCodePicker ccp;
 
-    private Button verifyBtn, backBtn;
+    private Button verifyBtn;
 
     private ProgressBar progressBar;
 
@@ -69,14 +69,7 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
         Log.d("Pass :", password);
         fAuth = FirebaseAuth.getInstance();
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ForgetPasswordOtpVerifyPage.this, ForgetPasswordPage.class);
-                startActivity(intent);
-                ForgetPasswordOtpVerifyPage.this.finish();
-            }
-        });
+
         verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +114,9 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
                 if (snapshot.exists()) {
                     reference.child(userName).child("password").setValue(password);
                     Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Password Updated Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ForgetPasswordOtpVerifyPage.this, LoginPage.class);
+                    startActivity(intent);
+                    ForgetPasswordOtpVerifyPage.this.finish();
                 } else {
 
                 }
@@ -183,6 +179,14 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ForgetPasswordOtpVerifyPage.this, ForgetPasswordPage.class);
+        startActivity(intent);
+        ForgetPasswordOtpVerifyPage.this.finish();
+    }
+
     private void initializeViews() {
         phoneNo = findViewById(R.id.forgetPasswordOtpVerifyPage_phoneNo);
         otp = findViewById(R.id.forgetPasswordOtpVerifyPage_otp);
@@ -192,7 +196,6 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
         ccp = findViewById(R.id.forgetPasswordOtpVerifyPage_ccp);
 
         verifyBtn = findViewById(R.id.forgetPasswordOtpVerifyPage_verifyBtn);
-        backBtn = findViewById(R.id.forgetPasswordOtpVerifyPage_backBtn);
 
         progressBar = findViewById(R.id.forgetPasswordOtpVerifyPage_progressBar);
 

@@ -53,9 +53,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 initializeStrings();
                 if (validateUserName()) {
-                    Intent intent = new Intent(LoginPage.this, ForgetPasswordPage.class);
-                    intent.putExtra("userName", userNameText);
-                    startActivity(intent);
+                    checkUserName();
                 } else {
                     validateUserName();
                 }
@@ -99,6 +97,31 @@ public class LoginPage extends AppCompatActivity {
     private void initializeStrings() {
         userNameText = userName.getEditText().getText().toString().trim();
         passwordText = password.getEditText().getText().toString().trim();
+    }
+
+    private void checkUserName() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+        Query query = reference.orderByChild("rollNo").startAt(userNameText).endAt(userNameText + "\uf8ff");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    userName.setError(null);
+                    userName.setErrorEnabled(false);
+                    Intent intent = new Intent(LoginPage.this, ForgetPasswordPage.class);
+                    intent.putExtra("userName", userNameText);
+                    startActivity(intent);
+                } else {
+                    userName.setError("User Name Doesn't match");
+                    userName.requestFocus();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private boolean validateUserName() {

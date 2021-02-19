@@ -18,7 +18,7 @@ public class ForgetPasswordPage extends AppCompatActivity {
 
     private String newPasswordText, confirmPasswordText;
 
-    private Button changePasswordBtn, backBtn;
+    private Button changePasswordBtn;
 
     private RelativeLayout relativeLayout;
 
@@ -29,8 +29,7 @@ public class ForgetPasswordPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password_page);
         initializeViews();
-        userName=getIntent().getStringExtra("userName");
-        Log.d("Roll No : ",userName);
+        userName = getIntent().getStringExtra("userName");
         changePasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,14 +51,22 @@ public class ForgetPasswordPage extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ForgetPasswordPage.this, LoginPage.class);
+        startActivity(intent);
+        ForgetPasswordPage.this.finish();
+    }
+
     private void showSnackBar() {
         Snackbar.make(relativeLayout, "Verify PhoneNo for Changing Password", Snackbar.LENGTH_INDEFINITE)
                 .setAction("VERIFY", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(ForgetPasswordPage.this,ForgetPasswordOtpVerifyPage.class);
-                        intent.putExtra("pass",confirmPasswordText);
-                        intent.putExtra("user",userName);
+                        Intent intent = new Intent(ForgetPasswordPage.this, ForgetPasswordOtpVerifyPage.class);
+                        intent.putExtra("pass", confirmPasswordText);
+                        intent.putExtra("user", userName);
                         startActivity(intent);
                     }
                 }).show();
@@ -109,10 +116,7 @@ public class ForgetPasswordPage extends AppCompatActivity {
     private void initializeViews() {
         newPassword = findViewById(R.id.forgetPasswordPage_newPassword);
         confirmPassword = findViewById(R.id.forgetPasswordPage_confirmPassword);
-
         changePasswordBtn = findViewById(R.id.forgetPasswordPage_changePasswordBtn);
-        backBtn = findViewById(R.id.forgetPasswordPage_backBtn);
-
         relativeLayout = findViewById(R.id.forgetPasswordPage_relLayout);
     }
 }
