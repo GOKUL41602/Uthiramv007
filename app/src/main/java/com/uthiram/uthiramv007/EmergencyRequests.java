@@ -62,16 +62,8 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_requests);
-
-
-
-        String currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
-        String currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
-
-
         isNetworkConnected();
         initializeViews();
         progressBar.setVisibility(View.VISIBLE);

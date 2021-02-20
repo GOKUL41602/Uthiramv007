@@ -168,7 +168,11 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             @Override
             public void onClick(View v) {
                 initializeStrings();
-                date = String.format("%s-%s-%s", neededDateText.substring(0, 2), neededDateText.substring(3, 6), neededDateText.substring(7, 11));
+                if (neededDateText.length() == 10) {
+                    date = String.format("0%s-%s-%s", neededDateText.substring(0, 1), neededDateText.substring(2, 5), neededDateText.substring(6, 10));
+                } else if (neededDateText.length() == 11) {
+                    date = String.format("%s-%s-%s", neededDateText.substring(0, 2), neededDateText.substring(3, 6), neededDateText.substring(7, 11));
+                }
                 neededDate.getEditText().setText(date);
                 if (validatePatientName()) {
                     if (validateBloodGroup()) {
