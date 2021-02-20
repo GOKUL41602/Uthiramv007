@@ -306,48 +306,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         }
     }
 
-    /**
-     * public static final String inputFormat = "h:mm a";
-     * <p>
-     * private Date date;
-     * private Date dateCompareOne;
-     * private Date dateCompareTwo;
-     * <p>
-     * private String compareStringOne = "9:45";
-     * private String compareStringTwo = "1:45";
-     * <p>
-     * SimpleDateFormat inputParser = new SimpleDateFormat(inputFormat, Locale.getDefault());
-     * <p>
-     * <p>
-     * private void compareDates(){
-     * <p>
-     * Toast.makeText(this, (CharSequence) inputParser, Toast.LENGTH_SHORT).show();
-     * currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
-     * currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
-     * <p>
-     * Calendar now = Calendar.getInstance();
-     * <p>
-     * int hour = now.get(Calendar.HOUR);
-     * int minute = now.get(Calendar.MINUTE);
-     * <p>
-     * date = parseDate(hour + ":" + minute);
-     * dateCompareOne = parseDate(compareStringOne);
-     * dateCompareTwo = parseDate(compareStringTwo);
-     * <p>
-     * if ( dateCompareOne.before( date ) && dateCompareTwo.after(date)) {
-     * //yada yada
-     * }
-     * }
-     * <p>
-     * private Date parseDate(String date) {
-     * <p>
-     * try {
-     * return inputParser.parse(date);
-     * } catch (java.text.ParseException e) {
-     * return new Date(0);
-     * }
-     * }
-     */
+
     private boolean validateTime() {
         if (neededTimeText.isEmpty()) {
             neededTime.setError("Please Enter WithNeeded Time");

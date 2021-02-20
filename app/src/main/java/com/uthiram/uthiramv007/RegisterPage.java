@@ -271,7 +271,7 @@ public class RegisterPage extends AppCompatActivity {
                     rollNo.requestFocus();
                 } else {
                     reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
-                    status = "Null";
+                    status = "Available";
                     lastDonatedDate = "Null";
                     DonorsDto donorsDto = new DonorsDto(nameText, rollNoText, ageText, bloodGroupText, phoneNoText, addressText, districtText, pinCodeText, weightText, confirmPasswordText, status, deptNameText, lastDonatedDate);
                     reference.child(rollNoText).setValue(donorsDto);

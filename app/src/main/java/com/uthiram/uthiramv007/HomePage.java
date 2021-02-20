@@ -140,7 +140,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         deptNameList.add("Dept Name");
         deptNameList.add("IT");
-        deptNameList.add("CS");
+        deptNameList.add("CSE");
         deptNameList.add("FT");
         deptNameList.add("EEE");
         deptNameList.add("ME");
