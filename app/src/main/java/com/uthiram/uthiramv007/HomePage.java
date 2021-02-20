@@ -144,6 +144,17 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         deptNameList.add("FT");
         deptNameList.add("EEE");
         deptNameList.add("ME");
+        deptNameList.add("AU");
+        deptNameList.add("AE");
+        deptNameList.add("BT");
+        deptNameList.add("CE");
+        deptNameList.add("ECE");
+        deptNameList.add("EIE");
+        deptNameList.add("ISE");
+        deptNameList.add("MC");
+        deptNameList.add("TT");
+        deptNameList.add("MCA");
+        deptNameList.add("MBA");
 
         ArrayAdapter<String> deptAdapter = new ArrayAdapter<>(HomePage.this, android.R.layout.simple_spinner_dropdown_item, deptNameList);
         deptNameSpinner.setAdapter(deptAdapter);

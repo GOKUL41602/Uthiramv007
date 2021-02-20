@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.2.2'
 
     //import broswer(require for firebase reCaptch Verifications)
-    implementation 'androidx.browser:browser:1.2.0'
+   // implementation 'androidx.browser:browser:1.2.0'
 
 // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:26.1.0')

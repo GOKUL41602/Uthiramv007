@@ -73,6 +73,18 @@ public class RegisterPage extends AppCompatActivity {
         deptNameList.add("FT");
         deptNameList.add("EEE");
         deptNameList.add("ME");
+        deptNameList.add("AU");
+        deptNameList.add("AE");
+        deptNameList.add("BT");
+        deptNameList.add("CE");
+        deptNameList.add("ECE");
+        deptNameList.add("EIE");
+        deptNameList.add("ISE");
+        deptNameList.add("MC");
+        deptNameList.add("TT");
+        deptNameList.add("MCA");
+        deptNameList.add("MBA");
+
         ArrayAdapter<String> deptNameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, deptNameList);
         deptName.setAdapter(deptNameAdapter);
         deptName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

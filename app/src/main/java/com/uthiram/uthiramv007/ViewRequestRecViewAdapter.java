@@ -50,8 +50,6 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
                 intent.putExtra("userName", model.getUserName());
                 intent.putExtra("patientName", holder.patientName.getText().toString());
                 holder.context.startActivity(intent);
-
-
             }
         });
 
@@ -70,7 +68,6 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
                             Toast.makeText(holder.context, "Data doesn't exists", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 

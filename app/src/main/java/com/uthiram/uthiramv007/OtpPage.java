@@ -59,7 +59,6 @@ public class OtpPage extends AppCompatActivity {
                         state.setText("sending");
                         state.setVisibility(View.VISIBLE);
                         requestOTP(phoneNum);
-
                     } else {
                         phonenumber.setError("Phone number is not valid");
                     }
@@ -69,7 +68,6 @@ public class OtpPage extends AppCompatActivity {
                         if (!userOTP.isEmpty() && userOTP.length() == 6) {
                             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, userOTP);
                             verifyAuth(credential);
-
                         } else {
                             codeEnter.setError("Valid OTP is required");
                         }
