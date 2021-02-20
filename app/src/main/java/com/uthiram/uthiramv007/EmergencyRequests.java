@@ -36,7 +36,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
@@ -58,8 +62,15 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_requests);
+
+
+
+        String currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
+        String currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
+
 
         isNetworkConnected();
         initializeViews();
@@ -75,13 +86,11 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                     progressBar.setVisibility(View.GONE);
                     relativeLayout1.setVisibility(View.GONE);
                     relativeLayout.setVisibility(View.VISIBLE);
-
                 } else {
                     progressBar.setVisibility(View.GONE);
                     relativeLayout1.setVisibility(View.VISIBLE);
                     relativeLayout.setVisibility(View.GONE);
                 }
-
             }
 
             @Override
@@ -90,10 +99,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 // any error or we are not able to get the data.
                 Toast.makeText(EmergencyRequests.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
             }
-
         });
-
-
         if (!isNetworkConnected()) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)

@@ -10,8 +10,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,23 +28,17 @@ import android.widget.Toast;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.text.format.DateFormat.format;
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
-import static java.text.DateFormat.*;
+
 
 public class RequestBloodDonor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -57,13 +54,15 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private String patientNameText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, bloodGroupText;
 
-    private String userName;
+    private String userName, currentTime, currentDate, date;
 
     private int t1minute, t1hour;
 
     private DatabaseReference reference;
 
-    private int count;
+    private boolean global = false;
+
+    //  private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +72,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
         userName = getIntent().getStringExtra("userName");
 
+        currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
+        currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
 
         ArrayList<String> bloodGroupList = new ArrayList<>();
         bloodGroupList.add("Blood Group");
@@ -167,6 +168,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             @Override
             public void onClick(View v) {
                 initializeStrings();
+                date = String.format("%s-%s-%s", neededDateText.substring(0, 2), neededDateText.substring(3, 6), neededDateText.substring(7, 11));
+                neededDate.getEditText().setText(date);
                 if (validatePatientName()) {
                     if (validateBloodGroup()) {
                         if (validateUnitsNeeded()) {
@@ -174,7 +177,20 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                                 if (validatePatientPhoneNo()) {
                                     if (validateDate()) {
                                         if (validateTime()) {
-                                            uploadRequestDetails();
+                                            if (verifyDate()) {
+                                                // if (verifyTime()) {
+                                                if (global) {
+                                                    uploadRequestDetails();
+                                                } else {
+                                                    Toast.makeText(RequestBloodDonor.this, "Select Proper Date And Time", Toast.LENGTH_SHORT).show();
+                                                }
+
+//                                                } else {
+//                                                    verifyTime();
+//                                                }
+                                            } else {
+                                                verifyDate();
+                                            }
                                         } else {
                                             validateTime();
                                         }
@@ -201,8 +217,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     }
 
     private void uploadRequestDetails() {
-        getCountFromDB();
-        count++;
+        // getCountFromDB();
+        // count++;
         reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
         String key = reference.push().getKey();
         RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key);
@@ -215,26 +231,26 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     }
 
 
-    private void getCountFromDB() {
-        reference = FirebaseDatabase.getInstance().getReference("Count");
-        Query query = reference.orderByChild("count").startAt("count").endAt("count" + "\uf8ff");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String countFromDB = snapshot.child("count").child("count1").getValue(String.class);
-                    count = Integer.parseInt(countFromDB);
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    private void getCountFromDB() {
+//        reference = FirebaseDatabase.getInstance().getReference("Count");
+//        Query query = reference.orderByChild("count").startAt("count").endAt("count" + "\uf8ff");
+//        query.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//                    String countFromDB = snapshot.child("count").child("count1").getValue(String.class);
+//                    count = Integer.parseInt(countFromDB);
+//                } else {
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 
     private void showSnack() {
 
@@ -313,6 +329,48 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         }
     }
 
+    /**
+     * public static final String inputFormat = "h:mm a";
+     * <p>
+     * private Date date;
+     * private Date dateCompareOne;
+     * private Date dateCompareTwo;
+     * <p>
+     * private String compareStringOne = "9:45";
+     * private String compareStringTwo = "1:45";
+     * <p>
+     * SimpleDateFormat inputParser = new SimpleDateFormat(inputFormat, Locale.getDefault());
+     * <p>
+     * <p>
+     * private void compareDates(){
+     * <p>
+     * Toast.makeText(this, (CharSequence) inputParser, Toast.LENGTH_SHORT).show();
+     * currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
+     * currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
+     * <p>
+     * Calendar now = Calendar.getInstance();
+     * <p>
+     * int hour = now.get(Calendar.HOUR);
+     * int minute = now.get(Calendar.MINUTE);
+     * <p>
+     * date = parseDate(hour + ":" + minute);
+     * dateCompareOne = parseDate(compareStringOne);
+     * dateCompareTwo = parseDate(compareStringTwo);
+     * <p>
+     * if ( dateCompareOne.before( date ) && dateCompareTwo.after(date)) {
+     * //yada yada
+     * }
+     * }
+     * <p>
+     * private Date parseDate(String date) {
+     * <p>
+     * try {
+     * return inputParser.parse(date);
+     * } catch (java.text.ParseException e) {
+     * return new Date(0);
+     * }
+     * }
+     */
     private boolean validateTime() {
         if (neededTimeText.isEmpty()) {
             neededTime.setError("Please Enter WithNeeded Time");
@@ -408,5 +466,79 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public boolean isTimeWith_in_Interval(String startTime, String endTime) {
+        boolean isBetween = false;
+        try {
+            Date time1 = new SimpleDateFormat("h:mm a").parse(startTime);
+
+            Date time2 = new SimpleDateFormat("h:mm a").parse(endTime);
+
+            if (time2.after(time1)) {
+                isBetween = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isBetween;
+    }
+
+
+    public boolean isDate(String startDate, String endDate) {
+        boolean isBetween = false;
+        try {
+            Date date1 = new SimpleDateFormat("dd-MMM-yyyy").parse(startDate);
+
+            Date date2 = new SimpleDateFormat("dd-MMM-yyyy").parse(endDate);
+
+            if (date2.after(date1)) {
+                isBetween = true;
+                global = true;
+            } else {
+                if (date2.equals(date1)) {
+                    isBetween = true;
+                    if (verifyTime(isBetween)) {
+                        global = true;
+                    } else {
+                        global = false;
+                    }
+
+                } else {
+                    isBetween = false;
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isBetween;
+    }
+
+    private boolean verifyTime(boolean isBetween) {
+        boolean bool = false;
+        if (isBetween) {
+            if (isTimeWith_in_Interval(currentTime, neededTimeText)) {
+                neededTime.setErrorEnabled(false);
+                neededTime.setError(null);
+                bool = true;
+            } else {
+                neededTime.setError("Choose Valid Time");
+                bool = false;
+            }
+        } else {
+            Toast.makeText(this, "Select Proper Date ", Toast.LENGTH_SHORT).show();
+        }
+        return bool;
+    }
+
+    private boolean verifyDate() {
+        if (isDate(currentDate, date)) {
+            neededDate.setError(null);
+            neededDate.setErrorEnabled(false);
+            return true;
+        } else {
+            neededDate.setError("Choose Valid Date");
+            return false;
+        }
     }
 }
