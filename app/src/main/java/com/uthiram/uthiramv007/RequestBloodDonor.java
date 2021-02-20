@@ -182,16 +182,11 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                                     if (validateDate()) {
                                         if (validateTime()) {
                                             if (verifyDate()) {
-                                                // if (verifyTime()) {
                                                 if (global) {
                                                     uploadRequestDetails();
                                                 } else {
                                                     Toast.makeText(RequestBloodDonor.this, "Select Proper Date And Time", Toast.LENGTH_SHORT).show();
                                                 }
-
-//                                                } else {
-//                                                    verifyTime();
-//                                                }
                                             } else {
                                                 verifyDate();
                                             }
@@ -221,8 +216,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     }
 
     private void uploadRequestDetails() {
-        // getCountFromDB();
-        // count++;
+
         reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto");
         String key = reference.push().getKey();
         RequestDonorDto requestDonorDto = new RequestDonorDto(userName, patientNameText, bloodGroupText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key);
@@ -234,27 +228,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         showSnack();
     }
 
-
-//    private void getCountFromDB() {
-//        reference = FirebaseDatabase.getInstance().getReference("Count");
-//        Query query = reference.orderByChild("count").startAt("count").endAt("count" + "\uf8ff");
-//        query.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) {
-//                    String countFromDB = snapshot.child("count").child("count1").getValue(String.class);
-//                    count = Integer.parseInt(countFromDB);
-//                } else {
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
 
     private void showSnack() {
 

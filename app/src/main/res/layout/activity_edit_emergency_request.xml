@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@color/light_red"
             app:title="Uthiram"
-            app:titleTextColor="@color/white">
+            app:titleTextColor="@color/red">
 
         </androidx.appcompat.widget.Toolbar>
 

@@ -34,8 +34,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.text.format.DateFormat.format;
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
@@ -56,17 +60,21 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
 
     private String patientNameFromDB, unitsNeededFromDB, hospitalNameFromDB, patientPhoneNoFromDB, neededDateFromDB, neededTimeFromDB, bloodGroupFromDB;
 
-    private String userName, key, patientNameFromViewRequest;
+    private String userName, key, patientNameFromViewRequest, currentDate, currentTime, date;
 
     private int t1minute, t1hour;
 
     private DatabaseReference reference;
+    private boolean global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_emergency_request);
 
+
+        currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
+        currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
         key = getIntent().getStringExtra("key");
         Log.d("key", key);
 
@@ -146,13 +154,26 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
             @Override
             public void onClick(View v) {
                 initializeStrings();
+                if (neededDateText.length() == 10) {
+                    date = String.format("0%s-%s-%s", neededDateText.substring(0, 1), neededDateText.substring(2, 5), neededDateText.substring(6, 10));
+                } else if (neededDateText.length() == 11) {
+                    date = String.format("%s-%s-%s", neededDateText.substring(0, 2), neededDateText.substring(3, 6), neededDateText.substring(7, 11));
+                }
                 if (validatePatientName()) {
                     if (validateUnitsNeeded()) {
                         if (validateHospitalName()) {
                             if (validatePatientPhoneNo()) {
                                 if (validateDate()) {
                                     if (validateTime()) {
-                                        uploadRequestDetails();
+                                        if (verifyDate()) {
+                                            if (global) {
+                                                uploadRequestDetails();
+                                            } else {
+                                                Toast.makeText(EditEmergencyRequest.this, "Select Proper Date And Time", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } else {
+                                            verifyDate();
+                                        }
                                     } else {
                                         validateTime();
                                     }
@@ -392,5 +413,79 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    public boolean isTimeWith_in_Interval(String startTime, String endTime) {
+        boolean isBetween = false;
+        try {
+            Date time1 = new SimpleDateFormat("h:mm a").parse(startTime);
+
+            Date time2 = new SimpleDateFormat("h:mm a").parse(endTime);
+
+            if (time2.after(time1)) {
+                isBetween = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isBetween;
+    }
+
+
+    public boolean isDate(String startDate, String endDate) {
+        boolean isBetween = false;
+        try {
+            Date date1 = new SimpleDateFormat("dd-MMM-yyyy").parse(startDate);
+
+            Date date2 = new SimpleDateFormat("dd-MMM-yyyy").parse(endDate);
+
+            if (date2.after(date1)) {
+                isBetween = true;
+                global = true;
+            } else {
+                if (date2.equals(date1)) {
+                    isBetween = true;
+                    if (verifyTime(isBetween)) {
+                        global = true;
+                    } else {
+                        global = false;
+                    }
+
+                } else {
+                    isBetween = false;
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isBetween;
+    }
+
+    private boolean verifyTime(boolean isBetween) {
+        boolean bool = false;
+        if (isBetween) {
+            if (isTimeWith_in_Interval(currentTime, neededTimeText)) {
+                neededTime.setErrorEnabled(false);
+                neededTime.setError(null);
+                bool = true;
+            } else {
+                neededTime.setError("Choose Valid Time");
+                bool = false;
+            }
+        } else {
+            Toast.makeText(this, "Select Proper Date ", Toast.LENGTH_SHORT).show();
+        }
+        return bool;
+    }
+
+    private boolean verifyDate() {
+        if (isDate(currentDate, date)) {
+            neededDate.setError(null);
+            neededDate.setErrorEnabled(false);
+            return true;
+        } else {
+            neededDate.setError("Choose Valid Date");
+            return false;
+        }
     }
 }
