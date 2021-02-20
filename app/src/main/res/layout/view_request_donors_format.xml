@@ -141,6 +141,14 @@
                 android:layout_toRightOf="@+id/viewRequestDonorFormat_editBtn"
                 android:src="@drawable/ic_delete" />
 
+            <TextView
+                android:id="@+id/viewRequestDonorFormat_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewRequestDonorFormat_deleteBtn"
+                android:layout_toRightOf="@+id/viewRequestDonorFormat_neededWithIn"
+                android:visibility="gone" />
+
 
             <TextView
                 android:id="@+id/viewRequestDonorFormat_neededWithIn"

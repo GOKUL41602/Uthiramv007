@@ -96,6 +96,12 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
                 startActivity(intent0);
                 ViewRequests.this.finish();
                 break;
+            case R.id.view_requests:
+                Intent intent = new Intent(ViewRequests.this, ViewRequests.class);
+                intent.putExtra("userName", userName);
+                ViewRequests.this.finish();
+                startActivity(intent);
+                break;
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(ViewRequests.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);

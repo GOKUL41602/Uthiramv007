@@ -56,7 +56,7 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
 
     private String patientNameFromDB, unitsNeededFromDB, hospitalNameFromDB, patientPhoneNoFromDB, neededDateFromDB, neededTimeFromDB, bloodGroupFromDB;
 
-    private String userName, key;
+    private String userName, key, patientNameFromViewRequest;
 
     private int t1minute, t1hour;
 
@@ -71,6 +71,9 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
         Log.d("key", key);
 
         userName = getIntent().getStringExtra("userName");
+
+        patientNameFromViewRequest = getIntent().getStringExtra("patientName");
+
 
         initializeViews();
         loadRequestDetails();
@@ -174,12 +177,14 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
     }
 
     private void loadRequestDetails() {
-        reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
+        reference = FirebaseDatabase.getInstance().getReference("RequestDonorDto/" + userName);
         Query query = reference.orderByChild("key").startAt(key).endAt(key + "\uf8ff");
+
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+
                     patientNameFromDB = snapshot.child(key).child("patientName").getValue(String.class);
                     patientPhoneNoFromDB = snapshot.child(key).child("patientPhoneNo").getValue(String.class);
                     unitsNeededFromDB = snapshot.child(key).child("unitsNeeded").getValue(String.class);
@@ -188,7 +193,6 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
                     hospitalNameFromDB = snapshot.child(key).child("hospitalName").getValue(String.class);
                     bloodGroupFromDB = snapshot.child(key).child("bloodGroup").getValue(String.class);
 
-
                     patientName.getEditText().setText(patientNameFromDB);
                     unitsNeeded.getEditText().setText(unitsNeededFromDB);
                     patientPhoneNo.getEditText().setText(patientPhoneNoFromDB);
@@ -196,6 +200,9 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
                     neededTime.getEditText().setText(neededTimeFromDB);
                     hospitalName.getEditText().setText(hospitalNameFromDB);
                     bloodGroup.setText(bloodGroupFromDB);
+                } else {
+                    Toast.makeText(EditEmergencyRequest.this, "Try Again", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -214,6 +221,12 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
         RequestDonorDto requestDonorDto1 = new RequestDonorDto(userName, patientNameText, bloodGroupFromDB, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, key);
         reference.child(key).setValue(requestDonorDto1);
         showSnack();
+        patientName.getEditText().setText("");
+        unitsNeeded.getEditText().setText("");
+        hospitalName.getEditText().setText("");
+        patientPhoneNo.getEditText().setText("");
+        neededDate.getEditText().setText("");
+        neededTime.getEditText().setText("");
     }
 
     private void showSnack() {
@@ -340,11 +353,19 @@ public class EditEmergencyRequest extends AppCompatActivity implements Navigatio
         } else {
             super.onBackPressed();
         }
+        EditEmergencyRequest.this.finish();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.view_requests:
+                Intent intent = new Intent(EditEmergencyRequest.this, ViewRequests.class);
+                intent.putExtra("userName", userName);
+                EditEmergencyRequest.this.finish();
+                startActivity(intent);
+                break;
+
             case R.id.donor_home:
                 Intent intent0 = new Intent(EditEmergencyRequest.this, RequestBloodDonor.class);
                 intent0.putExtra("userName", userName);

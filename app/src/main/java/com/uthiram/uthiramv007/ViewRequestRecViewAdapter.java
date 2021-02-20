@@ -24,14 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, ViewRequestRecViewAdapter.ViewHolder> {
 
-
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-
     public String key;
 
     public ViewRequestRecViewAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options) {
@@ -47,14 +39,16 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
         holder.contactNo.setText(model.getPatientPhoneNo());
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
+        holder.key.setText(model.getKey());
         key = model.getKey();
 
         holder.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.context.getApplicationContext(), EditEmergencyRequest.class);
-                intent.putExtra("key", key);
+                intent.putExtra("key", holder.key.getText());
                 intent.putExtra("userName", model.getUserName());
+                intent.putExtra("patientName", holder.patientName.getText().toString());
                 holder.context.startActivity(intent);
 
 
@@ -119,7 +113,7 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView patientName, bloodGroup, unitsNeeded, contactNo, hospitalName, date, time;
+        private TextView patientName, bloodGroup, unitsNeeded, contactNo, hospitalName, date, time, key;
 
         private ImageView editBtn, deleteBtn;
 
@@ -140,6 +134,7 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
             time = itemView.findViewById(R.id.viewRequestDonorFormat_time);
             editBtn = itemView.findViewById(R.id.viewRequestDonorFormat_editBtn);
             deleteBtn = itemView.findViewById(R.id.viewRequestDonorFormat_deleteBtn);
+            key = itemView.findViewById(R.id.viewRequestDonorFormat_key);
         }
     }
 }
