@@ -63,6 +63,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
         isNetworkConnected();
         initializeViews();
+        progressBar.setVisibility(View.VISIBLE);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("EmergencyRequests");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -71,16 +72,14 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
                 long count = snapshot.getChildrenCount();
                 if (count != 0) {
-
+                    progressBar.setVisibility(View.GONE);
                     relativeLayout1.setVisibility(View.GONE);
                     relativeLayout.setVisibility(View.VISIBLE);
 
                 } else {
-
+                    progressBar.setVisibility(View.GONE);
                     relativeLayout1.setVisibility(View.VISIBLE);
                     relativeLayout.setVisibility(View.GONE);
-
-
                 }
 
             }

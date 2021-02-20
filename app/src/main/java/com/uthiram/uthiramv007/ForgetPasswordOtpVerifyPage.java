@@ -81,6 +81,7 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                         sendText.setText("sending");
                         sendText.setVisibility(View.VISIBLE);
+                        Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Redirecting to Browser to verify Phone Number", Toast.LENGTH_SHORT).show();
                         requestOtp(phoneNum);
                     } else {
                         phoneNo.setError("Enter Valid 10 Digit Phone Number");
@@ -170,6 +171,8 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
                 Toast.makeText(ForgetPasswordOtpVerifyPage.this, "cannot access account" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                sendText.setVisibility(View.GONE);
             }
 
             @Override

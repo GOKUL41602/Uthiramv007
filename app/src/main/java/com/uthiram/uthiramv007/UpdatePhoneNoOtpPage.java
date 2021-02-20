@@ -75,6 +75,7 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
                         state.setText("sending");
                         state.setVisibility(View.VISIBLE);
+                        Toast.makeText(UpdatePhoneNoOtpPage.this, "Redirecting to Browser to verify Phone Number", Toast.LENGTH_SHORT).show();
                         requestOTP(phoneNum);
 
                     } else {
@@ -189,6 +190,8 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
                 Toast.makeText(UpdatePhoneNoOtpPage.this, "cannot access account" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                state.setVisibility(View.GONE);
             }
         });
     }

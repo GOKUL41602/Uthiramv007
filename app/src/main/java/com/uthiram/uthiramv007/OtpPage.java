@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +36,6 @@ public class OtpPage extends AppCompatActivity {
     Boolean verificationProgress = false;
     private int count = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,15 +49,16 @@ public class OtpPage extends AppCompatActivity {
         codePicker = findViewById(R.id.ccp);
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
                 if (!verificationProgress) {
                     if (!phonenumber.getText().toString().isEmpty() && phonenumber.getText().toString().length() == 10) {
                         phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
                         progressBar.setVisibility(View.VISIBLE);
                         state.setText("sending");
                         state.setVisibility(View.VISIBLE);
+                        Toast.makeText(OtpPage.this, "Redirecting to Browser to verify Phone Number", Toast.LENGTH_SHORT).show();
                         requestOTP(phoneNum);
                     } else {
                         phonenumber.setError("Phone number is not valid");
@@ -78,10 +79,8 @@ public class OtpPage extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
-
             }
         });
-
     }
 
     private void verifyAuth(PhoneAuthCredential credential) {
@@ -99,7 +98,6 @@ public class OtpPage extends AppCompatActivity {
                     count++;
                 }
             }
-
         });
     }
 
@@ -134,6 +132,8 @@ public class OtpPage extends AppCompatActivity {
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
                 Toast.makeText(OtpPage.this, "cannot access account" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+                state.setVisibility(View.GONE);
             }
         });
     }
