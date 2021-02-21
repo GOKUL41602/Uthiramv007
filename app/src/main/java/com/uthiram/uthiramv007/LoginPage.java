@@ -157,6 +157,7 @@ public class LoginPage extends AppCompatActivity {
                         Intent intent = new Intent(LoginPage.this, RequestBloodDonor.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("userName", userNameText);
+                        intent.putExtra("phoneNo",phoneNoFromDB);
                         startActivity(intent);
                     } else {
 

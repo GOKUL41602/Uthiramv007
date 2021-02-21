@@ -66,21 +66,25 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
         state = findViewById(R.id.state);
         codePicker = findViewById(R.id.ccp);
 
+        phonenumber.setText(phoneNo);
+        phonenumber.setVisibility(View.GONE);
+        codePicker.setVisibility(View.GONE);
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!verificationProgress) {
-                    if (!phonenumber.getText().toString().isEmpty() && phonenumber.getText().toString().length() == 10) {
-                        phoneNum = "+" + codePicker.getSelectedCountryCode() + phonenumber.getText().toString();
-                        progressBar.setVisibility(View.VISIBLE);
-                        state.setText("sending");
-                        state.setVisibility(View.VISIBLE);
-                        Toast.makeText(UpdatePhoneNoOtpPage.this, "Redirecting to Browser to verify Phone Number", Toast.LENGTH_SHORT).show();
-                        requestOTP(phoneNum);
+                    phoneNum = phoneNo;
+                    String toastNo = String.format("*******%s", phoneNum.substring(10, 13));
+                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Sending Otp to" + toastNo, Toast.LENGTH_SHORT).show();
 
-                    } else {
-                        phonenumber.setError("Phone number is not valid");
-                    }
+                    progressBar.setVisibility(View.VISIBLE);
+                    state.setText("sending");
+                    state.setVisibility(View.VISIBLE);
+                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Redirecting to Browser to verify Phone Number", Toast.LENGTH_SHORT).show();
+                    requestOTP(phoneNum);
+
+
                 } else {
                     if (count < 1) {
                         String userOTP = codeEnter.getText().toString();

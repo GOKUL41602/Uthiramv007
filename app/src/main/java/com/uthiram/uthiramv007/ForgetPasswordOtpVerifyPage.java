@@ -78,9 +78,6 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!verificationProgress) {
-//                    phoneNo.setError(null);
-//                    phoneNo.setErrorEnabled(false);+911234567890
-                    //  phoneNum = "+" + ccp.getSelectedCountryCode() + phoneNo.getEditText().getText().toString();
                     phoneNum = phoneNoFromDB;
                     String toastNo = String.format("*******%s", phoneNum.substring(10, 13));
                     Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Sending Otp to" + toastNo, Toast.LENGTH_SHORT).show();

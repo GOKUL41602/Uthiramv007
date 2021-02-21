@@ -46,7 +46,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
 
     private RelativeLayout relativeLayout;
 
-    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText;
+    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText,phoneNoFromDB;
 
     private DatabaseReference reference;
 
@@ -57,6 +57,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_donor_details_page);
         userName = getIntent().getStringExtra("userName");
+        phoneNoFromDB= getIntent().getStringExtra("phoneNo");
         initializeViews();
         initializeSpinners();
         loadDonorDetails();

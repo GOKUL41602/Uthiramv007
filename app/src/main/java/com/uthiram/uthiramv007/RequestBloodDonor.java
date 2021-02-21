@@ -54,7 +54,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private String patientNameText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, bloodGroupText;
 
-    private String userName, currentTime, currentDate, date;
+    private String userName, currentTime, currentDate, date,phoneNo;
 
     private int t1minute, t1hour;
 
@@ -71,6 +71,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         initializeViews();
 
         userName = getIntent().getStringExtra("userName");
+        phoneNo= getIntent().getStringExtra("phoneNo");
 
         currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
         currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
@@ -385,6 +386,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(RequestBloodDonor.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
+                intent1.putExtra("phoneNo",phoneNo);
                 RequestBloodDonor.this.finish();
                 startActivity(intent1);
                 break;
