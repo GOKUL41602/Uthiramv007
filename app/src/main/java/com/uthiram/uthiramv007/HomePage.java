@@ -75,6 +75,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         adapter = new HomePageRecAdapter(options);
         recyclerView.setAdapter(adapter);
 
+        recyclerView.setNestedScrollingEnabled(false);
 
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override

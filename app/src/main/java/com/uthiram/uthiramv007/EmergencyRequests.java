@@ -128,7 +128,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         adapter = new EmergencyRequestRecAdapter(options);
         recyclerView.setAdapter(adapter);
 
-
+        recyclerView.setNestedScrollingEnabled(false);
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

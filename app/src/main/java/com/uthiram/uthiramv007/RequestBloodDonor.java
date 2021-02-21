@@ -11,10 +11,12 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -60,6 +62,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private DatabaseReference reference;
 
+    private Date date1,date2;
+
     private boolean global = false;
 
     //  private int count;
@@ -75,6 +79,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
         currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
         currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
+
 
         ArrayList<String> bloodGroupList = new ArrayList<>();
         bloodGroupList.add("Blood Group");
@@ -228,7 +233,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         Toast.makeText(this, "Request Blood Donor Successful", Toast.LENGTH_SHORT).show();
         showSnack();
     }
-
 
     private void showSnack() {
 

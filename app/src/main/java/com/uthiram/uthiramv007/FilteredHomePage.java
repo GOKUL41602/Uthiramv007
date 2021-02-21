@@ -41,6 +41,7 @@ public class FilteredHomePage extends AppCompatActivity {
                 .build();
         adapter = new FilteredHomePageRecAdapter(options, bloodGroup, deptName);
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     private void initializeViews() {

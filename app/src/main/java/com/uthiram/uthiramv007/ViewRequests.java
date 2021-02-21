@@ -60,6 +60,8 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
                 .build();
         adapter = new ViewRequestRecViewAdapter(options);
         recyclerView.setAdapter(adapter);
+
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     private void initializeViews() {
