@@ -22,7 +22,7 @@ public class ForgetPasswordPage extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-    private String userName;
+    private String userName, phoneNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class ForgetPasswordPage extends AppCompatActivity {
         setContentView(R.layout.activity_forget_password_page);
         initializeViews();
         userName = getIntent().getStringExtra("userName");
+        phoneNo = getIntent().getStringExtra("phoneNo");
         changePasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +68,7 @@ public class ForgetPasswordPage extends AppCompatActivity {
                         Intent intent = new Intent(ForgetPasswordPage.this, ForgetPasswordOtpVerifyPage.class);
                         intent.putExtra("pass", confirmPasswordText);
                         intent.putExtra("user", userName);
+                        intent.putExtra("phoneNo", phoneNo);
                         startActivity(intent);
                     }
                 }).show();

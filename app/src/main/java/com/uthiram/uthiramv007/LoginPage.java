@@ -36,7 +36,7 @@ public class LoginPage extends AppCompatActivity {
 
     private TextView registerBtn;
 
-    private String userNameText, passwordText, userNameFromDB, passwordFromDB;
+    private String userNameText, passwordText, userNameFromDB, passwordFromDB, phoneNoFromDB;
 
     private DatabaseReference reference;
 
@@ -108,8 +108,14 @@ public class LoginPage extends AppCompatActivity {
                 if (snapshot.exists()) {
                     userName.setError(null);
                     userName.setErrorEnabled(false);
+
+                    passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
+
+                    phoneNoFromDB = snapshot.child(userNameText).child("phoneNo").getValue(String.class);
+                    Toast.makeText(LoginPage.this, phoneNoFromDB, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginPage.this, ForgetPasswordPage.class);
                     intent.putExtra("userName", userNameText);
+                    intent.putExtra("phoneNo", phoneNoFromDB);
                     startActivity(intent);
                 } else {
                     userName.setError("User Name Doesn't match");
@@ -144,6 +150,9 @@ public class LoginPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
+
+                    phoneNoFromDB = snapshot.child(userNameText).child("phoneNo").getValue(String.class);
+                    Log.d("PhoneNo", phoneNoFromDB);
                     if (passwordText.equals(passwordFromDB)) {
                         Intent intent = new Intent(LoginPage.this, RequestBloodDonor.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

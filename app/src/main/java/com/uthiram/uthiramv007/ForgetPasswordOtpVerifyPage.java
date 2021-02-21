@@ -39,7 +39,7 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
 
     private RelativeLayout relativeLayout;
 
-    private String phoneNum, verificationId, userName, password;
+    private String phoneNum, verificationId, userName, password, phoneNoFromDB;
 
     private CountryCodePicker ccp;
 
@@ -65,28 +65,32 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
         verifyBtn.setText("Send Otp");
         password = getIntent().getStringExtra("pass");
         userName = getIntent().getStringExtra("user");
+        phoneNoFromDB = getIntent().getStringExtra("phoneNo");
         Log.d("User : ", userName);
         Log.d("Pass :", password);
         fAuth = FirebaseAuth.getInstance();
 
+        phoneNo.getEditText().setText(phoneNoFromDB);
+        phoneNo.setVisibility(View.GONE);
+        ccp.setVisibility(View.GONE);
 
         verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!verificationProgress) {
-                    if (phoneNo.getEditText().getText().toString().isEmpty() || phoneNo.getEditText().getText().toString().length() == 10) {
-                        phoneNo.setError(null);
-                        phoneNo.setErrorEnabled(false);
-                        phoneNum = "+" + ccp.getSelectedCountryCode() + phoneNo.getEditText().getText().toString();
-                        progressBar.setVisibility(View.VISIBLE);
-                        sendText.setText("sending");
-                        sendText.setVisibility(View.VISIBLE);
-                        Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Redirecting to Browser to verify Phone Number", Toast.LENGTH_SHORT).show();
-                        requestOtp(phoneNum);
-                    } else {
-                        phoneNo.setError("Enter Valid 10 Digit Phone Number");
-                        phoneNo.requestFocus();
-                    }
+//                    phoneNo.setError(null);
+//                    phoneNo.setErrorEnabled(false);+911234567890
+                    //  phoneNum = "+" + ccp.getSelectedCountryCode() + phoneNo.getEditText().getText().toString();
+                    phoneNum = phoneNoFromDB;
+                    String toastNo = String.format("*******%s", phoneNum.substring(10, 13));
+                    Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Sending Otp to" + toastNo, Toast.LENGTH_SHORT).show();
+
+                    progressBar.setVisibility(View.VISIBLE);
+                    sendText.setText("sending");
+                    sendText.setVisibility(View.VISIBLE);
+                    Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Redirecting to Browser to verify Phone Number", Toast.LENGTH_SHORT).show();
+                    requestOtp(phoneNum);
+
                 } else {
                     if (count < 2) {
                         if (!otp.getEditText().getText().toString().isEmpty() && otp.getEditText().getText().toString().length() == 6) {
