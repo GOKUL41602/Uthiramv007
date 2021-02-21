@@ -108,11 +108,8 @@ public class LoginPage extends AppCompatActivity {
                 if (snapshot.exists()) {
                     userName.setError(null);
                     userName.setErrorEnabled(false);
-
                     passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
-
                     phoneNoFromDB = snapshot.child(userNameText).child("phoneNo").getValue(String.class);
-                    Toast.makeText(LoginPage.this, phoneNoFromDB, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginPage.this, ForgetPasswordPage.class);
                     intent.putExtra("userName", userNameText);
                     intent.putExtra("phoneNo", phoneNoFromDB);
