@@ -31,6 +31,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
@@ -47,12 +52,50 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     String count1;
     int count;
 
+    private String loginPath = "null";
+
+    private String rollNoPath = "null";
+
+    private String rollNo = "";
+
+    private char[] j = new char[1];
+
+    private char r;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         initializeViews();
         initializeSpinners();
+        loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+
+        rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+        FileReader fr = null;
+        try {
+            fr = new FileReader(loginPath);
+            int i;
+            while ((i = fr.read()) != -1)
+                j[0] = (char) i;
+            fr.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        File file = new File(rollNoPath);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String st;
+            while ((st = br.readLine()) != null)
+                rollNo = st;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         drawerLayout = findViewById(R.id.homePage_design_navigation_view);
 
@@ -219,9 +262,19 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 HomePage.this.finish();
                 break;
             case R.id.donor_login:
-                Intent intent0 = new Intent(HomePage.this, LoginPage.class);
-                startActivity(intent0);
-                HomePage.this.finish();
+                if (checkLoginCredential()) {
+                    Intent intent2 = new Intent(HomePage.this, LoginPage.class);
+                    intent2.putExtra("rollNo", rollNo);
+                    startActivity(intent2);
+                    HomePage.this.finish();
+                } else {
+                    Toast.makeText(HomePage.this, "Login to create Request", Toast.LENGTH_SHORT).show();
+                    Intent intent3 = new Intent(HomePage.this, LoginPage.class);
+                    rollNo = "123456";
+                    intent3.putExtra("rollNo", rollNo);
+                    startActivity(intent3);
+                    HomePage.this.finish();
+                }
                 break;
             case R.id.about_us:
                 Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
@@ -233,5 +286,15 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private boolean checkLoginCredential() {
+        int k = Character.compare(j[0], '1');
+        if (k == 0) {
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -107,7 +107,6 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
             String st;
             while ((st = br.readLine()) != null)
                 rollNo = st;
-            Log.d("Roll No", rollNo);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -201,15 +200,24 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                     startActivity(intent);
                     EmergencyRequests.this.finish();
                 }
-//                Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
-//                startActivity(intent);
-//                EmergencyRequests.this.finish();
             }
         });
         emptyCreateReqBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (checkLoginCredential()) {
+                    Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
+                    intent.putExtra("rollNo", rollNo);
+                    startActivity(intent);
+                    EmergencyRequests.this.finish();
+                } else {
+                    Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
+                    rollNo = "123456";
+                    intent.putExtra("rollNo", rollNo);
+                    startActivity(intent);
+                    EmergencyRequests.this.finish();
+                }
                 Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
                 startActivity(intent);
@@ -270,20 +278,20 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 EmergencyRequests.this.finish();
                 break;
             case R.id.donor_login:
-                //  if (checkLoginCredential()) {
-                //checkRollNo();
-//                    Intent intent0 = new Intent(EmergencyRequests.this, RequestBloodDonor.class);
-//                    startActivity(intent0);
-//                    intent0.putExtra("userName", rollNo);
-//                    EmergencyRequests.this.finish();
-//                    break;
-                // } else {
-                Intent intent0 = new Intent(EmergencyRequests.this, LoginPage.class);
-                startActivity(intent0);
-                intent0.putExtra("rollNo", rollNo);
-                EmergencyRequests.this.finish();
+                if (checkLoginCredential()) {
+                    Intent intent2 = new Intent(EmergencyRequests.this, LoginPage.class);
+                    intent2.putExtra("rollNo", rollNo);
+                    startActivity(intent2);
+                    EmergencyRequests.this.finish();
+                } else {
+                    Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
+                    Intent intent3 = new Intent(EmergencyRequests.this, LoginPage.class);
+                    rollNo = "123456";
+                    intent3.putExtra("rollNo", rollNo);
+                    startActivity(intent3);
+                    EmergencyRequests.this.finish();
+                }
                 break;
-            //  }
             case R.id.about_us:
                 Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
                 break;

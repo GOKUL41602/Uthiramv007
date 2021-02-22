@@ -52,7 +52,6 @@ public class LoginPage extends AppCompatActivity {
     private String loginPath = "null";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +64,7 @@ public class LoginPage extends AppCompatActivity {
             checkForRollNoInDB();
 
         } else {
+            Toast.makeText(this, "Session Expired Please Login !", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
             forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
