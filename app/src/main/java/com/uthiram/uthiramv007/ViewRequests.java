@@ -18,6 +18,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
+import java.io.FileWriter;
+
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
 public class ViewRequests extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +34,11 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
     private ViewRequestRecViewAdapter adapter;
 
     private String userName;
+
+    public String loginPath = "null";
+
+    private String rollNoPath = "null";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,8 +124,28 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
                 startActivity(intent2);
                 ViewRequests.this.finish();
                 break;
-            case R.id.donor_logout:
-                Intent intent3 = new Intent(ViewRequests.this, LoginPage.class);
+            case R.id.donor_logout:loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+                try {
+                    FileWriter fw = new FileWriter(loginPath);
+                    fw.write("");
+                    fw.flush();
+                    fw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+                rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+                File file = new File(rollNoPath);
+                try {
+                    FileWriter fw = new FileWriter(rollNoPath);
+                    fw.write("");
+                    fw.flush();
+                    fw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                Intent intent3 = new Intent(ViewRequests.this, EmergencyRequests.class);
                 startActivity(intent3);
                 ViewRequests.this.finish();
                 break;

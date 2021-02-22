@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.FileWriter;
+
 import static androidx.browser.trusted.sharing.ShareTarget.FileFormField.KEY_NAME;
 
 public class LoginPage extends AppCompatActivity {
@@ -36,54 +39,98 @@ public class LoginPage extends AppCompatActivity {
 
     private TextView registerBtn;
 
-    private String userNameText, passwordText, userNameFromDB, passwordFromDB, phoneNoFromDB;
+    private String userNameText, passwordText, userNameFromDB, passwordFromDB, phoneNoFromDB, phoneFromDBForAutoLogin;
+
+    public String rollNo = "null";
+
+    private String rollNoPath = "null";
 
     private DatabaseReference reference;
 
     private RelativeLayout relativeLayout;
+
+    private String loginPath = "null";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         initializeViews();
-        progressBar.setVisibility(View.GONE);
-        forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initializeStrings();
-                if (validateUserName()) {
-                    checkUserName();
-                } else {
-                    validateUserName();
-                }
-            }
-        });
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initializeStrings();
-                if (validateUserName()) {
-                    if (validatePassword()) {
-                        progressBar.setVisibility(View.VISIBLE);
-                        verifyUserId();
+
+        rollNo = getIntent().getStringExtra("rollNo");
+
+        if (rollNo.length() == 8) {
+            checkForRollNoInDB();
+
+        } else {
+            progressBar.setVisibility(View.GONE);
+            forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    initializeStrings();
+                    if (validateUserName()) {
+                        checkUserName();
                     } else {
-                        validatePassword();
+                        validateUserName();
                     }
+                }
+            });
+            loginBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    initializeStrings();
+                    if (validateUserName()) {
+                        if (validatePassword()) {
+                            progressBar.setVisibility(View.VISIBLE);
+                            verifyUserId();
+                        } else {
+                            validatePassword();
+                        }
+                    } else {
+                        validateUserName();
+                    }
+                }
+            });
+
+
+            registerBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginPage.this, OtpPage.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+    }
+
+    private void checkForRollNoInDB() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+        Query query = reference.orderByChild("rollNo").startAt(rollNo).endAt(rollNo + "\uf8ff");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    phoneFromDBForAutoLogin = snapshot.child(rollNo).child("phoneNo").getValue(String.class);
+                    Intent intent = new Intent(LoginPage.this, RequestBloodDonor.class);
+                    intent.putExtra("userName", rollNo);
+                    intent.putExtra("phoneNo", phoneFromDBForAutoLogin);
+                    startActivity(intent);
+
                 } else {
-                    validateUserName();
+                    Intent intent = new Intent(LoginPage.this, LoginPage.class);
+                    startActivity(intent);
                 }
             }
-        });
 
-
-        registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, OtpPage.class);
-                startActivity(intent);
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
     }
 
     @Override
@@ -147,14 +194,28 @@ public class LoginPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     passwordFromDB = snapshot.child(userNameText).child("password").getValue(String.class);
-
                     phoneNoFromDB = snapshot.child(userNameText).child("phoneNo").getValue(String.class);
-                    Log.d("PhoneNo", phoneNoFromDB);
                     if (passwordText.equals(passwordFromDB)) {
+                        loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+                        try {
+                            FileWriter fw = new FileWriter(loginPath);
+                            fw.write("1");
+                            fw.close();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                        rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+                        try {
+                            FileWriter fw = new FileWriter(rollNoPath);
+                            fw.write(userNameText);
+                            fw.close();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
                         Intent intent = new Intent(LoginPage.this, RequestBloodDonor.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("userName", userNameText);
-                        intent.putExtra("phoneNo",phoneNoFromDB);
+                        intent.putExtra("phoneNo", phoneNoFromDB);
                         startActivity(intent);
                     } else {
 

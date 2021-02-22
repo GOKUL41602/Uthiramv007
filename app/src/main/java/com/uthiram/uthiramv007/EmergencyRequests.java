@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,6 +67,15 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
     private ProgressBar progressBar;
 
+    private String loginPath = "null";
+
+    private String rollNoPath = "null";
+
+    private String rollNo = "";
+
+    private char[] j = new char[1];
+
+    private char r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +84,35 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_emergency_requests);
         isNetworkConnected();
         initializeViews();
+        loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+
+        rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+        FileReader fr = null;
+        try {
+            fr = new FileReader(loginPath);
+            int i;
+            while ((i = fr.read()) != -1)
+                j[0] = (char) i;
+            fr.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        File file = new File(rollNoPath);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String st;
+            while ((st = br.readLine()) != null)
+                rollNo = st;
+            Log.d("Roll No", rollNo);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         progressBar.setVisibility(View.VISIBLE);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("EmergencyRequests");
@@ -141,10 +188,23 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         createReqBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
-                startActivity(intent);
-                EmergencyRequests.this.finish();
+                if (checkLoginCredential()) {
+                    Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
+                    intent.putExtra("rollNo", rollNo);
+                    startActivity(intent);
+                    EmergencyRequests.this.finish();
+                } else {
+                    Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
+                    rollNo = "123456";
+                    intent.putExtra("rollNo", rollNo);
+                    startActivity(intent);
+                    EmergencyRequests.this.finish();
+                }
+//                Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
+//                startActivity(intent);
+//                EmergencyRequests.this.finish();
             }
         });
         emptyCreateReqBtn.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +217,6 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
             }
         });
     }
-
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -211,10 +270,20 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 EmergencyRequests.this.finish();
                 break;
             case R.id.donor_login:
+                //  if (checkLoginCredential()) {
+                //checkRollNo();
+//                    Intent intent0 = new Intent(EmergencyRequests.this, RequestBloodDonor.class);
+//                    startActivity(intent0);
+//                    intent0.putExtra("userName", rollNo);
+//                    EmergencyRequests.this.finish();
+//                    break;
+                // } else {
                 Intent intent0 = new Intent(EmergencyRequests.this, LoginPage.class);
                 startActivity(intent0);
+                intent0.putExtra("rollNo", rollNo);
                 EmergencyRequests.this.finish();
                 break;
+            //  }
             case R.id.about_us:
                 Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
                 break;
@@ -225,5 +294,36 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private boolean checkLoginCredential() {
+        int k = Character.compare(j[0], '1');
+        if (k == 0) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void checkRollNo() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
+        Query query = reference.orderByChild("rollNo").startAt(rollNo).endAt(rollNo + "\uf8ff");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String rollNum = snapshot.child(rollNo).child("rollNo").getValue(String.class);
+
+                } else {
+                    Toast.makeText(EmergencyRequests.this, "Roll No doesn't exits", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

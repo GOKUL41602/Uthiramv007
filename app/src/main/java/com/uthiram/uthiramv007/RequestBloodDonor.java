@@ -9,13 +9,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,15 +64,20 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private String patientNameText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, bloodGroupText;
 
-    private String userName, currentTime, currentDate, date,phoneNo;
+    private String userName, currentTime, currentDate, date, phoneNo, userNameCred;
 
     private int t1minute, t1hour;
 
     private DatabaseReference reference;
 
-    private Date date1,date2;
+    private Date date1, date2;
 
     private boolean global = false;
+
+    private String loginPath = "null";
+
+    private String rollNoPath = "null";
+
 
     //  private int count;
 
@@ -75,7 +88,8 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         initializeViews();
 
         userName = getIntent().getStringExtra("userName");
-        phoneNo= getIntent().getStringExtra("phoneNo");
+
+        phoneNo = getIntent().getStringExtra("phoneNo");
 
         currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
         currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
@@ -390,7 +404,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             case R.id.edit_donor_profile:
                 Intent intent1 = new Intent(RequestBloodDonor.this, UpdateDonorDetailsPage.class);
                 intent1.putExtra("userName", userName);
-                intent1.putExtra("phoneNo",phoneNo);
+                intent1.putExtra("phoneNo", phoneNo);
                 RequestBloodDonor.this.finish();
                 startActivity(intent1);
                 break;
@@ -401,7 +415,28 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                 startActivity(intent2);
                 break;
             case R.id.donor_logout:
-                Intent intent3 = new Intent(RequestBloodDonor.this, LoginPage.class);
+                loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+                try {
+                    FileWriter fw = new FileWriter(loginPath);
+                    fw.write("");
+                    fw.flush();
+                    fw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+                rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+                File file = new File(rollNoPath);
+                try {
+                    FileWriter fw = new FileWriter(rollNoPath);
+                    fw.write("");
+                    fw.flush();
+                    fw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                Intent intent3 = new Intent(RequestBloodDonor.this, EmergencyRequests.class);
                 startActivity(intent3);
                 RequestBloodDonor.this.finish();
                 break;

@@ -28,6 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileWriter;
+
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
 public class UpdateDonorStatusPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +48,11 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
     private String userName, statusText;
 
     private DatabaseReference reference;
+
+    public String loginPath = "null";
+
+    private String rollNoPath = "null";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,8 +224,28 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
                 startActivity(intent2);
                 UpdateDonorStatusPage.this.finish();
                 break;
-            case R.id.donor_logout:
-                Intent intent3 = new Intent(UpdateDonorStatusPage.this, LoginPage.class);
+            case R.id.donor_logout:loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+                try {
+                    FileWriter fw = new FileWriter(loginPath);
+                    fw.write("");
+                    fw.flush();
+                    fw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+                rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+                File file = new File(rollNoPath);
+                try {
+                    FileWriter fw = new FileWriter(rollNoPath);
+                    fw.write("");
+                    fw.flush();
+                    fw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                Intent intent3 = new Intent(UpdateDonorStatusPage.this, EmergencyRequests.class);
                 startActivity(intent3);
                 UpdateDonorStatusPage.this.finish();
                 break;
