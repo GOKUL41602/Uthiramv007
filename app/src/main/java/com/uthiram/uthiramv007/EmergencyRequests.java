@@ -67,7 +67,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 
     private ProgressBar progressBar;
 
-    private String loginPath = "null";
+    private String loginPath = "null", currentDate, currentTime;
 
     private String rollNoPath = "null";
 
@@ -76,6 +76,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
     private char[] j = new char[1];
 
     private char r;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,10 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
 
         rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+
+        currentDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(new Date());
+        currentTime = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
 
         FileReader fr = null;
         try {
@@ -171,7 +176,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 = new FirebaseRecyclerOptions.Builder<RequestDonorDto>()
                 .setQuery(reference, RequestDonorDto.class)
                 .build();
-        adapter = new EmergencyRequestRecAdapter(options);
+        adapter = new EmergencyRequestRecAdapter(options,currentDate,currentTime);
         recyclerView.setAdapter(adapter);
 
         recyclerView.setNestedScrollingEnabled(false);

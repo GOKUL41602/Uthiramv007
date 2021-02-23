@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -19,53 +20,149 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, EmergencyRequestRecAdapter.ViewHolder> {
 
-    public EmergencyRequestRecAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options) {
+
+    public String currentDate, currentTime, timeFromDB, dateFromDB, date;
+
+    public boolean global = false;
+
+    public EmergencyRequestRecAdapter(@NonNull FirebaseRecyclerOptions<RequestDonorDto> options, String currentDate, String currentTime) {
         super(options);
-    }
-
-
-    @Override
-    public int getItemCount() {
-        return super.getItemCount();
+        this.currentDate = currentDate;
+        this.currentTime = currentTime;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull RequestDonorDto model) {
 
-        holder.patientName.setText(model.getPatientName());
-        holder.bloodGroup.setText(model.getBloodGroup());
-        holder.unitsNeeded.setText(model.getUnitsNeeded());
-        holder.hospitalName.setText(model.getHospitalName());
-        holder.contactNo.setText(model.getPatientPhoneNo());
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
+        //
+        timeFromDB = holder.time.getText().toString();
+        dateFromDB = holder.date.getText().toString();
+        //
+        if (dateFromDB.length() == 10) {
+            date = String.format("0%s-%s-%s", dateFromDB.substring(0, 1), dateFromDB.substring(2, 5), dateFromDB.substring(6, 10));
+        } else if (dateFromDB.length() == 11) {
+            date = String.format("%s-%s-%s", dateFromDB.substring(0, 2), dateFromDB.substring(3, 6), dateFromDB.substring(7, 11));
+        }
 
-        holder.callBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                String phone = holder.contactNo.getText().toString();
-                intent.setData(Uri.parse("tel:" + phone));
-                holder.context.startActivity(intent);
-            }
-        });
+        if (verifyDate()) {
+            if (global) {
+                holder.patientName.setText(model.getPatientName());
+                holder.bloodGroup.setText(model.getBloodGroup());
+                holder.unitsNeeded.setText(model.getUnitsNeeded());
+                holder.hospitalName.setText(model.getHospitalName());
+                holder.contactNo.setText(model.getPatientPhoneNo());
+                holder.date.setText(model.getNeededWithInDate());
+                holder.time.setText(model.getNeededWithInTime());
 
-        holder.msgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
-                intent.putExtra("phoneNo", model.getPatientPhoneNo());
-                holder.context.startActivity(intent);
+
+                holder.callBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        String phone = holder.contactNo.getText().toString();
+                        intent.setData(Uri.parse("tel:" + phone));
+                        holder.context.startActivity(intent);
+                    }
+                });
+
+                holder.msgBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.putExtra("phoneNo", model.getPatientPhoneNo());
+                        holder.context.startActivity(intent);
+                    }
+                });
+            } else {
+                holder.cardView.setVisibility(View.GONE);
+                holder.relativeLayout.setVisibility(View.GONE);
             }
-        });
+        } else {
+
+            holder.cardView.setVisibility(View.GONE);
+            holder.relativeLayout.setVisibility(View.GONE);
+        }
 
 
     }
 
+    public boolean isTimeWith_in_Interval(String startTime, String endTime) {
+        boolean isBetween = false;
+        try {
+            Date time1 = new SimpleDateFormat("h:mm a").parse(startTime);
+
+            Date time2 = new SimpleDateFormat("h:mm a").parse(endTime);
+
+            if (time2.after(time1)) {
+                isBetween = true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isBetween;
+    }
+
+
+    public boolean isDate(String startDate, String endDate) {
+        boolean isBetween = false;
+        try {
+            Date date1 = new SimpleDateFormat("dd-MMM-yyyy").parse(startDate);
+
+            Date date2 = new SimpleDateFormat("dd-MMM-yyyy").parse(endDate);
+
+            if (date2.after(date1)) {
+                isBetween = true;
+                global = true;
+            } else {
+                if (date2.equals(date1)) {
+                    isBetween = true;
+                    if (verifyTime(isBetween)) {
+                        global = true;
+                    } else {
+                        global = false;
+                    }
+
+                } else {
+                    isBetween = false;
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return isBetween;
+    }
+
+    private boolean verifyTime(boolean isBetween) {
+        boolean bool = false;
+        if (isBetween) {
+            if (isTimeWith_in_Interval(currentTime, timeFromDB)) {
+                bool = true;
+            } else {
+                bool = false;
+            }
+        } else {
+        }
+        return bool;
+    }
+
+    private boolean verifyDate() {
+        if (isDate(currentDate, date)) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
 
     @NonNull
     @Override

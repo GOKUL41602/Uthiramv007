@@ -51,7 +51,6 @@ public class LoginPage extends AppCompatActivity {
 
     private String loginPath = "null";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +61,7 @@ public class LoginPage extends AppCompatActivity {
 
         if (rollNo.length() == 8) {
             checkForRollNoInDB();
-
         } else {
-            Toast.makeText(this, "Session Expired Please Login !", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
             forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,7 +91,6 @@ public class LoginPage extends AppCompatActivity {
                 }
             });
 
-
             registerBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,7 +99,6 @@ public class LoginPage extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private void checkForRollNoInDB() {
@@ -118,19 +113,16 @@ public class LoginPage extends AppCompatActivity {
                     intent.putExtra("userName", rollNo);
                     intent.putExtra("phoneNo", phoneFromDBForAutoLogin);
                     startActivity(intent);
-
                 } else {
                     Intent intent = new Intent(LoginPage.this, LoginPage.class);
                     startActivity(intent);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
     }
 
     @Override

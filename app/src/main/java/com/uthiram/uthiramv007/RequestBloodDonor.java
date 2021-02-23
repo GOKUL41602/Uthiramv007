@@ -78,9 +78,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private String rollNoPath = "null";
 
-
-    //  private int count;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
