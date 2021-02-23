@@ -176,7 +176,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 = new FirebaseRecyclerOptions.Builder<RequestDonorDto>()
                 .setQuery(reference, RequestDonorDto.class)
                 .build();
-        adapter = new EmergencyRequestRecAdapter(options,currentDate,currentTime);
+        adapter = new EmergencyRequestRecAdapter(options, currentDate, currentTime);
         recyclerView.setAdapter(adapter);
 
         recyclerView.setNestedScrollingEnabled(false);
@@ -293,7 +293,10 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 }
                 break;
             case R.id.about_us:
-                Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(EmergencyRequests.this, AboutUs.class);
+                startActivity(intent2);
+                EmergencyRequests.this.finish();
+//                Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.contact_us:
                 Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show();
@@ -314,24 +317,4 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         }
     }
 
-    private void checkRollNo() {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("DonorsDto");
-        Query query = reference.orderByChild("rollNo").startAt(rollNo).endAt(rollNo + "\uf8ff");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String rollNum = snapshot.child(rollNo).child("rollNo").getValue(String.class);
-
-                } else {
-                    Toast.makeText(EmergencyRequests.this, "Roll No doesn't exits", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 }
