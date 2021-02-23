@@ -131,7 +131,6 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
                 AboutUs.this.finish();
                 break;
             case R.id.contact_us:
-                Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show();
                 Intent intent4 = new Intent(AboutUs.this, ContactUs.class);
                 startActivity(intent4);
                 AboutUs.this.finish();
