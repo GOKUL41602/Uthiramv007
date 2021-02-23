@@ -39,6 +39,13 @@
                 android:textSize="17sp" />
 
             <TextView
+                android:id="@+id/emergencyRequestFormat_key"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/emergencyRequestFormat_bloodGroupText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

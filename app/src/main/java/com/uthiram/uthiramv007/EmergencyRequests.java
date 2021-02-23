@@ -223,10 +223,6 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                     startActivity(intent);
                     EmergencyRequests.this.finish();
                 }
-                Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EmergencyRequests.this, LoginPage.class);
-                startActivity(intent);
-                EmergencyRequests.this.finish();
             }
         });
     }
@@ -289,7 +285,6 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                     startActivity(intent2);
                     EmergencyRequests.this.finish();
                 } else {
-                    Toast.makeText(EmergencyRequests.this, "Login to create Request", Toast.LENGTH_SHORT).show();
                     Intent intent3 = new Intent(EmergencyRequests.this, LoginPage.class);
                     rollNo = "123456";
                     intent3.putExtra("rollNo", rollNo);

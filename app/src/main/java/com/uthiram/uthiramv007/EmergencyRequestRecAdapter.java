@@ -19,6 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +34,7 @@ import java.util.Date;
 public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestDonorDto, EmergencyRequestRecAdapter.ViewHolder> {
 
 
-    public String currentDate, currentTime, timeFromDB, dateFromDB, date;
+    public String currentDate, currentTime, timeFromDB, dateFromDB, date, keyFromDB;
 
     public boolean global = false;
 
@@ -43,6 +49,8 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
 
         holder.date.setText(model.getNeededWithInDate());
         holder.time.setText(model.getNeededWithInTime());
+        holder.key.setText(model.getKey());
+        keyFromDB = holder.key.getText().toString();
         //
         timeFromDB = holder.time.getText().toString();
         dateFromDB = holder.date.getText().toString();
@@ -85,11 +93,40 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
             } else {
                 holder.cardView.setVisibility(View.GONE);
                 holder.relativeLayout.setVisibility(View.GONE);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
+                Query query = reference.orderByChild("key").startAt(keyFromDB).endAt(keyFromDB + "\uf8ff");
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            reference.child(keyFromDB).removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         } else {
-
             holder.cardView.setVisibility(View.GONE);
             holder.relativeLayout.setVisibility(View.GONE);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("EmergencyRequests");
+            Query query = reference.orderByChild("key").startAt(keyFromDB).endAt(keyFromDB + "\uf8ff");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        reference.child(keyFromDB).removeValue();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
 
 
@@ -174,7 +211,7 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView patientName, bloodGroup, unitsNeeded, contactNo, hospitalName, date, time;
+        private TextView patientName, bloodGroup, unitsNeeded, contactNo, hospitalName, date, time, key;
         private ImageView callBtn, msgBtn;
         private Context context = itemView.getContext();
         private CardView cardView;
@@ -187,6 +224,7 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
         }
 
         private void initializeViews() {
+            key = itemView.findViewById(R.id.emergencyRequestFormat_key);
             patientName = itemView.findViewById(R.id.emergencyRequestFormat_patientName);
             bloodGroup = itemView.findViewById(R.id.emergencyRequestFormat_bloodGroup);
             unitsNeeded = itemView.findViewById(R.id.emergencyRequestFormat_unitsNeeded);

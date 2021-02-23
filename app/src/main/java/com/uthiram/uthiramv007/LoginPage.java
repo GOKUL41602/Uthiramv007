@@ -113,11 +113,13 @@ public class LoginPage extends AppCompatActivity {
                     intent.putExtra("userName", rollNo);
                     intent.putExtra("phoneNo", phoneFromDBForAutoLogin);
                     startActivity(intent);
+                    LoginPage.this.finish();
                 } else {
                     Intent intent = new Intent(LoginPage.this, LoginPage.class);
                     startActivity(intent);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

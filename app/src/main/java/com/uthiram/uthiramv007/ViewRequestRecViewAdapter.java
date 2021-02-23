@@ -68,6 +68,7 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
                             Toast.makeText(holder.context, "Data doesn't exists", Toast.LENGTH_SHORT).show();
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
@@ -88,9 +89,8 @@ public class ViewRequestRecViewAdapter extends FirebaseRecyclerAdapter<RequestDo
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     reference.child(key).removeValue();
-                    Toast.makeText(context, "Request Removed Successfully", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, "Data doesn't exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Try Again after few seconds!", Toast.LENGTH_SHORT).show();
                 }
             }
 

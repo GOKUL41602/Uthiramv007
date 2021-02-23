@@ -95,6 +95,9 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+        Intent intent = new Intent(ViewRequests.this, EmergencyRequests.class);
+        startActivity(intent);
+        ViewRequests.this.finish();
     }
 
     @Override
@@ -124,7 +127,8 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
                 startActivity(intent2);
                 ViewRequests.this.finish();
                 break;
-            case R.id.donor_logout:loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+            case R.id.donor_logout:
+                loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
                 try {
                     FileWriter fw = new FileWriter(loginPath);
                     fw.write("");
