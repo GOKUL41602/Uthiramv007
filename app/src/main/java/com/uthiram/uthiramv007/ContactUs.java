@@ -8,8 +8,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -22,7 +25,7 @@ import java.io.IOException;
 
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
-public class AboutUs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ContactUs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private String loginPath = "null", currentDate, currentTime;
@@ -31,6 +34,8 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
 
     private String rollNo = "";
 
+    private TextView phoneNo;
+
     private char[] j = new char[1];
 
     private char r;
@@ -38,8 +43,8 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
-
+        setContentView(R.layout.activity_contact_us);
+        initializeViews();
 
         loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
 
@@ -70,7 +75,7 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
             e.printStackTrace();
         }
 
-        drawerLayout = findViewById(R.id.aboutUs_design_navigation_view);
+        drawerLayout = findViewById(R.id.contactUs_design_navigation_view);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -83,6 +88,20 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
+
+        phoneNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                String phone = phoneNo.getText().toString();
+                intent.setData(Uri.parse("tel:" + phone));
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void initializeViews() {
+        phoneNo = findViewById(R.id.contactUs_phoneNo);
     }
 
     @Override
@@ -92,9 +111,9 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         } else {
             super.onBackPressed();
         }
-        Intent intent = new Intent(AboutUs.this, EmergencyRequests.class);
+        Intent intent = new Intent(ContactUs.this, EmergencyRequests.class);
         startActivity(intent);
-        AboutUs.this.finish();
+        ContactUs.this.finish();
     }
 
     @Override
@@ -102,39 +121,39 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
 
             case R.id.home:
-                Intent intent = new Intent(AboutUs.this, EmergencyRequests.class);
+                Intent intent = new Intent(ContactUs.this, EmergencyRequests.class);
                 startActivity(intent);
-                AboutUs.this.finish();
+                ContactUs.this.finish();
                 break;
             case R.id.filter:
-                Intent intent1 = new Intent(AboutUs.this, HomePage.class);
+                Intent intent1 = new Intent(ContactUs.this, HomePage.class);
                 startActivity(intent1);
-                AboutUs.this.finish();
+                ContactUs.this.finish();
                 break;
             case R.id.donor_login:
                 if (checkLoginCredential()) {
-                    Intent intent2 = new Intent(AboutUs.this, LoginPage.class);
+                    Intent intent2 = new Intent(ContactUs.this, LoginPage.class);
                     intent2.putExtra("rollNo", rollNo);
                     startActivity(intent2);
-                    AboutUs.this.finish();
+                    ContactUs.this.finish();
                 } else {
-                    Intent intent3 = new Intent(AboutUs.this, LoginPage.class);
+                    Intent intent3 = new Intent(ContactUs.this, LoginPage.class);
                     rollNo = "123456";
                     intent3.putExtra("rollNo", rollNo);
                     startActivity(intent3);
-                    AboutUs.this.finish();
+                    ContactUs.this.finish();
                 }
                 break;
             case R.id.about_us:
-                Intent intent2 = new Intent(AboutUs.this, AboutUs.class);
+                Intent intent2 = new Intent(ContactUs.this, AboutUs.class);
                 startActivity(intent2);
-                AboutUs.this.finish();
+                ContactUs.this.finish();
                 break;
             case R.id.contact_us:
                 Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show();
-                Intent intent4 = new Intent(AboutUs.this, ContactUs.class);
-                startActivity(intent4);
-                AboutUs.this.finish();
+                Intent intent3 = new Intent(ContactUs.this, ContactUs.class);
+                startActivity(intent3);
+                ContactUs.this.finish();
                 break;
 
         }

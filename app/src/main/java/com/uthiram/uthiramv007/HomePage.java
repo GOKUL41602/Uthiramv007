@@ -278,9 +278,15 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 break;
             case R.id.about_us:
                 Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(HomePage.this, AboutUs.class);
+                startActivity(intent3);
+                HomePage.this.finish();
                 break;
             case R.id.contact_us:
                 Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show();
+                Intent intent4 = new Intent(HomePage.this, ContactUs.class);
+                startActivity(intent4);
+                HomePage.this.finish();
                 break;
 
         }

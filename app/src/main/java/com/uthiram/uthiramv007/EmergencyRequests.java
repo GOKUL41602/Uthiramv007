@@ -300,8 +300,10 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.contact_us:
                 Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(EmergencyRequests.this, ContactUs.class);
+                startActivity(intent3);
+                EmergencyRequests.this.finish();
                 break;
-
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
