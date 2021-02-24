@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     private RelativeLayout relativeLayout;
     private Button filterBtn;
     private HomePageRecAdapter adapter;
+    private ProgressBar progressBar;
     String count1;
     int count;
 
@@ -71,6 +73,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
 
         rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+        progressBar.setVisibility(View.VISIBLE);
 
         FileReader fr = null;
         try {
@@ -119,6 +123,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         recyclerView.setAdapter(adapter);
 
         recyclerView.setNestedScrollingEnabled(false);
+
+        progressBar.setVisibility(View.GONE);
 
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,6 +227,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         bloodGroupSpinner = findViewById(R.id.homePage_bloodGroupSpinner);
         relativeLayout = findViewById(R.id.homePage_relLayout);
         filterBtn = findViewById(R.id.homePage_filterBtn);
+        progressBar = findViewById(R.id.homePage_progressBar);
     }
 
     @Override

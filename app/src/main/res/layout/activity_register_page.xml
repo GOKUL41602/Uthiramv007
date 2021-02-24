@@ -65,7 +65,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:hint="Roll No"
+                    android:hint="Roll No(User Name)"
                     android:inputType="text"
                     android:textColor="@color/white" />
 
