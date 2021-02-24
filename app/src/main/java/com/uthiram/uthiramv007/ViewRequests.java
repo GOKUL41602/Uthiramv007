@@ -12,11 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -29,7 +36,9 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
 
     private RecyclerView recyclerView;
 
-    private RelativeLayout relativeLayout;
+    private RelativeLayout relativeLayout, emptyRelativeLayout, relativeLayout1;
+
+    private ProgressBar progressBar;
 
     private ViewRequestRecViewAdapter adapter;
 
@@ -47,6 +56,32 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
         userName = getIntent().getStringExtra("userName");
         initializeViews();
 
+        progressBar.setVisibility(View.VISIBLE);
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("RequestDonorDto/" + userName);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                long count = snapshot.getChildrenCount();
+                if (count != 0) {
+
+                    progressBar.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    emptyRelativeLayout.setVisibility(View.GONE);
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.GONE);
+                    emptyRelativeLayout.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ViewRequests.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         drawerLayout = findViewById(R.id.viewRequest_design_navigation_view);
 
         Toolbar toolbar = findViewById(R.id.viewRequest_toolbar);
@@ -62,6 +97,7 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<RequestDonorDto> options
                 = new FirebaseRecyclerOptions.Builder<RequestDonorDto>()
@@ -71,11 +107,15 @@ public class ViewRequests extends AppCompatActivity implements NavigationView.On
         recyclerView.setAdapter(adapter);
 
         recyclerView.setNestedScrollingEnabled(false);
+
+
     }
 
     private void initializeViews() {
         recyclerView = findViewById(R.id.viewRequests_recView);
         relativeLayout = findViewById(R.id.viewRequests_relLayout);
+        emptyRelativeLayout = findViewById(R.id.viewRequestEmptyRelLayout);
+        progressBar = findViewById(R.id.viewRequestProgressBar);
     }
 
     @Override

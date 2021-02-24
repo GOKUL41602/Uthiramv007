@@ -31,48 +31,79 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <RelativeLayout
-                android:id="@+id/viewRequests_relLayout"
+                android:id="@+id/viewRequest_overallRelLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ProgressBar
+                    android:id="@+id/viewRequestProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="160dp"
+                    android:visibility="gone" />
 
-                <ScrollView
+                <RelativeLayout
+                    android:id="@+id/viewRequestEmptyRelLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp">
+                    android:visibility="gone">
 
 
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/viewRequest_emptyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="No Requests to Display !"
+                        android:textColor="@color/red"
+                        android:textSize="23sp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/viewRequests_relLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp">
 
-                        <TextView
-                            android:id="@+id/viewRequests_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="50dp"
-                            android:fontFamily="@font/doppio_one"
-                            android:text="Requested Blood Details"
-                            android:textColor="@color/red"
-                            android:textSize="30sp" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/viewRequests_recView"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_below="@+id/viewRequests_title"
-                            android:layout_marginTop="20dp"
-                            android:padding="15dp" />
+                            android:layout_height="match_parent">
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/viewRequests_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="50dp"
+                                android:fontFamily="@font/doppio_one"
+                                android:text="Requested Blood Details"
+                                android:textColor="@color/red"
+                                android:textSize="30sp" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/viewRequests_recView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_below="@+id/viewRequests_title"
+                                android:layout_marginTop="20dp"
+                                android:padding="15dp" />
+
+                        </RelativeLayout>
 
 
-                </ScrollView>
+                    </ScrollView>
 
+                </RelativeLayout>
             </RelativeLayout>
         </FrameLayout>
     </LinearLayout>
