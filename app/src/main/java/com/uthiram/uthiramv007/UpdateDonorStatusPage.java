@@ -66,9 +66,10 @@ public class UpdateDonorStatusPage extends AppCompatActivity implements Navigati
 
 
         drawerLayout = findViewById(R.id.updateDonorStatusPage_design_navigation_view);
-        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        Toolbar toolbar = findViewById(R.id.updateDonorStatusPage_toolbar);
+
+        NavigationView navigationView = findViewById(R.id.updateDonorStatusPage_nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
 
