@@ -130,7 +130,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     progressBar.setVisibility(View.GONE);
                     relativeLayout.setVisibility(View.VISIBLE);
                 } else {
-                    Toast.makeText(HomePage.this, "No Records to Display!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomePage.this, "No Records to Display !", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     relativeLayout.setVisibility(View.VISIBLE);
                 }
