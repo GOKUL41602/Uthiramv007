@@ -30,7 +30,11 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -114,6 +118,29 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         drawerLayout.addDrawerListener(toggle);
 
         toggle.syncState();
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("DonorsDto");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                long count = snapshot.getChildrenCount();
+                if (count != 0) {
+                    progressBar.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                } else {
+                    Toast.makeText(HomePage.this, "No Records to Display!", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HomePage.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<DonorsDto> options
                 = new FirebaseRecyclerOptions.Builder<DonorsDto>()
@@ -124,7 +151,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         recyclerView.setNestedScrollingEnabled(false);
 
-        progressBar.setVisibility(View.GONE);
+
 
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
