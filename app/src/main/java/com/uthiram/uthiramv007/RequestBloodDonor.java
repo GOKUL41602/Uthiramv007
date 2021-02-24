@@ -169,9 +169,9 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         });
         drawerLayout = findViewById(R.id.requestBloodDonor_design_navigation_view);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.requestBloodDonor_toolbar);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.requestBloodDonor_nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
 
