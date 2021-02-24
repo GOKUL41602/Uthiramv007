@@ -59,6 +59,25 @@
                     android:text="Voluntary Blood Donors Club is an initiative by the NSS unit of KCT in 2010 with a view to save lives by voluntary blood donation. UTHIRAM - an app launched  by the members of NSS RRC VBC of KCT to help people those who are in need of blood, in and around Coimbatore round the clock for 365 days and we abide by the policy of ANY GROUP, ANYWHERE, ANY TIME."
 
                     android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/copyrightImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="135dp"
+                    android:src="@drawable/ic_copyrights" />
+
+                <TextView
+                    android:id="@+id/copyrightText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_toRightOf="@+id/copyrightImage"
+                    android:text="2021Trio Developers"
+                    android:textColor="@color/green" />
             </RelativeLayout>
 
         </FrameLayout>
