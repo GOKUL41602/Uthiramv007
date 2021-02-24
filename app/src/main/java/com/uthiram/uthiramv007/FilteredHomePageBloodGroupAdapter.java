@@ -30,30 +30,37 @@ public class FilteredHomePageBloodGroupAdapter extends FirebaseRecyclerAdapter<D
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull DonorsDto model) {
 
         if (model.getDeptName().equals(deptName)) {
-            holder.donorName.setText(model.getDonorName());
-            holder.place.setText(model.getAddress());
-            holder.phoneNo.setText(model.getPhoneNo());
-            holder.bloodGroup.setText(model.getBloodGroup());
-            holder.callBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    String phone = holder.phoneNo.getText().toString();
-                    intent.setData(Uri.parse("tel:" + phone));
-                    holder.context.startActivity(intent);
 
-                }
-            });
-            holder.msgBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            if (model.getStatus().equals("Available")) {
+                holder.donorName.setText(model.getDonorName());
+                holder.place.setText(model.getAddress());
+                holder.phoneNo.setText(model.getPhoneNo());
+                holder.bloodGroup.setText(model.getBloodGroup());
+                holder.callBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        String phone = holder.phoneNo.getText().toString();
+                        intent.setData(Uri.parse("tel:" + phone));
+                        holder.context.startActivity(intent);
 
-                    Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
-                    intent.putExtra("phoneNo", model.getPhoneNo());
-                    holder.context.startActivity(intent);
+                    }
+                });
+                holder.msgBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                }
-            });
+                        Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.putExtra("phoneNo", model.getPhoneNo());
+                        holder.context.startActivity(intent);
+
+                    }
+                });
+            } else {
+                holder.relativeLayout.setVisibility(View.GONE);
+                holder.cardView.setVisibility(View.GONE);
+            }
+
         } else {
             holder.relativeLayout.setVisibility(View.GONE);
             holder.cardView.setVisibility(View.GONE);

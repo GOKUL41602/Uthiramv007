@@ -29,28 +29,35 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull DonorsDto model) {
         if (model.getBloodGroup().equals(bloodGroup)) {
-            holder.donorName.setText(model.getDonorName());
-            holder.place.setText(model.getAddress());
-            holder.phoneNo.setText(model.getPhoneNo());
-            holder.deptName.setText(model.getDeptName());
-            holder.callBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    String phone = holder.phoneNo.getText().toString();
-                    intent.setData(Uri.parse("tel:" + phone));
-                    holder.context.startActivity(intent);
-                }
-            });
-            holder.msgBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
-                    intent.putExtra("phoneNo", model.getPhoneNo());
-                    holder.context.startActivity(intent);
-                }
-            });
+            if (model.getStatus().equals("Available")) {
+                holder.donorName.setText(model.getDonorName());
+                holder.place.setText(model.getAddress());
+                holder.phoneNo.setText(model.getPhoneNo());
+                holder.deptName.setText(model.getDeptName());
+                holder.callBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        String phone = holder.phoneNo.getText().toString();
+                        intent.setData(Uri.parse("tel:" + phone));
+                        holder.context.startActivity(intent);
+                    }
+                });
+                holder.msgBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.putExtra("phoneNo", model.getPhoneNo());
+                        holder.context.startActivity(intent);
+                    }
+                });
+            } else {
+                holder.relativeLayout.setVisibility(View.GONE);
+                holder.cardView.setVisibility(View.GONE);
+            }
+
         } else {
             holder.relativeLayout.setVisibility(View.GONE);
             holder.cardView.setVisibility(View.GONE);
@@ -66,7 +73,7 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView donorName, phoneNo, place,deptName;
+        private TextView donorName, phoneNo, place, deptName;
         private ImageView callBtn, msgBtn;
         private Context context = itemView.getContext();
         private RelativeLayout relativeLayout;
@@ -81,7 +88,7 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
             donorName = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_donorName);
             phoneNo = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_phoneNo);
             place = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_place);
-            deptName=itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_dept);
+            deptName = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_dept);
             relativeLayout = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_relLayout);
             callBtn = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_callBtn);
             msgBtn = itemView.findViewById(R.id.filteredDeptDonorDisplayFormat_msgBtn);
