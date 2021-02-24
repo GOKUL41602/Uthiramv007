@@ -77,9 +77,9 @@ public class ContactUs extends AppCompatActivity implements NavigationView.OnNav
 
         drawerLayout = findViewById(R.id.contactUs_design_navigation_view);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.contactUs_toolbar);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.contactUs_nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
 

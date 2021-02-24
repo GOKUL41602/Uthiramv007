@@ -72,9 +72,9 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
 
         drawerLayout = findViewById(R.id.aboutUs_design_navigation_view);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.aboutUs_toolbar);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.aboutUs_nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
 

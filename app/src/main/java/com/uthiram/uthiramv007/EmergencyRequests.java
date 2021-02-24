@@ -155,9 +155,9 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         } else {
             drawerLayout = findViewById(R.id.emergencyRequest_design_navigation_view);
 
-            Toolbar toolbar = findViewById(R.id.toolbar);
+            Toolbar toolbar = findViewById(R.id.emergencyRequest_toolbar);
 
-            NavigationView navigationView = findViewById(R.id.nav_view);
+            NavigationView navigationView = findViewById(R.id.emergencyRequest_nav_view);
 
             navigationView.setNavigationItemSelectedListener(this);
 
@@ -299,7 +299,6 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
 //                Toast.makeText(this, "About Us Selected", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.contact_us:
-                Toast.makeText(this, "Contact Us Selected", Toast.LENGTH_SHORT).show();
                 Intent intent3 = new Intent(EmergencyRequests.this, ContactUs.class);
                 startActivity(intent3);
                 EmergencyRequests.this.finish();

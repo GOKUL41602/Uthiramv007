@@ -99,9 +99,9 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 
         drawerLayout = findViewById(R.id.homePage_design_navigation_view);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.homePage_toolbar);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.homePage_nav_view);
 
         navigationView.setNavigationItemSelectedListener(this);
 
