@@ -1,8 +1,10 @@
 package com.uthiram.uthiramv007;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +24,12 @@ import java.util.ArrayList;
 public class HomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDto, HomePageRecAdapter.ViewHolder> {
 
 
-    public HomePageRecAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options) {
+    private Context context;
+
+    public HomePageRecAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options, Context context) {
+
         super(options);
+        this.context = context;
     }
 
     @Override
@@ -51,6 +57,8 @@ public class HomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDto, HomeP
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                    intent.putExtra("checkValue", "filter");
+                    intent.putExtra("userName", donorsDto.getDonorName());
                     intent.putExtra("phoneNo", donorsDto.getPhoneNo());
                     holder.context.startActivity(intent);
                 }
@@ -72,7 +80,6 @@ public class HomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDto, HomeP
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-
         private TextView donorName, place, deptName, bloodGroup, phoneNo;
         private ImageView callBtn, msgBtn;
         private Context context = itemView.getContext();
@@ -91,7 +98,7 @@ public class HomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDto, HomeP
             deptName = itemView.findViewById(R.id.donorDisplayFormat_deptName);
             bloodGroup = itemView.findViewById(R.id.donorDisplayFormat_bloodGroup);
             phoneNo = itemView.findViewById(R.id.donorDisplayFormat_phoneNo);
-            cardView=itemView.findViewById(R.id.donorDisplayFormat_card);
+            cardView = itemView.findViewById(R.id.donorDisplayFormat_card);
             relativeLayout = itemView.findViewById(R.id.donorDisplayFormat_relLayout);
             callBtn = itemView.findViewById(R.id.donorDisplayFormat_callBtn);
             msgBtn = itemView.findViewById(R.id.donorDisplayFormat_msgBtn);

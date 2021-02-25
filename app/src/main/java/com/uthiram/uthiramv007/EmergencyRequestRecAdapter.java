@@ -1,8 +1,10 @@
 package com.uthiram.uthiramv007;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -86,6 +89,8 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.putExtra("checkValue", "emergency");
+                        intent.putExtra("userName", model.getPatientName());
                         intent.putExtra("phoneNo", model.getPatientPhoneNo());
                         holder.context.startActivity(intent);
                     }

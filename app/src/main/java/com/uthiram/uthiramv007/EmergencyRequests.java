@@ -262,6 +262,7 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         } else {
             super.onBackPressed();
         }
+        EmergencyRequests.this.finish();
     }
 
     @Override

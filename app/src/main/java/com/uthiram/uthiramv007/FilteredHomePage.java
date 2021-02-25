@@ -32,7 +32,7 @@ public class FilteredHomePage extends AppCompatActivity {
         bloodGroup = getIntent().getStringExtra("2");
         deptNameText.setText(deptName);
         bloodGroupText.setText(bloodGroup);
-        Log.d("Demo","Demo");
+        Log.d("Demo", "Demo");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<DonorsDto> options
@@ -61,5 +61,13 @@ public class FilteredHomePage extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(FilteredHomePage.this, HomePage.class);
+        startActivity(intent);
+        FilteredHomePage.this.finish();
     }
 }

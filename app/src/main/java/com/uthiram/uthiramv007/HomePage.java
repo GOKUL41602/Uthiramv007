@@ -146,12 +146,10 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 = new FirebaseRecyclerOptions.Builder<DonorsDto>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("DonorsDto"), DonorsDto.class)
                 .build();
-        adapter = new HomePageRecAdapter(options);
+        adapter = new HomePageRecAdapter(options, this);
         recyclerView.setAdapter(adapter);
 
         recyclerView.setNestedScrollingEnabled(false);
-
-
 
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,7 +300,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                     startActivity(intent2);
                     HomePage.this.finish();
                 } else {
-                    Toast.makeText(HomePage.this, "Login to create Request", Toast.LENGTH_SHORT).show();
                     Intent intent3 = new Intent(HomePage.this, LoginPage.class);
                     rollNo = "123456";
                     intent3.putExtra("rollNo", rollNo);

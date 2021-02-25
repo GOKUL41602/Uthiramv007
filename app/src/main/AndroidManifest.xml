@@ -26,59 +26,79 @@
         <activity
             android:name=".ContactUs"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".AboutUs"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".EditEmergencyRequest"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".EmergencyRequests"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ViewRequests"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".RequestBloodDonor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SendSmsPage" />
+
         <activity
             android:name=".ForgetPasswordOtpVerifyPage"
             android:label="Forget Password OTP Verification" />
+
         <activity
             android:name=".ForgetPasswordPage"
             android:label="Forget Password" />
+
         <activity
             android:name=".UpdateDonorStatusPage"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".UpdatePhoneNoOtpPage"
             android:label="Update PhoneNo OTP Verify" />
+
         <activity
             android:name=".UpdateDonorDetailsPage"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".OtpPage"
             android:label="OTP Verification" />
+
         <activity
             android:name=".RegisterPage"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
         <activity
             android:name=".FilteredDeptHomePage"
             android:label="Filtered Department Page " />
+
         <activity
             android:name=".FilteredBloodHomePage"
             android:label="Filtered Blood Group Page" />
+
         <activity
             android:name=".LoginPage"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
         <activity
             android:name=".FilteredHomePage"
             android:label="Filtered Home Page" />
+
         <activity
             android:name=".HomePage"
             android:label="Uthiram"
+            android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

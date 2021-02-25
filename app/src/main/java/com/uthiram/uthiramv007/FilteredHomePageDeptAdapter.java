@@ -1,8 +1,10 @@
 package com.uthiram.uthiramv007;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +51,10 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
                     public void onClick(View v) {
 
                         Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.putExtra("checkValue","blood");
+                        intent.putExtra("deptName", "Dept Name");
+                        intent.putExtra("bloodGroup", bloodGroup);
+                        intent.putExtra("userName",model.getDonorName());
                         intent.putExtra("phoneNo", model.getPhoneNo());
                         holder.context.startActivity(intent);
                     }
