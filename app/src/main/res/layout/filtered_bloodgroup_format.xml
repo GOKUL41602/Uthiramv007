@@ -41,7 +41,7 @@
                 android:id="@+id/filteredBloodDonorDisplayFormat_phoneNoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredBloodDonorDisplayFormat_donorNameText"
+                android:layout_below="@+id/filteredBloodDonorDisplayFormat_donorName"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Phone No : "
