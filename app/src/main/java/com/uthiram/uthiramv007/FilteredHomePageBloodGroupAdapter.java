@@ -53,6 +53,9 @@ public class FilteredHomePageBloodGroupAdapter extends FirebaseRecyclerAdapter<D
                     public void onClick(View v) {
 
                         Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("checkValue", "dept");
                         intent.putExtra("deptName", deptName);
                         intent.putExtra("bloodGroup", "Blood Group ");

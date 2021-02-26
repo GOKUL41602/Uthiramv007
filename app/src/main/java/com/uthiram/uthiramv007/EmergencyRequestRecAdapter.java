@@ -89,9 +89,12 @@ public class EmergencyRequestRecAdapter extends FirebaseRecyclerAdapter<RequestD
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("checkValue", "emergency");
                         intent.putExtra("userName", model.getPatientName());
                         intent.putExtra("phoneNo", model.getPatientPhoneNo());
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         holder.context.startActivity(intent);
                     }
                 });

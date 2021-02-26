@@ -51,10 +51,13 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
                     public void onClick(View v) {
 
                         Intent intent = new Intent(holder.context.getApplicationContext(), SendSmsPage.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("checkValue","blood");
                         intent.putExtra("deptName", "Dept Name");
                         intent.putExtra("bloodGroup", bloodGroup);
                         intent.putExtra("userName",model.getDonorName());
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         intent.putExtra("phoneNo", model.getPhoneNo());
                         holder.context.startActivity(intent);
                     }

@@ -103,28 +103,33 @@ public class SendSmsPage extends AppCompatActivity {
         super.onBackPressed();
         if (checkValue.equals("dept")) {
             Intent intent = new Intent(SendSmsPage.this, FilteredDeptHomePage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.putExtra("1", deptName);
             intent.putExtra("2", bloodGroup);
             startActivity(intent);
             SendSmsPage.this.finish();
         } else if (checkValue.equals("blood")) {
             Intent intent = new Intent(SendSmsPage.this, FilteredBloodHomePage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.putExtra("1", deptName);
             intent.putExtra("2", bloodGroup);
             startActivity(intent);
             SendSmsPage.this.finish();
         } else if (checkValue.equals("bloodDept")) {
             Intent intent = new Intent(SendSmsPage.this, FilteredHomePage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.putExtra("1", deptName);
             intent.putExtra("2", bloodGroup);
             startActivity(intent);
             SendSmsPage.this.finish();
         } else if (checkValue.equals("emergency")) {
             Intent intent = new Intent(SendSmsPage.this, EmergencyRequests.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
             SendSmsPage.this.finish();
         } else if (checkValue.equals("filter")) {
             Intent intent = new Intent(SendSmsPage.this, HomePage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
             SendSmsPage.this.finish();
         }

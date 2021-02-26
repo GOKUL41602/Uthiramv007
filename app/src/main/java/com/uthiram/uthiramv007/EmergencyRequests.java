@@ -51,7 +51,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import static android.os.Process.myPid;
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
+import static java.lang.Process.*;
 
 public class EmergencyRequests extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -262,7 +264,9 @@ public class EmergencyRequests extends AppCompatActivity implements NavigationVi
         } else {
             super.onBackPressed();
         }
-        EmergencyRequests.this.finish();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(myPid());
+        System.exit(1);
     }
 
     @Override
