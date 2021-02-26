@@ -47,15 +47,15 @@ public class SendSmsPage extends AppCompatActivity {
             public void onClick(View v) {
                 initializeStrings();
                 if (validateMessage()) {
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-
                             sendSms();
                         } else {
                             requestPermissions(new String[]{Manifest.permission.SEND_SMS}, 1);
-                            Log.d("demo", "demo");
                         }
                     }
+                    message.getEditText().setText("");
                 }
             }
         });
