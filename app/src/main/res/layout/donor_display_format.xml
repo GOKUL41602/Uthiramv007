@@ -28,7 +28,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Donor Name : "
-                android:textColor="@color/silver"
                 android:textSize="20sp" />
 
             <TextView
@@ -48,7 +47,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Phone No : "
-                android:textColor="@color/silver"
                 android:textSize="20sp" />
 
 
@@ -71,7 +69,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Dept Name : "
-                android:textColor="@color/silver"
                 android:textSize="20sp" />
 
 
@@ -94,7 +91,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Blood Group : "
-                android:textColor="@color/silver"
                 android:textSize="20sp" />
 
 
@@ -117,7 +113,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Place : "
-                android:textColor="@color/silver"
                 android:textSize="20sp" />
 
 

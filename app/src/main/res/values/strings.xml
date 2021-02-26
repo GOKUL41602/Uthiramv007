@@ -6,12 +6,23 @@
 
     <string-array name="deptName">
         <item>Dept Name</item>
-        <item>Information Technology - IT</item>
-        <item>Computer Science - CS</item>
-        <item>Electrical and Electronical Engineering - EEE</item>
-        <item>Mechanical Engineering - ME</item>
-        <item>Aeronautical Engineering - AE</item>
-        <item>Fashion Technology - IT</item>
+        <item>IT</item>
+        <item>CSE</item>
+        <item>FT</item>
+        <item>EEE</item>
+        <item>ME</item>
+        <item>AU</item>
+        <item>AE</item>
+        <item>BT</item>
+        <item>CE</item>
+        <item>ECE</item>
+        <item>EIE</item>
+        <item>ISE</item>
+        <item>MC</item>
+        <item>TT</item>
+        <item>MCA</item>
+        <item>MBA</item>
+
     </string-array>
     <string-array name="bloodGroup">
         <item>Blood Group</item>

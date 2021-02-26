@@ -168,8 +168,8 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/editRequestBloodDonor_time"
-                            style="@style/text_style"
-                            android:layout_width="140dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/editRequestBloodDonor_neededWithIn"
                             android:layout_marginLeft="50dp"
@@ -177,9 +177,10 @@
                             android:layout_toRightOf="@+id/editRequestBloodDonor_date">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="140dp"
+                                android:layout_width="120dp"
                                 android:layout_height="wrap_content"
                                 android:hint="HH:MM"
+                                android:text=""
                                 android:inputType="time" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -191,8 +192,8 @@
                             android:layout_below="@+id/editRequestBloodDonor_date"
                             android:layout_marginLeft="60dp"
                             android:layout_marginTop="20dp"
-                            android:backgroundTint="@color/trans_white"
                             android:text="Select Date"
+                            android:backgroundTint="@color/trans_white"
                             android:textColor="@color/black" />
 
                         <Button
