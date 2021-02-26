@@ -22,7 +22,7 @@ public class FilteredHomePage extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RelativeLayout relativeLayout;
     private FilteredHomePageRecAdapter adapter;
-    private TextView deptNameText, bloodGroupText;
+    private TextView deptNameText, bloodGroupText,emptyText;
     private String deptName, bloodGroup;
     private ProgressBar progressBar;
 
@@ -35,7 +35,6 @@ public class FilteredHomePage extends AppCompatActivity {
         bloodGroup = getIntent().getStringExtra("2");
         deptNameText.setText(deptName);
         bloodGroupText.setText(bloodGroup);
-
         progressBar.setVisibility(View.VISIBLE);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -54,6 +53,7 @@ public class FilteredHomePage extends AppCompatActivity {
         deptNameText = findViewById(R.id.filteredHomePage_deptName);
         bloodGroupText = findViewById(R.id.filteredHomePage_bloodGroup);
         progressBar = findViewById(R.id.filteredHomePage_progressBar);
+        emptyText=findViewById(R.id.filteredHomePage_emptyText);
     }
 
     @Override

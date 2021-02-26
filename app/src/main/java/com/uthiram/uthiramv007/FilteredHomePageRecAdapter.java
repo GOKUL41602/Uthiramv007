@@ -26,6 +26,7 @@ public class FilteredHomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDt
 
     public ProgressBar progressBar;
 
+
     public FilteredHomePageRecAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options, String bloodGroup, String deptName, ProgressBar progressBar) {
         super(options);
         this.bloodGroup = bloodGroup;

@@ -64,16 +64,16 @@
                     android:id="@+id/copyrightImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/aboutUs_text"
-                    android:layout_marginTop="50dp"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginLeft="135dp"
+                    android:layout_marginTop="50dp"
                     android:src="@drawable/ic_copyrights" />
 
                 <TextView
                     android:id="@+id/copyrightText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/aboutUs_text"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="3dp"
                     android:layout_toRightOf="@+id/copyrightImage"
