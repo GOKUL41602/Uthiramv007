@@ -63,15 +63,16 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/requestBloodDonor_title"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
                             app:boxStrokeColor="@color/golden_yellow"
-                            android:layout_marginTop="30dp">
+                            app:hintTextColor="@color/red">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
                                 android:hint="Patient Name"
-                                android:text=""
-                                android:inputType="text" />
+                                android:inputType="text"
+                                android:text="" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,14 +92,16 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/requestBloodDonor_bloodGroup"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="30dp">
+                            android:layout_marginTop="30dp"
+                            app:boxStrokeColor="@color/golden_yellow"
+                            app:hintTextColor="@color/red">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
                                 android:hint="Units Needed"
-                                android:text=""
-                                android:inputType="number" />
+                                android:inputType="number"
+                                android:text="" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,14 +112,16 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/requestBloodDonor_unitsNeeded"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="30dp">
+                            android:layout_marginTop="30dp"
+                            app:boxStrokeColor="@color/golden_yellow"
+                            app:hintTextColor="@color/red">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
                                 android:hint="Hospital Name"
-                                android:text=""
-                                android:inputType="text" />
+                                android:inputType="text"
+                                android:text="" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,14 +132,16 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/requestBloodDonor_hospitalName"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="30dp">
+                            android:layout_marginTop="30dp"
+                            app:boxStrokeColor="@color/golden_yellow"
+                            app:hintTextColor="@color/red">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
                                 android:hint="Contact No"
-                                android:text=""
-                                android:inputType="phone" />
+                                android:inputType="phone"
+                                android:text="" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,14 +165,16 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/requestBloodDonor_neededWithIn"
                             android:layout_marginLeft="60dp"
-                            android:layout_marginTop="30dp">
+                            android:layout_marginTop="30dp"
+                            app:boxStrokeColor="@color/golden_yellow"
+                            app:hintTextColor="@color/red">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="140dp"
                                 android:layout_height="wrap_content"
                                 android:hint="DD/MM/YYYY"
-                                android:text=""
-                                android:inputType="date" />
+                                android:inputType="date"
+                                android:text="" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,14 +187,16 @@
                             android:layout_below="@+id/requestBloodDonor_neededWithIn"
                             android:layout_marginLeft="50dp"
                             android:layout_marginTop="30dp"
-                            android:layout_toRightOf="@+id/requestBloodDonor_date">
+                            android:layout_toRightOf="@+id/requestBloodDonor_date"
+                            app:boxStrokeColor="@color/golden_yellow"
+                            app:hintTextColor="@color/red">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content"
                                 android:hint="HH:MM"
-                                android:text=""
-                                android:inputType="time" />
+                                android:inputType="time"
+                                android:text="" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 

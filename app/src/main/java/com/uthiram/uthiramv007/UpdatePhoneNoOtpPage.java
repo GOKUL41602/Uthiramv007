@@ -76,7 +76,7 @@ public class UpdatePhoneNoOtpPage extends AppCompatActivity {
                 if (!verificationProgress) {
                     phoneNum = phoneNo;
                     String toastNo = String.format("*******%s", phoneNum.substring(10, 13));
-                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Sending Otp to" + toastNo, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdatePhoneNoOtpPage.this, "Sending Otp to " + toastNo, Toast.LENGTH_SHORT).show();
 
                     progressBar.setVisibility(View.VISIBLE);
                     state.setText("sending");

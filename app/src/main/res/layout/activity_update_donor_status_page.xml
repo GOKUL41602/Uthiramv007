@@ -66,7 +66,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="20dp"
                             android:text="Mon DD,YYYY"
-                            android:textColor="@color/black"
+                            android:textColor="@color/silver"
                             android:textSize="24sp"
                             android:textStyle="italic" />
 
@@ -79,7 +79,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
                             android:text="Last Donated Date"
-                            android:textColor="@color/black"
+                            android:textColor="@color/green"
                             android:textSize="24sp" />
 
                         <Button
