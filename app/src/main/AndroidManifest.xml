@@ -79,11 +79,11 @@
 
         <activity
             android:name=".FilteredDeptHomePage"
-            android:label="Filtered Department Page " />
+            android:label="Filtered Department Search" />
 
         <activity
             android:name=".FilteredBloodHomePage"
-            android:label="Filtered Blood Group Page" />
+            android:label="Filtered Blood Group Search" />
 
         <activity
             android:name=".LoginPage"
@@ -91,7 +91,7 @@
 
         <activity
             android:name=".FilteredHomePage"
-            android:label="Filtered Home Page" />
+            android:label="Filtered Home Search" />
 
         <activity
             android:name=".HomePage"
