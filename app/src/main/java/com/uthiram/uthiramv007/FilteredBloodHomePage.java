@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ public class FilteredBloodHomePage extends AppCompatActivity {
     private FilteredHomePageDeptAdapter adapter;
     private TextView deptNameText, bloodGroupText;
     private String bloodGroup, deptName;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +34,14 @@ public class FilteredBloodHomePage extends AppCompatActivity {
         bloodGroup = getIntent().getStringExtra("2");
         bloodGroupText.setText(bloodGroup);
 
+        progressBar.setVisibility(View.VISIBLE);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<DonorsDto> options
                 = new FirebaseRecyclerOptions.Builder<DonorsDto>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("DonorsDto"), DonorsDto.class)
                 .build();
-        adapter = new FilteredHomePageDeptAdapter(options, bloodGroup);
+        adapter = new FilteredHomePageDeptAdapter(options, bloodGroup,progressBar);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
     }
@@ -46,6 +51,7 @@ public class FilteredBloodHomePage extends AppCompatActivity {
         relativeLayout = findViewById(R.id.filteredBloodHomePage_relLayout);
         deptNameText = findViewById(R.id.filteredBloodHomePage_deptName);
         bloodGroupText = findViewById(R.id.filteredBloodHomePage_bloodGroup);
+        progressBar=findViewById(R.id.filteredBloodHomePage_progressBar);
     }
 
     @Override

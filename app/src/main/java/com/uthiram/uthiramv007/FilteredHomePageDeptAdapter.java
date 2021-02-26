@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,10 +23,12 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsDto, FilteredHomePageDeptAdapter.ViewHolder> {
 
     private String bloodGroup;
+    ProgressBar progressBar;
 
-    public FilteredHomePageDeptAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options, String bloodGroup) {
+    public FilteredHomePageDeptAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options, String bloodGroup,ProgressBar progressBar) {
         super(options);
         this.bloodGroup = bloodGroup;
+        this.progressBar=progressBar;
     }
 
     @Override
@@ -33,6 +36,7 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
         if (model.getBloodGroup().equals(bloodGroup)) {
 
             if (model.getStatus().equals("Available")) {
+                progressBar.setVisibility(View.GONE);
                 holder.donorName.setText(model.getDonorName());
                 holder.place.setText(model.getAddress());
                 holder.phoneNo.setText(model.getPhoneNo());
@@ -63,11 +67,13 @@ public class FilteredHomePageDeptAdapter extends FirebaseRecyclerAdapter<DonorsD
                     }
                 });
             } else {
+                progressBar.setVisibility(View.GONE);
                 holder.relativeLayout.setVisibility(View.GONE);
                 holder.cardView.setVisibility(View.GONE);
             }
 
         } else {
+            progressBar.setVisibility(View.GONE);
             holder.relativeLayout.setVisibility(View.GONE);
             holder.cardView.setVisibility(View.GONE);
         }

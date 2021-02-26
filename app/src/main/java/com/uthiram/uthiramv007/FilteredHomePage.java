@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.snackbar.Snackbar;
@@ -42,11 +43,9 @@ public class FilteredHomePage extends AppCompatActivity {
                 = new FirebaseRecyclerOptions.Builder<DonorsDto>()
                 .setQuery(FirebaseDatabase.getInstance().getReference("DonorsDto"), DonorsDto.class)
                 .build();
-        adapter = new FilteredHomePageRecAdapter(options, bloodGroup, deptName);
+        adapter = new FilteredHomePageRecAdapter(options, bloodGroup, deptName,progressBar);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
-
-        progressBar.setVisibility(View.GONE);
     }
 
     private void initializeViews() {

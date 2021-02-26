@@ -24,10 +24,13 @@ public class FilteredHomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDt
 
     private String bloodGroup, deptName;
 
-    public FilteredHomePageRecAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options, String bloodGroup, String deptName) {
+    public ProgressBar progressBar;
+
+    public FilteredHomePageRecAdapter(@NonNull FirebaseRecyclerOptions<DonorsDto> options, String bloodGroup, String deptName, ProgressBar progressBar) {
         super(options);
         this.bloodGroup = bloodGroup;
         this.deptName = deptName;
+        this.progressBar = progressBar;
     }
 
     @Override
@@ -35,6 +38,7 @@ public class FilteredHomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDt
         if (model.getBloodGroup().equals(bloodGroup)) {
             if (model.getDeptName().equals(deptName)) {
                 if (model.getStatus().equals("Available")) {
+                    progressBar.setVisibility(View.GONE);
                     holder.donorName.setText(model.getDonorName());
                     holder.place.setText(model.getAddress());
                     holder.phoneNo.setText(model.getPhoneNo());
@@ -65,15 +69,18 @@ public class FilteredHomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDt
                         }
                     });
                 } else {
+                    progressBar.setVisibility(View.GONE);
                     holder.relativeLayout.setVisibility(View.GONE);
                     holder.cardView.setVisibility(View.GONE);
                 }
 
             } else {
+                progressBar.setVisibility(View.GONE);
                 holder.relativeLayout.setVisibility(View.GONE);
                 holder.cardView.setVisibility(View.GONE);
             }
         } else {
+            progressBar.setVisibility(View.GONE);
             holder.relativeLayout.setVisibility(View.GONE);
             holder.cardView.setVisibility(View.GONE);
         }
@@ -85,6 +92,7 @@ public class FilteredHomePageRecAdapter extends FirebaseRecyclerAdapter<DonorsDt
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.filtered_donor_display_format, parent, false);
         return new ViewHolder(view);
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
