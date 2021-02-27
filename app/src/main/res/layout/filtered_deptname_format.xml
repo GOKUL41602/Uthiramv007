@@ -1,133 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/filteredDeptDonorDisplayFormat_relLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/filteredDeptDonorDisplayFormat_cardView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:id="@+id/filteredDeptDonorDisplayFormat_relLayout"
+        android:layout_height="wrap_content">
 
-
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/filteredDeptDonorDisplayFormat_cardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_donorNameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Donor Name : "
-                android:textColor="@color/black"
-                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_donorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_donorNameText"
-                android:hint="Donor Name"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_donorName"
-                android:layout_marginLeft="10dp"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:text="Phone No : "
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_donorNameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Donor Name : "
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_donorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_donorNameText"
+                    android:hint="Donor Name"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_donorName"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Phone No : "
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
 
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_phoneNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_donorName"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
-                android:hint="phone No"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_phoneNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_donorName"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
+                    android:hint="phone No"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_deptText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Dept Name : "
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_dept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_deptText"
-                android:hint="IT"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_deptText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNoText"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Dept Name : "
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
 
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_placeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_deptText"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Place : "
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_dept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_deptText"
+                    android:hint="IT"
+                    android:textSize="20sp" />
 
 
-            <TextView
-                android:id="@+id/filteredDeptDonorDisplayFormat_place"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_dept"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_placeText"
-                android:hint="address"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_placeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_deptText"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Place : "
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/filteredDeptDonorDisplayFormat_callBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_deptText"
-                android:src="@drawable/ic_call" />
 
-            <ImageView
-                android:id="@+id/filteredDeptDonorDisplayFormat_msgBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_callBtn"
-                android:src="@drawable/ic_msg" />
+                <TextView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_dept"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_placeText"
+                    android:hint="address"
+                    android:textSize="20sp" />
 
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_callBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_deptText"
+                    android:src="@drawable/ic_call" />
 
+                <ImageView
+                    android:id="@+id/filteredDeptDonorDisplayFormat_msgBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/filteredDeptDonorDisplayFormat_phoneNo"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/filteredDeptDonorDisplayFormat_callBtn"
+                    android:src="@drawable/ic_msg" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/filteredDeptDonorDisplayFormat_emptyRelLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/filteredDeptDonorDisplayFormat_relLayout"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="No Records to display!"
+            android:textColor="@color/red"
+            android:textSize="25sp" />
+    </RelativeLayout>
 </RelativeLayout>
