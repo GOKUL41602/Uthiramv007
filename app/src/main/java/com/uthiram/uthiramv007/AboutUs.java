@@ -22,9 +22,14 @@ import java.io.IOException;
 
 import static com.uthiram.uthiramv007.R.string.navigation_draw_open;
 
+/**
+ * About Us Activity will display the why <b>UTHIRAM</b> was launched.
+ */
 public class AboutUs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    // declaring all the used widgets and dataTypes in this activity.
     private DrawerLayout drawerLayout;
+
     private String loginPath = "null", currentDate, currentTime;
 
     private String rollNoPath = "null";
@@ -40,10 +45,13 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
 
+        //created two strings for retrieving both loginCredential text and rollNo path for sharedPreferences.
 
         loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
 
         rollNoPath = getExternalFilesDir("text").getAbsolutePath() + "/rollNo.txt";
+
+        //using FileReader class, reads the contents of loginCredential text file and stores it in an character array(j).
 
         FileReader fr = null;
         try {
@@ -58,6 +66,8 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
             e.printStackTrace();
         }
 
+        //using FileReader class, reads the contents of rollNo text file and stores it in an String(rollNo).
+
         File file = new File(rollNoPath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -69,6 +79,8 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Navigation Drawer is initialized and implemented.
 
         drawerLayout = findViewById(R.id.aboutUs_design_navigation_view);
 
@@ -85,6 +97,9 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         toggle.syncState();
     }
 
+    /**
+     * onBackPressed() this activity will redirected to EmergencyRequest Activity.
+     */
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -97,6 +112,9 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         AboutUs.this.finish();
     }
 
+    /**
+     * onNavigationItemSelected() function is declared to redirect respective activities based on their id.
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -141,6 +159,9 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         return true;
     }
 
+    /**
+     * checks for SharedPreferences(Auto-Login)
+     */
     private boolean checkLoginCredential() {
         int k = Character.compare(j[0], '1');
         if (k == 0) {

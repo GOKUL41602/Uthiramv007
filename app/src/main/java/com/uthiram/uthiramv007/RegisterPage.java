@@ -359,7 +359,6 @@ public class RegisterPage extends AppCompatActivity {
         }
     }
 
-
     private boolean validatePinCode() {
         if (pinCodeText.equals("")) {
             pinCode.setError("Enter Valid PinCode");

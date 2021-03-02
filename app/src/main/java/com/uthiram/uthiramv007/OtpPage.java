@@ -115,8 +115,6 @@ public class OtpPage extends AppCompatActivity {
                 token = forceResendingToken;
                 nextBtn.setText("Verify");
                 verificationProgress = true;
-
-
             }
 
             @Override
