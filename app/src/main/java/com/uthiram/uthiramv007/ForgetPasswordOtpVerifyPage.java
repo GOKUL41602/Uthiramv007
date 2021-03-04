@@ -31,6 +31,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
+import java.io.FileWriter;
 import java.util.concurrent.TimeUnit;
 
 public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
@@ -57,6 +58,9 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
 
     private int count = 0;
 
+    private String loginPath = "null";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +70,6 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
         password = getIntent().getStringExtra("pass");
         userName = getIntent().getStringExtra("user");
         phoneNoFromDB = getIntent().getStringExtra("phoneNo");
-        Log.d("User : ", userName);
-        Log.d("Pass :", password);
         fAuth = FirebaseAuth.getInstance();
 
         phoneNo.getEditText().setText(phoneNoFromDB);
@@ -79,8 +81,15 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
             public void onClick(View v) {
                 if (!verificationProgress) {
                     phoneNum = phoneNoFromDB;
-                    String toastNo = String.format("*******%s", phoneNum.substring(10, 13));
-                    Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Sending Otp to" + toastNo, Toast.LENGTH_SHORT).show();
+                    if (phoneNum.length() == 12) {
+
+                        String toastNo = String.format("*******%s", phoneNum.substring(9, 12));
+                        Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Sending Otp to " + toastNo, Toast.LENGTH_SHORT).show();
+                    } else if (phoneNum.length() == 13) {
+
+                        String toastNo = String.format("*******%s", phoneNum.substring(10, 13));
+                        Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Sending Otp to " + toastNo, Toast.LENGTH_SHORT).show();
+                    }
 
                     progressBar.setVisibility(View.VISIBLE);
                     sendText.setText("sending");
@@ -116,11 +125,17 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
                 if (snapshot.exists()) {
                     reference.child(userName).child("password").setValue(password);
                     Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Password Updated Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ForgetPasswordOtpVerifyPage.this, LoginPage.class);
+                    loginPath = getExternalFilesDir("text").getAbsolutePath() + "/loginCredentials.txt";
+                    try {
+                        FileWriter fw = new FileWriter(loginPath);
+                        fw.write("0");
+                        fw.close();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    Intent intent = new Intent(ForgetPasswordOtpVerifyPage.this, EmergencyRequests.class);
                     startActivity(intent);
                     ForgetPasswordOtpVerifyPage.this.finish();
-                } else {
-
                 }
             }
 
@@ -139,6 +154,7 @@ public class ForgetPasswordOtpVerifyPage extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(ForgetPasswordOtpVerifyPage.this, "Authentication is successful", Toast.LENGTH_SHORT).show();
                     updatePasswordToDB();
+
                     Snackbar.make(relativeLayout, "Password changed Successfully", Snackbar.LENGTH_SHORT).show();
 
                 } else {

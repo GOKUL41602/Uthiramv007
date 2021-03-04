@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -18,12 +19,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.preference.PreferenceManager;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,7 +67,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private String userName, currentTime, currentDate, date, phoneNo, userNameCred;
 
-    private int t1minute, t1hour;
+    private int t1minute = 0, t1hour = 0;
 
     private DatabaseReference reference;
 
@@ -139,26 +140,46 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             }
         });
 
+//        selectTimeBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Calendar calender = Calendar.getInstance();
+//                TimePickerDialog timePicker = new TimePickerDialog(
+//                        RequestBloodDonor.this, new TimePickerDialog.OnTimeSetListener() {
+//                    @Override
+//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                        t1hour = hourOfDay;
+//                        t1minute = minute;
+//
+//                        calender.set(0, 0, 0, t1hour, t1minute);
+//                        neededTime.getEditText().setText(DateFormat.format("hh:mm aa", calender));
+//                    }
+//                }, 12, 0, false
+//                );
+//                timePicker.updateTime(t1hour, t1minute);
+//                timePicker.show();
+//            }
+//
+//        });
+
         selectTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePicker = new TimePickerDialog(
-                        RequestBloodDonor.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        t1hour = hourOfDay;
-                        t1minute = minute;
-                        Calendar calender = Calendar.getInstance();
-                        calender.set(0, 0, 0, t1hour, t1minute);
-                        neededTime.getEditText().setText(format("hh:mm aa", calender));
-                    }
-                }, 12, 0, false
-                );
-
-                timePicker.updateTime(t1hour, t1minute);
-                timePicker.show();
+                timer(selectTimeBtn);
+//                TimePickerDialog timePickerDialog = new TimePickerDialog(RequestBloodDonor.this, new TimePickerDialog.OnTimeSetListener() {
+//                    @Override
+//                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                        Calendar calendar = Calendar.getInstance();
+//                        t1hour = hourOfDay;
+//                        t1minute = minute;
+//                        calendar.set(0, 0, 0, t1hour, t1minute);
+//                        String text = (String) android.text.format.DateFormat.format("hh:mm aa", calendar);
+//                        Toast.makeText(RequestBloodDonor.this, text, Toast.LENGTH_SHORT).show();
+//                    }
+//                }, 12, 0, false);
+//                timePickerDialog.updateTime(t1hour, t1minute);
+//                timePickerDialog.show();
             }
-
         });
 
         selectDateBtn.setOnClickListener(new View.OnClickListener() {
@@ -472,11 +493,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             } else {
                 if (date2.equals(date1)) {
                     isBetween = true;
-                    if (verifyTime(isBetween)) {
-                        global = true;
-                    } else {
-                        global = false;
-                    }
+                    global = verifyTime(isBetween);
 
                 } else {
                     isBetween = false;
@@ -514,5 +531,16 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             neededDate.setError("Choose Valid Date");
             return false;
         }
+    }
+
+    public void timer(View view) {
+        DialogFragment fragment = new TimeFragment();
+        fragment.show(getSupportFragmentManager(), "Time Picker");
+    }
+
+    public void processTimePicker(int hourOfDay, int minute, Calendar c) {
+        String hour = Integer.toString(hourOfDay);
+        String min = Integer.toString(minute);
+        neededTime.getEditText().setText(DateFormat.format("hh:mm aa", c));
     }
 }

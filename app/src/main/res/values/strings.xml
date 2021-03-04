@@ -22,8 +22,8 @@
         <item>TT</item>
         <item>MCA</item>
         <item>MBA</item>
-
     </string-array>
+
     <string-array name="bloodGroup">
         <item>Blood Group</item>
         <item>A+</item>

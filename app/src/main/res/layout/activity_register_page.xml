@@ -5,7 +5,6 @@
     android:id="@+id/registerPage_relLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register_page_background"
     tools:context=".RegisterPage">
 
 
@@ -26,7 +25,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/doppio_one"
                 android:text="Register As Donor"
-                android:textColor="@color/golden_yellow"
+                android:textColor="@color/red"
                 android:textSize="30sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -36,17 +35,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_title"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-                app:hintTextColor="@color/golden_yellow">
+                android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="Donor Name"
-                    android:inputType="text"
-                    android:textColor="@color/white" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,17 +52,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_donorName"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-                app:hintTextColor="@color/golden_yellow">
+                android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="Roll No(User Name)"
-                    android:inputType="text"
-                    android:textColor="@color/white" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,19 +69,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_rollNo"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-
-                app:hintTextColor="@color/golden_yellow">
+                android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="Age"
-                    android:inputType="number"
-                    android:textColor="@color/white" />
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,17 +87,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_age"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-                app:hintTextColor="@color/golden_yellow">
+                android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="City/Address"
-                    android:inputType="text"
-                    android:textColor="@color/white" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,17 +104,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_address"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-                app:hintTextColor="@color/golden_yellow">
+                android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="Pin Code"
-                    android:inputType="number"
-                    android:textColor="@color/white" />
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,17 +121,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/registerPage_pinCode"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-                app:hintTextColor="@color/golden_yellow">
+                android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="Weight (in Kg)"
-                    android:inputType="number"
-                    android:textColor="@color/white" />
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,17 +139,13 @@
                 android:layout_below="@+id/registerPage_deptName"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-                app:hintTextColor="@color/golden_yellow"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="Create Password"
-                    android:inputType="textPassword"
-                    android:textColor="@color/white" />
+                    android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -188,17 +157,13 @@
                 android:layout_below="@+id/registerPage_createPassword"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:textColorHint="@color/golden_yellow"
-                app:boxStrokeColor="@color/golden_yellow"
-                app:hintTextColor="@color/golden_yellow"
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:hint="Re-Enter Password"
-                    android:inputType="textPassword"
-                    android:textColor="@color/white" />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
