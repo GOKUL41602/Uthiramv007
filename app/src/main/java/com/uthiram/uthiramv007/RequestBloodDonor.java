@@ -33,6 +33,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -54,7 +55,15 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private DrawerLayout drawerLayout;
 
-    private RelativeLayout relativeLayout;
+    private TextView textView;
+
+    private RelativeLayout relativeLayout, timeLayout;
+
+    private TimePicker timePicker;
+
+    private String time = "";
+
+    private Button okBtn;
 
     private TextInputLayout patientName, unitsNeeded, hospitalName, patientPhoneNo, neededDate, neededTime;
 
@@ -74,7 +83,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private boolean global = false;
 
-    private String loginPath = "null";
+    private String loginPath = "null", currentTimeForText;
 
     int hour, min;
     private String rollNoPath = "null", strHrsToShow;
@@ -84,6 +93,9 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_blood_donor);
         initializeViews();
+
+        currentTimeForText = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
+        textView.setText(currentTimeForText);
 
         userName = getIntent().getStringExtra("userName");
 
@@ -141,31 +153,18 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         selectTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timer(selectTimeBtn);
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(RequestBloodDonor.this, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
-////                        String minu = String.valueOf(min);
-////                        if (minu.length() == 1) {
-////                            minu = "0" + minu;
-////                        }
-////
-////                        Calendar datetime = Calendar.getInstance();
-////                        datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-////                        datetime.set(Calendar.MINUTE, minutes);
-////
-////                        String am_pm = "";
-////                        if (datetime.get(Calendar.AM_PM) == Calendar.AM)
-////                            am_pm = "AM";
-////                        else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
-////                            am_pm = "PM";
-////
-////                        strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
-//
-//                        Toast.makeText(RequestBloodDonor.this, strHrsToShow + ":" + minu + " " + am_pm, Toast.LENGTH_SHORT).show();
-//                    }
-//                }, 0, 0, false);
-//                timePickerDialog.show();
+                relativeLayout.setVisibility(View.GONE);
+                timeLayout.setVisibility(View.VISIBLE);
+                okBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        selectTime();
+                        neededTime.getEditText().setText(time);
+                        relativeLayout.setVisibility(View.VISIBLE);
+                        timeLayout.setVisibility(View.GONE);
+                    }
+                });
+                neededTime.getEditText().setText(textView.getText().toString());
             }
         });
 
@@ -236,6 +235,38 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                 } else {
                     validatePatientName();
                 }
+            }
+        });
+    }
+
+
+    private void selectTime() {
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                hour = hourOfDay;
+                min = minute;
+                String minu = String.valueOf(min);
+                if (minu.length() == 1) {
+                    minu = "0" + minu;
+                }
+                Calendar datetime = Calendar.getInstance();
+                datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                datetime.set(Calendar.MINUTE, minute);
+
+                String am_pm = "";
+                if (datetime.get(Calendar.AM_PM) == Calendar.AM)
+                    am_pm = "AM";
+                else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
+                    am_pm = "PM";
+
+                strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
+
+                time = strHrsToShow + ":" + minu + " " + am_pm;
+                textView.setText(time);
+                time = textView.getText().toString();
+                neededTime.getEditText().setText(textView.getText().toString());
+
             }
         });
     }
@@ -352,6 +383,15 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     }
 
     private void initializeViews() {
+
+        textView = findViewById(R.id.timeHideText);
+
+        timeLayout = findViewById(R.id.timePickerRelLayout);
+
+        okBtn = findViewById(R.id.timeOkBtn);
+
+        timePicker = findViewById(R.id.timePicker);
+
         bloodGroup = findViewById(R.id.requestBloodDonor_bloodGroup);
 
         patientName = findViewById(R.id.requestBloodDonor_patientName);
