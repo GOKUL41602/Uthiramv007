@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".TimeActivity">
+
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/timeCancelBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timePicker"
+        android:layout_marginLeft="100dp"
+        android:backgroundTint="@color/sky_blue"
+        android:text="Cancel"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/timeOkBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timePicker"
+        android:layout_marginLeft="60dp"
+        android:layout_toRightOf="@+id/timeCancelBtn"
+        android:backgroundTint="@color/sky_blue"
+        android:text="OK"
+        android:textColor="@color/black" />
+
+</RelativeLayout>
