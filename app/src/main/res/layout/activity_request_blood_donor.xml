@@ -223,7 +223,8 @@
                             android:backgroundTint="@color/trans_white"
                             android:descendantFocusability="blocksDescendants"
                             android:text="Select Time"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/blood_red"
+                            tools:ignore="UnusedAttribute" />
 
                         <Button
                             android:id="@+id/requestBloodDonor_requestDonorBtn"

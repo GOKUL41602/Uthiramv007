@@ -45,6 +45,8 @@ public class RegisterPage extends AppCompatActivity {
         bloodsList.add("Blood Group");
         bloodsList.add("B+");
         bloodsList.add("A+");
+        bloodsList.add("A-");
+        bloodsList.add("B-");
         bloodsList.add("AB-");
         bloodsList.add("AB+");
         bloodsList.add("O-");
