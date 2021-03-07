@@ -63,13 +63,13 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private TextInputLayout patientName, unitsNeeded, hospitalName, patientPhoneNo, neededDate, neededTime;
 
-    private Button selectDateBtn, selectTimeBtn, requestDonorBtn, cancelBtn,okBtn;
+    private Button selectDateBtn, selectTimeBtn, requestDonorBtn, cancelBtn, okBtn;
 
     private Spinner bloodGroup;
 
     private String patientNameText, unitsNeededText, hospitalNameText, patientPhoneNoText, neededDateText, neededTimeText, bloodGroupText;
 
-    private String userName, currentTime, currentDate, date, phoneNo, userNameCred;
+    private String userName, currentTime, currentDate, date, phoneNo, userNameCred, timeToShow;
 
     private int t1minute = 0, t1hour = 0;
 
@@ -79,7 +79,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private boolean global = false;
 
-    private String loginPath = "null",time = "", currentTimeForText,rollNoPath = "null", strHrsToShow;
+    private String loginPath = "null", time = "", currentTimeForText, rollNoPath = "null", strHrsToShow;
 
     int hour, min;
 
@@ -154,12 +154,11 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
                     @Override
                     public void onClick(View v) {
                         selectTime();
-                        neededTime.getEditText().setText(time);
                         relativeLayout.setVisibility(View.VISIBLE);
                         timeLayout.setVisibility(View.GONE);
                     }
                 });
-                neededTime.getEditText().setText(textView.getText().toString());
+                neededTime.getEditText().setText(timeToShow);
             }
         });
 
@@ -257,13 +256,11 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
                 strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
 
-                time = strHrsToShow + ":" + minu + " " + am_pm;
-                textView.setText(time);
-                time = textView.getText().toString();
-                neededTime.getEditText().setText(textView.getText().toString());
+                timeToShow = strHrsToShow + ":" + minu + " " + am_pm;
 
             }
         });
+        neededTime.getEditText().setText(timeToShow);
     }
 
     private void uploadRequestDetails() {
