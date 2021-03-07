@@ -553,15 +553,4 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             return false;
         }
     }
-
-    public void timer(View view) {
-        DialogFragment fragment = new TimeFragment();
-        fragment.show(getSupportFragmentManager(), "Time Picker");
-    }
-
-    public void processTimePicker(int hourOfDay, int minute, Calendar c) {
-        String hour = Integer.toString(hourOfDay);
-        String min = Integer.toString(minute);
-        neededTime.getEditText().setText(DateFormat.format("hh:mm aa", c));
-    }
 }

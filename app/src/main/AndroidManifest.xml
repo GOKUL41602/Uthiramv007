@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Uthiramv007"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TimeActivity"></activity>
+
         <activity
             android:name=".ContactUs"
             android:theme="@style/AppTheme.NoActionBar" />
