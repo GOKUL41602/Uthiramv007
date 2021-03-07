@@ -40,7 +40,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
 
     private DrawerLayout drawerLayout;
 
-    private TextView bloodGroup, phoneNo;
+    private TextView bloodGroup, phoneNo, deptNameText;
 
     private TextInputLayout name, rollNo, age, weight, address, pinCode;
 
@@ -48,7 +48,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
 
     private RelativeLayout relativeLayout;
 
-    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText, phoneNoFromDB, districtFromDB;
+    private String userName, nameText, ageText, rollNoText, deptName, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText, phoneNoFromDB, districtFromDB;
 
     private DatabaseReference reference;
 
@@ -285,6 +285,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                     rollNoText = userName;
                     weightText = snapshot.child(userName).child("weight").getValue(String.class);
                     addressText = snapshot.child(userName).child("address").getValue(String.class);
+                    deptName = snapshot.child(userName).child("deptName").getValue(String.class);
                     pinCodeText = snapshot.child(userName).child("pinCode").getValue(String.class);
                     phoneNoText = snapshot.child(userName).child("phoneNo").getValue(String.class);
                     bloodGroupText = snapshot.child(userName).child("bloodGroup").getValue(String.class);
@@ -297,6 +298,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                     address.getEditText().setText(addressText);
                     pinCode.getEditText().setText(pinCodeText);
                     phoneNo.setText(phoneNoText);
+                    deptNameText.setText("Department Name : " + deptName);
                     bloodGroup.setText(bloodGroupText);
                     settingDistrictNameInSpinner();
 
@@ -323,6 +325,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
     }
 
     private void initializeViews() {
+        deptNameText = findViewById(R.id.updateDonorDetailsPage_deptName);
         name = findViewById(R.id.updateDonorDetailsPage_name);
         rollNo = findViewById(R.id.updateDonorDetailsPage_rollNo);
         age = findViewById(R.id.updateDonorDetailsPage_age);

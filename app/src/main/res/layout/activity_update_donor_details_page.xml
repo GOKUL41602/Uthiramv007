@@ -90,12 +90,23 @@
 
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <TextView
+                            android:id="@+id/updateDonorDetailsPage_deptName"
+                            android:layout_width="290dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="16sp"
+                            android:layout_below="@+id/updateDonorDetailsPage_rollNo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:hint="departmentName" />
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/updateDonorDetailsPage_age"
                             style="@style/text_style"
                             android:layout_width="290dp"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/updateDonorDetailsPage_rollNo"
+                            android:layout_below="@+id/updateDonorDetailsPage_deptName"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="30dp">
 
@@ -202,7 +213,6 @@
                             android:backgroundTint="@color/golden_yellow"
                             android:text="Update"
                             android:textColor="@color/black" />
-
 
 
                     </RelativeLayout>
