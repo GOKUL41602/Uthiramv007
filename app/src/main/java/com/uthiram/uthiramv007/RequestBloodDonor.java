@@ -55,8 +55,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private DrawerLayout drawerLayout;
 
-    private TextView textView;
-
     private RelativeLayout relativeLayout, timeLayout;
 
     private TimePicker timePicker;
@@ -91,7 +89,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
         currentTimeForText = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
         timeToShow = currentTimeForText;
-        textView.setText(currentTimeForText);
 
         userName = getIntent().getStringExtra("userName");
 
@@ -225,7 +222,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             }
         });
     }
-
 
     private void selectTime() {
 
@@ -379,8 +375,6 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
     }
 
     private void initializeViews() {
-
-        textView = findViewById(R.id.timeHideText);
 
         timeLayout = findViewById(R.id.timePickerRelLayout);
 
