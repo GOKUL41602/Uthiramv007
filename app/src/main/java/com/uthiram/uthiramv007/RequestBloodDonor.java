@@ -90,6 +90,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
         initializeViews();
 
         currentTimeForText = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date());
+        timeToShow = currentTimeForText;
         textView.setText(currentTimeForText);
 
         userName = getIntent().getStringExtra("userName");
@@ -150,15 +151,7 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
             public void onClick(View v) {
                 relativeLayout.setVisibility(View.GONE);
                 timeLayout.setVisibility(View.VISIBLE);
-                okBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        selectTime();
-                        relativeLayout.setVisibility(View.VISIBLE);
-                        timeLayout.setVisibility(View.GONE);
-                    }
-                });
-                neededTime.getEditText().setText(timeToShow);
+                selectTime();
             }
         });
 
@@ -235,9 +228,11 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
 
     private void selectTime() {
+
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                String demoTime;
                 hour = hourOfDay;
                 min = minute;
                 String minu = String.valueOf(min);
@@ -256,12 +251,21 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
                 strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
 
-                timeToShow = strHrsToShow + ":" + minu + " " + am_pm;
-
+                demoTime = strHrsToShow + ":" + minu + " " + am_pm;
+                timeToShow = demoTime;
             }
         });
-        neededTime.getEditText().setText(timeToShow);
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectTime();
+                neededTime.getEditText().setText(timeToShow);
+                relativeLayout.setVisibility(View.VISIBLE);
+                timeLayout.setVisibility(View.GONE);
+            }
+        });
     }
+
 
     private void uploadRequestDetails() {
 
