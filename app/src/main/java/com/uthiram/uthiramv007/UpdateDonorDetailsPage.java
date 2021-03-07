@@ -48,7 +48,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
 
     private RelativeLayout relativeLayout;
 
-    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText,phoneNoFromDB;
+    private String userName, nameText, ageText, rollNoText, weightText, addressText, pinCodeText, phoneNoText, districtText, bloodGroupText, phoneNoFromDB, districtFromDB;
 
     private DatabaseReference reference;
 
@@ -64,7 +64,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_donor_details_page);
         userName = getIntent().getStringExtra("userName");
-        phoneNoFromDB= getIntent().getStringExtra("phoneNo");
+        phoneNoFromDB = getIntent().getStringExtra("phoneNo");
         initializeViews();
         initializeSpinners();
         loadDonorDetails();
@@ -181,6 +181,70 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
         });
     }
 
+    private void settingDistrictNameInSpinner() {
+        ArrayList<String> districtName1 = new ArrayList<>();
+        districtName1.add("District Name");
+        districtName1.add("Ariyalur");
+        districtName1.add("Chengalpet");
+        districtName1.add("Chennai");
+        districtName1.add("Coimbatore");
+        districtName1.add("Cuddalore");
+        districtName1.add("Dharmapuri");
+        districtName1.add("Dindigul");
+        districtName1.add("Erode");
+        districtName1.add("Kallakurichi");
+        districtName1.add("Kancheepuram");
+        districtName1.add("Karur");
+        districtName1.add("Krishnagiri");
+        districtName1.add("Madurai");
+        districtName1.add("Nagapattinam");
+        districtName1.add("Kanyakumari");
+        districtName1.add("Namakkal");
+        districtName1.add("Perambalur");
+        districtName1.add("Pudukottai");
+        districtName1.add("Ramanathapuram");
+        districtName1.add("Ranipet");
+        districtName1.add("Salem");
+        districtName1.add("Sivagangai");
+        districtName1.add("Tenkasi");
+        districtName1.add("Thanjavur");
+        districtName1.add("Theni");
+        districtName1.add("Thiruvallur");
+        districtName1.add("Thiruvarur");
+        districtName1.add("Tuticorin");
+        districtName1.add("Trichirappalli");
+        districtName1.add("Thirunelveli");
+        districtName1.add("Tirupathur");
+        districtName1.add("Tiruppur");
+        districtName1.add("Thiruvannamalai");
+        districtName1.add("The Nilgiris");
+        districtName1.add("Vellore");
+        districtName1.add("Viluppuram");
+        districtName1.add("Virudhunagar");
+        districtName1.add("Other...");
+
+        for (int i = 0; i < districtName1.size(); i++) {
+            if (districtFromDB.equals(districtName1.get(i))) {
+                districtName1.remove(i);
+                districtName1.add(0, districtFromDB);
+            }
+        }
+
+        ArrayAdapter<String> districtNameAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, districtName1);
+        district.setAdapter(districtNameAdapter);
+        district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                districtText = districtName1.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
     private boolean validateDistrict() {
         if (districtText.equals("District Name")) {
             Snackbar.make(relativeLayout, "Please Select District Name", Snackbar.LENGTH_SHORT).show();
@@ -224,6 +288,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                     pinCodeText = snapshot.child(userName).child("pinCode").getValue(String.class);
                     phoneNoText = snapshot.child(userName).child("phoneNo").getValue(String.class);
                     bloodGroupText = snapshot.child(userName).child("bloodGroup").getValue(String.class);
+                    districtFromDB = snapshot.child(userName).child("district").getValue(String.class);
 
                     name.getEditText().setText(nameText);
                     age.getEditText().setText(ageText);
@@ -233,6 +298,7 @@ public class UpdateDonorDetailsPage extends AppCompatActivity implements Navigat
                     pinCode.getEditText().setText(pinCodeText);
                     phoneNo.setText(phoneNoText);
                     bloodGroup.setText(bloodGroupText);
+                    settingDistrictNameInSpinner();
 
                 } else {
                     Toast.makeText(UpdateDonorDetailsPage.this, "User doesn't exists", Toast.LENGTH_SHORT).show();
