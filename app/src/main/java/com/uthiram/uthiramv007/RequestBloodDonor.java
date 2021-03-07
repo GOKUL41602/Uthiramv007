@@ -61,13 +61,9 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private TimePicker timePicker;
 
-    private String time = "";
-
-    private Button okBtn;
-
     private TextInputLayout patientName, unitsNeeded, hospitalName, patientPhoneNo, neededDate, neededTime;
 
-    private Button selectDateBtn, selectTimeBtn, requestDonorBtn, cancelBtn;
+    private Button selectDateBtn, selectTimeBtn, requestDonorBtn, cancelBtn,okBtn;
 
     private Spinner bloodGroup;
 
@@ -83,10 +79,9 @@ public class RequestBloodDonor extends AppCompatActivity implements NavigationVi
 
     private boolean global = false;
 
-    private String loginPath = "null", currentTimeForText;
+    private String loginPath = "null",time = "", currentTimeForText,rollNoPath = "null", strHrsToShow;
 
     int hour, min;
-    private String rollNoPath = "null", strHrsToShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

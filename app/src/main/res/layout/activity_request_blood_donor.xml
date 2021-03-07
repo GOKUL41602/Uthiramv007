@@ -229,7 +229,7 @@
                             android:backgroundTint="@color/trans_white"
                             android:descendantFocusability="blocksDescendants"
                             android:text="Select Time"
-                            android:textColor="@color/blood_red"
+                            android:textColor="@color/trans_white"
                             tools:ignore="UnusedAttribute" />
 
                         <Button
